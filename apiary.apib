@@ -1,0 +1,213 @@
+FORMAT: 1A
+HOST: http://polls.apiblueprint.org/
+
+# ED
+
+Service Oriented Architecture specified for the ED project.
+
+#######################
+# Group 01 - Profiles
+#######################
+
+Resources related to user's profile in the API.
+
+## Profiles collections [/profiles{?filter}{?page}]
+
++ Attributes
+    + profiles (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
+    + count: 3 (number, required) - total number of resources fetched by the query.
+
+### Search Profiles [GET]
+Search user profiles filtering on some fields.
+
++ Parameters
+    + page: 1 (optional, number) - The page of profiles to return, default 1
+    + filter: {"lastName": "BIANCHI"} (object) - field name and value for filtering
+
++ Response 200 (application/json)
+
+    + Attributes (Profiles collections)
+
++ Response 400
+    Returned when input does not pass validation.
+    
+    + Body    
+    
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+    
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## Profile [/profiles/{id}]
+
++ Parameters
+    + id: 1 (required, number) - ID of the user
+
++ Attributes (ProfileDetail)
+
+### Read Profile [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Profile)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Profile [PUT]
+
++ Request (application/json)
+
+    + Attributes (Profile Update)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Delete Profile [DELETE]
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## User personal profile [/profiles/my]
+
+Used to retrieve user personal details.
+
+### Read Profile [GET]
+
++ Response 200 (application/json)
+  + Attributes (Profile)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+# Data Structures
+
+## Collection (object)
++ count: 1 (number) - total number of resources fetched by the query.
+
+## Address (object)
++ street: 235 Ninth Street
++ city: San Francisco
++ state: California
+
+## ProfileResult1 (object)
++ id: 1 (required, number) - ID of the profile
++ firstName: `MARIO` (required, string)
++ lastName: `BIANCHI` (required, string)
++ ou_code: `XL78481` (required, string)
++ ou_descr: `C-BOM` (required, string)
++ phone: `3901112345678` (string) - A string with the following format: `<2 digits country code>-<phone number>`
++ email: `mbianchi@acme.it` (required, string)
++ country: `Italy`
++ imageUrl: `http://url.of.image/image1.png`
+
+## ProfileResult2 (object)
++ id: 2
++ firstName: `ROSA`
++ lastName: `BIANCHI`
++ ou_code: `XL78439`
++ ou_descr: `Service Management`
++ phone: `3901112345678` (string) - A string with the following format: `<country code, prefix, number>`
++ email: `rbianchi@acme.it`
++ country: `Austria`
++ imageUrl: `http://url.of.image/image2.png`
+
+## ProfileResult3 (object)
++ id: 2
++ firstName: `PAOLO`
++ lastName: `BIANCHI`
++ ou_code `XJ99196`
++ ou_descr: `Open Special Support AT`
++ phone: `3901112345678` (string) - A string with the following format: `<country code, prefix, number>`
++ email: `pbianchio@acme.it`
++ country: `Germany`
++ imageUrl: `http://url.of.image/image3.png`
+
+## ProfileDetail (object)
++ id: 1 (required, number) - ID of the profile
++ firstName: `MARIO` (required, string)
++ lastName: `BIANCHI` (required, string)
++ ou_code: `XL78481` (required, string)
++ ou_descr: `C-BOM` (required, string)
++ email: `mbianchi@acme.it` (required, string)
++ profession: `Senior Developer` (required, string)
++ ismanager: `true`
++ phoneCountry: `39`,
++ phonePrefix: `011`,
++ phoneNumber: `12345678` (string)
++ mobileCountry: `39` (string)
++ mobilePrefix: `335` (string)
++ mobileNumber: `1234567` (string)
++ faxCountry: `39` (string)
++ faxPrefix: `02` (string)
++ faxNumber: `3904912345678` (string)
++ address: `Via Nizza 15 Torino` (string) - Composed from Address + City + Stae + Zip
++ country: `Italy`
++ imageUrl: `http://url.of.image/image.png`
++ businessUnit: `not used ?`,
++ internetAddress: `firstname.lastname@organization.com`
++ altInternetAddress: `firstname.lastname@organization2.com`
++ notesAddress: `????`
++ userId: `????`
++ businessCountry: `Italy`
++ businessAddress: `No information provided` (string)
++ businessCity: `No information provided` (string)
++ expertiseSummary: `BLA BLA BLA` (string)
++ certifications: `BLA BLA BLA` (string)
++ experienceGeneral: `BLA BLA BLA` (string)
++ experienceIndustry: `BLA BLA BLA` (string)
++ technicalExperience: `BLA BLA BLA` (string)
++ solutionsProducts: `BLA BLA BLA` (string)
++ communities: `BLA BLA BLA` (string)
++ businessGoals: `BLA BLA BLA` (string)
++ professionalOrganizations: `BLA BLA BLA` (string)
++ projects: `BLA BLA BLA` (string)
++ team: `BLA BLA BLA` (string)
++ otherRoles: `????` (string)
+
+## Profile Update (object)
++ Include Profile
++ image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
