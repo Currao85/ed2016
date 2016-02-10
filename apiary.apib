@@ -11,18 +11,26 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?filter}{?page}]
+## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}]
 
 + Attributes
     + profiles (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
     + count: 3 (number, required) - total number of resources fetched by the query.
 
-### Search Profiles [GET]
-Search user profiles filtering on some fields.
+### List Profiles [GET]
+Search user profiles.
 
 + Parameters
-    + page: 1 (optional, number) - The page of profiles to return, default 1
-    + filter: {"lastName": "BIANCHI"} (object) - field name and value for filtering
+    + searchType: lname (enum[string]) - Field to filter
+        + Members
+            + lname
+            + fname
+            + email
+            + dname
+            + dcode
+    + searchValue: BIANCHI (string) - value to search
+    + orgType: UO (string) - Codice tipo struttura da filtrare
+    + page: 1 (optional, number) - The page of profiles to return
 
 + Response 200 (application/json)
 
@@ -122,16 +130,27 @@ Used to retrieve user personal details.
 
     + Body
 
+#######################
+# Group 02 - Search types
+#######################
+
+## Search types collections [/types]
+
++ Attributes (array)
+  - Last name
+  - First name
+  - Email
+  - Department name
+  - Department code
+  
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (Search types collections)
+
 
 # Data Structures
-
-## Collection (object)
-+ count: 1 (number) - total number of resources fetched by the query.
-
-## Address (object)
-+ street: 235 Ninth Street
-+ city: San Francisco
-+ state: California
 
 ## ProfileResult1 (object)
 + id: 1 (required, number) - ID of the profile
@@ -162,9 +181,15 @@ Used to retrieve user personal details.
 + ou_code `XJ99196`
 + ou_descr: `Open Special Support AT`
 + phone: `3901112345678` (string) - A string with the following format: `<country code, prefix, number>`
-+ email: `pbianchio@acme.it`
++ email: `pbianchi@acme.it`
 + country: `Germany`
 + imageUrl: `http://url.of.image/image3.png`
+
+## Address (object)
+- street: Via Nizza 15
+- city: Torino
+- country: Italy
+- zip: 12345
 
 ## ProfileDetail (object)
 + id: 1 (required, number) - ID of the profile
@@ -175,26 +200,26 @@ Used to retrieve user personal details.
 + email: `mbianchi@acme.it` (required, string)
 + profession: `Senior Developer` (required, string)
 + ismanager: `true`
-+ phoneCountry: `39`,
-+ phonePrefix: `011`,
-+ phoneNumber: `12345678` (string)
-+ mobileCountry: `39` (string)
-+ mobilePrefix: `335` (string)
-+ mobileNumber: `1234567` (string)
-+ faxCountry: `39` (string)
-+ faxPrefix: `02` (string)
-+ faxNumber: `3904912345678` (string)
-+ address: `Via Nizza 15 Torino` (string) - Composed from Address + City + Stae + Zip
-+ country: `Italy`
++ phone (object)
+    + country: 39
+    + prefix: `011`
+    + number: `12345678` (string)
++ mobilePhone (object)
+    + country: `39`
+    + prefix: `335`
+    + number: `1234567` (string)
++ fax (object)
+    + country: `39` (string)
+    + prefix: `02` (string)
+    + number: `3904912345678` (string)
++ address (Address)
 + imageUrl: `http://url.of.image/image.png`
 + businessUnit: `not used ?`,
 + internetAddress: `firstname.lastname@organization.com`
 + altInternetAddress: `firstname.lastname@organization2.com`
 + notesAddress: `????`
 + userId: `????`
-+ businessCountry: `Italy`
-+ businessAddress: `No information provided` (string)
-+ businessCity: `No information provided` (string)
++ businessAddress (Address)
 + expertiseSummary: `BLA BLA BLA` (string)
 + certifications: `BLA BLA BLA` (string)
 + experienceGeneral: `BLA BLA BLA` (string)
