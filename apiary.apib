@@ -38,14 +38,14 @@ Search user profiles.
 
 + Response 400
     Returned when input does not pass validation.
-    
-    + Body    
-    
+
+    + Body
+
 + Response 404
     Returned when the required resource cannot be found.
 
     + Body
-    
+
 + Response 500
     Returned when a generic error occours.
 
@@ -131,23 +131,104 @@ Used to retrieve user personal details.
     + Body
 
 #######################
-# Group 02 - Search types
+# Group 02 - Fields details
 #######################
 
-## Search types collections [/types]
+## Organization types collections [/fieldsDetail/organizationTypes]
 
 + Attributes (array)
-  - Last name
-  - First name
-  - Email
-  - Department name
-  - Department code
-  
+  + Business
+  + Manteinance
+  + Other
 
 ### List types [GET]
 
 + Response 200 (application/json)
-  + Attributes (Search types collections)
+  + Attributes (Employee types collections)
+
+
+## Employee types collections [/fieldsDetail/employeeTypes]
+
++ Attributes (array)
+  + EmployeeType1
+  + EmployeeType2
+  + EmployeeType3
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (Employee types collections)
+
+
+## Countries collections [/fieldsDetail/countries]
+
++ Attributes (array)
+  + Italy
+  + Germany
+  + Austria
+  + Spain
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (Countries collections)
+
+
+## User role collections [/fieldsDetail/userRoles]
+
++ Attributes (array)
+  + User role 1
+  + User role 2
+  + User role 3
+  + User role 4
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (User role collections)
+
+
+## Organization unit collections [/fieldsDetail/organizationUnit]
+
++ Attributes (array)
+  + Organization unit 1
+  + Organization unit 2
+  + Organization unit 3
+  + Organization unit 4
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (Organization unit collections)
+
+## Structure type collections [/fieldsDetail/structureTypes]
+
++ Attributes (array)
+  + Structure type 1
+  + Structure type 2
+  + Structure type 3
+  + Structure type 4
+
+### List types [GET]
+
++ Response 200 (application/json)
+  + Attributes (Structure type collections)
+
+
+#######################
+# Group 03 - Business organization tree
+#######################
+
+## Business tree [/businessTree]
+
++ Attributes
+    + Organizations (array[Organization1,Organization2], required) - array of first-level organizations
+
+### Business tree [GET]
+
++ Response 200 (application/json)
+  + Attributes (Business tree)
+
 
 
 # Data Structures
@@ -158,29 +239,29 @@ Used to retrieve user personal details.
 + lastName: `BIANCHI` (required, string)
 + ou_code: `XL78481` (required, string)
 + ou_descr: `C-BOM` (required, string)
-+ phone: `3901112345678` (string) - A string with the following format: `<2 digits country code>-<phone number>`
++ officeNumber: `B101` (string)
 + email: `mbianchi@acme.it` (required, string)
-+ country: `Italy`
++ country: `Italy` (string)
 + imageUrl: `http://url.of.image/image1.png`
 
 ## ProfileResult2 (object)
-+ id: 2
++ id: 2 (required, number) - ID of the profile
 + firstName: `ROSA`
 + lastName: `BIANCHI`
 + ou_code: `XL78439`
 + ou_descr: `Service Management`
-+ phone: `3901112345678` (string) - A string with the following format: `<country code, prefix, number>`
++ officeNumber: `B103` (string)
 + email: `rbianchi@acme.it`
 + country: `Austria`
 + imageUrl: `http://url.of.image/image2.png`
 
 ## ProfileResult3 (object)
-+ id: 2
++ id: 3 (required, number) - ID of the profile
 + firstName: `PAOLO`
 + lastName: `BIANCHI`
 + ou_code `XJ99196`
 + ou_descr: `Open Special Support AT`
-+ phone: `3901112345678` (string) - A string with the following format: `<country code, prefix, number>`
++ officeNumber: `B205` (string)
 + email: `pbianchi@acme.it`
 + country: `Germany`
 + imageUrl: `http://url.of.image/image3.png`
@@ -215,24 +296,76 @@ Used to retrieve user personal details.
 + address (Address)
 + imageUrl: `http://url.of.image/image.png`
 + businessUnit: `not used ?`,
++ jobResponsibility: `my job responsibility bla bla`
 + internetAddress: `firstname.lastname@organization.com`
 + altInternetAddress: `firstname.lastname@organization2.com`
-+ notesAddress: `????`
++ notesAddress: `indirizzo_notes@aaaaa.it`
 + userId: `????`
++ preferedAddress (Address)
 + businessAddress (Address)
-+ expertiseSummary: `BLA BLA BLA` (string)
-+ certifications: `BLA BLA BLA` (string)
-+ experienceGeneral: `BLA BLA BLA` (string)
-+ experienceIndustry: `BLA BLA BLA` (string)
-+ technicalExperience: `BLA BLA BLA` (string)
-+ solutionsProducts: `BLA BLA BLA` (string)
-+ communities: `BLA BLA BLA` (string)
-+ businessGoals: `BLA BLA BLA` (string)
-+ professionalOrganizations: `BLA BLA BLA` (string)
-+ projects: `BLA BLA BLA` (string)
-+ team: `BLA BLA BLA` (string)
++ expertiseSummary: `expertise summary text` (string)
++ certifications: `certifications text` (string)
++ experienceGeneral (object)
+    + business: `business experience text` (string)
+    + industry: `industry experience text` (string)
+    + customer: `customer experience text` (string)
++ technicalExperience: `industry experience text` (string)
++ solutionsProducts: `solutions products text` (string)
++ communities: `communities text` (string)
++ businessGoals: `business goals text` (string)
++ professionalOrganizations: `professional organizations text` (string)
++ projects: `projects text` (string)
++ team: `team text` (string)
 + otherRoles: `????` (string)
 
 ## Profile Update (object)
 + Include Profile
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
+
+## Organization1 (object)
++ ou_code:`XL9875`
++ ou_name:`organization name 1`
++ people (array[Person1,Person2], optional)
++ subOrganizations (array[])
+
+## Organization2 (object)
++ ou_code:`XL8654`
++ ou_name:`organization name 2`
++ people (array[Person3], optional)
++ subOrganizations (array[Organization2_1])
+
+## Organization2_1 (object)
++ ou_code:`XL9352`
++ ou_name:`organization name 1`
++ people (array[Person4,Person5], optional)
++ subOrganizations (array[], optional)
+
+##Person1 (object)
++ id: 1 (required, number)
++ lastName: `Linzi` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: true (boolean)
+
+##Person2 (object)
++ id: 2 (required, number)
++ lastName: `Linzi` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: false (boolean)
+
+##Person3 (object)
++ id: 3 (required, number)
++ lastName: `Signori` (required, string)
++ firstName: `Marco` (required, string)
++ isManager: true (boolean)
+
+##Person4 (object)
++ id: 4 (required, number)
++ lastName: `Moretto` (required, string)
++ firstName: `Alberto` (required, string)
++ isManager: true (boolean)
+
+##Person5 (object)
++ id: 5 (required, number)
++ lastName: `Tessarolo` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: false (boolean)
