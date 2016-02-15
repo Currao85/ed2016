@@ -222,7 +222,7 @@ Used to retrieve user personal details.
 ## Business tree [/businessTree]
 
 + Attributes
-    + Organizations (array[Organization1,Organization2], required) - array of first-level organizations
+    + organizations (array[Organization1,Organization2], required) - array of first-level organizations
 
 ### Business tree [GET]
 
@@ -237,8 +237,8 @@ Used to retrieve user personal details.
 + id: 1 (required, number) - ID of the profile
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
-+ ou_code: `XL78481` (required, string)
-+ ou_descr: `C-BOM` (required, string)
++ ouCode: `XL78481` (required, string)
++ ouDescr: `C-BOM` (required, string)
 + officeNumber: `B101` (string)
 + email: `mbianchi@acme.it` (required, string)
 + country: `Italy` (string)
@@ -248,8 +248,8 @@ Used to retrieve user personal details.
 + id: 2 (required, number) - ID of the profile
 + firstName: `ROSA`
 + lastName: `BIANCHI`
-+ ou_code: `XL78439`
-+ ou_descr: `Service Management`
++ ouCode: `XL78439`
++ ouDescr: `Service Management`
 + officeNumber: `B103` (string)
 + email: `rbianchi@acme.it`
 + country: `Austria`
@@ -259,8 +259,8 @@ Used to retrieve user personal details.
 + id: 3 (required, number) - ID of the profile
 + firstName: `PAOLO`
 + lastName: `BIANCHI`
-+ ou_code `XJ99196`
-+ ou_descr: `Open Special Support AT`
++ ouCode `XJ99196`
++ ouDescr: `Open Special Support AT`
 + officeNumber: `B205` (string)
 + email: `pbianchi@acme.it`
 + country: `Germany`
@@ -276,8 +276,8 @@ Used to retrieve user personal details.
 + id: 1 (required, number) - ID of the profile
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
-+ ou_code: `XL78481` (required, string)
-+ ou_descr: `C-BOM` (required, string)
++ ouCode: `XL78481` (required, string)
++ ouDescr: `C-BOM` (required, string)
 + email: `mbianchi@acme.it` (required, string)
 + profession: `Senior Developer` (required, string)
 + ismanager: `true`
@@ -323,20 +323,20 @@ Used to retrieve user personal details.
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
 
 ## Organization1 (object)
-+ ou_code:`XL9875`
-+ ou_name:`organization name 1`
++ ouCode:`XL9875`
++ ouName:`organization name 1`
 + people (array[Person1,Person2], optional)
 + subOrganizations (array[])
 
 ## Organization2 (object)
-+ ou_code:`XL8654`
-+ ou_name:`organization name 2`
++ ouCode:`XL8654`
++ ouName:`organization name 2`
 + people (array[Person3], optional)
 + subOrganizations (array[Organization2_1])
 
 ## Organization2_1 (object)
-+ ou_code:`XL9352`
-+ ou_name:`organization name 1`
++ ouCode:`XL9352`
++ ouName:`organization name 1`
 + people (array[Person4,Person5], optional)
 + subOrganizations (array[], optional)
 
