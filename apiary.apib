@@ -142,7 +142,7 @@ Used to retrieve user personal details.
   + Other
 
 ### List types [GET]
-
+The list of types of organization. (Homepage)
 + Response 200 (application/json)
   + Attributes (Employee types collections)
 
@@ -155,7 +155,7 @@ Used to retrieve user personal details.
   + EmployeeType3
 
 ### List types [GET]
-
+The list of types of employee. (HR Admin - People modify)
 + Response 200 (application/json)
   + Attributes (Employee types collections)
 
@@ -169,7 +169,7 @@ Used to retrieve user personal details.
   + Spain
 
 ### List types [GET]
-
+The list countries. (HR Admin - People insert, HR Admin - People modify)
 + Response 200 (application/json)
   + Attributes (Countries collections)
 
@@ -183,7 +183,7 @@ Used to retrieve user personal details.
   + User role 4
 
 ### List types [GET]
-
+The list of user's roles. (HR Admin)
 + Response 200 (application/json)
   + Attributes (User role collections)
 
@@ -197,7 +197,7 @@ Used to retrieve user personal details.
   + Organization unit 4
 
 ### List types [GET]
-
+The list of organization units. (People search)
 + Response 200 (application/json)
   + Attributes (Organization unit collections)
 
@@ -210,7 +210,7 @@ Used to retrieve user personal details.
   + Structure type 4
 
 ### List types [GET]
-
+The list of structure types. (Hierarchical View - List Organization)
 + Response 200 (application/json)
   + Attributes (Structure type collections)
 
@@ -225,11 +225,49 @@ Used to retrieve user personal details.
     + organizations (array[Organization1,Organization2], required) - array of first-level organizations
 
 ### Business tree [GET]
-
+Returns the company's organization structure tree.
 + Response 200 (application/json)
   + Attributes (Business tree)
 
+#######################
+# Group 04 - General Messages
+#######################
 
+## Availability alert [/generalMessages/availabilityAlert]
+
++ Attributes (object)
+    + firstRow: `first row alert` (string)
+    + secondRow: `first row alert` (string)
+
+### Read availability alert [GET]
+Get the _availability alert_ message.
++ Response 200 (application/json)
+    + Attributes (Availability alert)
+
+### Update availability alert [PUT]
+Update the _availability alert_ message with a new one.
++ Request (application/json)
+    + Attributes (Availability alert)
+    
++ Response 200
+
+## New release [/generalMessages/newRelease]
+
++ Attributes
+    + firstRow: `first row release` (string)
+    + secondRow: `first row release` (string)
+
+### Read new release [GET]
+Get the _new release_ message.
++ Response 200 (application/json)
+    + Attributes (New release)
+
+### Update new release [PUT]
+Update the _new release_ message with a new one.
++ Request (application/json)
+    + Attributes (New release)
+
++ Response 200
 
 # Data Structures
 
