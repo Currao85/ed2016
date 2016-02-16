@@ -233,41 +233,28 @@ Returns the company's organization structure tree.
 # Group 04 - General Messages
 #######################
 
-## Availability alert [/generalMessages/availabilityAlert]
+## General Messages [/generalMessages]
 
 + Attributes (object)
-    + firstRow: `first row alert` (string)
-    + secondRow: `second row alert` (string)
+    + availabilityAlert (object)
+        + firstRow: `first row alert` (string)
+        + secondRow: `second row alert` (string)
+    + newRelease (object)
+        + firstRow: `first row release` (string)
+        + secondRow: `second row release` (string)
 
-### Read availability alert [GET]
-Get the _availability alert_ message.
+### Read general messages [GET]
+Get the general message.
 + Response 200 (application/json)
-    + Attributes (Availability alert)
+    + Attributes (General Messages)
 
 ### Update availability alert [PUT]
-Update the _availability alert_ message with a new one.
+Update the general message with a new one.
 + Request (application/json)
-    + Attributes (Availability alert)
+    + Attributes (General Messages)
     
 + Response 200
 
-## New release [/generalMessages/newRelease]
-
-+ Attributes
-    + firstRow: `first row release` (string)
-    + secondRow: `second row release` (string)
-
-### Read new release [GET]
-Get the _new release_ message.
-+ Response 200 (application/json)
-    + Attributes (New release)
-
-### Update new release [PUT]
-Update the _new release_ message with a new one.
-+ Request (application/json)
-    + Attributes (New release)
-
-+ Response 200
 
 # Data Structures
 
