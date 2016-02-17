@@ -277,13 +277,13 @@ Get the list with all the support requests.
 
 + Attributes (object)
     + id: 1 (required, number)
-    + status: Assigned (required, enum[string])
+    + status: Open (required, enum[string])
         + Members
             + Assigned
             + Closed
             + Force closed
             + Open
-    + requestor (object)
+    + requestoar (object)
         + id: 321 (required, number)
         + lastName: `Baggio` (required, string)
         + firstName: `Alessandro` (required, string)
@@ -291,12 +291,6 @@ Get the list with all the support requests.
     + type: `EntDirect` (string)
     + title: `titolo blablablablabla` (required, string)
     + description: `descrizione blablablablablablablabla` (required, string)
-    + assignedDate: `12/12/2015 12:22:12` (string)
-    + assignedTo (object)
-        + id: 323 (required, number)
-        + lastName: `Ferraro` (required, string)
-        + firstName: `Alberto` (required, string)
-        + email: `fAlberto@email.it` (required, string)
     + closureDate (string)
     + documents (array)
         + `http://url.doc.1`
@@ -307,6 +301,15 @@ Get the list with all the support requests.
 Get the detail of a support requests.
 + Response 200 (application/json)
     + Attributes (Support Request)
+
+### Support requests list [POST]
+Update a support requests (assign, close, force close,...).
++ Request (application/json)
+    + Attributes (Support Request Open)
+    
++ Response 200 (application/json)
+    + Attributes (Support Request Detail Assigned)
+    
 
 ## Documents Modify [/supportRequests/{id}/document]
 + Parameters
@@ -537,4 +540,32 @@ Allow you to remove a support request's document
 ##Support Request Document Remove (object)
 + id: 1 (required, number) - id of the request that you wants to modify
 + removeDocuments (array[string]) - array with documents to remove
+    + `http://url.doc.3`
+
+##Support Request Detail Assigned (object)
++ id: 1 (required, number)
++ status: Assigned (required, enum[string])
+    + Members
+        + Assigned
+        + Closed
+        + Force closed
+        + Open
++ requestor (object)
+    + id: 321 (required, number)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
++ date: `10/12/2015 12:12:10` (required, string)
++ type: `EntDirect` (string)
++ title: `titolo blablablablabla` (required, string)
++ description: `descrizione blablablablablablablabla` (required, string)
++ assignedDate: `12/12/2015 12:22:12` (string)
++ assignedTo (object)
+    + id: 323 (required, number)
+    + lastName: `Ferraro` (required, string)
+    + firstName: `Alberto` (required, string)
+    + email: `fAlberto@email.it` (required, string)
++ closureDate (string)
++ documents (array)
+    + `http://url.doc.1`
+    + `http://url.doc.2`
     + `http://url.doc.3`
