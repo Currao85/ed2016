@@ -293,8 +293,9 @@ Get the list with all the support requests.
     + assignedDate: `12/12/2015 12:22:12` (string)
     + assignedTo (object)
         + id: 323 (required, number)
-        + lastName: `Ferraro` support request api (required, string)
+        + lastName: `Ferraro` (required, string)
         + firstName: `Alberto` (required, string)
+        + email: `fAlberto@email.it` (required, string)
     + closureDate (string)
     + documents (array)
         + `http://url.doc.1`
@@ -509,6 +510,7 @@ Allow you to remove a support request's document
     + id: 323 (required, number)
     + lastName: `Ferraro` (required, string)
     + firstName: `Andrea` (required, string)
+    + email: `fAlberto@email.it` (required, string)
 
 ##Support Request Update (object)
 + id: 1 (required, number) - id of the request that you wants to update
@@ -525,6 +527,7 @@ Allow you to remove a support request's document
     + id: 323 (required, number)
     + lastName: `Ferraro` (required, string)
     + firstName: `Alberto` (required, string)
+    + email: `fAlberto@email.it` (required, string)
 
 ##Support Request Document Upload (object)
 + id: 1 (required, number) - id of the request that you wants to modify
