@@ -306,6 +306,12 @@ Get the detail of a support requests.
 + Response 200 (application/json)
     + Attributes (Support Request)
 
+## Documents Modify [/supportReqests/{id}/document]
++ Parameters
+    + id: 1 (required, number) - ID of the request
+    
++ Attributes (Support Request Document Upload)
+
 ### Support request Document Upload [PUT]
 Allow you to upload a new document for a support request
 + Request (application/json)
@@ -320,6 +326,7 @@ Allow you to upload a new document for a support request
             + `http://url.doc.3`
             + `http://url.doc.4`
 
+
 ### Support request Document Remove [POST]
 Allow you to remove a support request's document
 + Request (application/json)
@@ -331,6 +338,9 @@ Allow you to remove a support request's document
         + documents (array) - the new array of documents
             + `http://url.doc.1`
             + `http://url.doc.2`
+
+
++ Response 200 
 
 # Data Structures
 
