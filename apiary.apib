@@ -252,9 +252,85 @@ Get the general message.
 Update the general message with a new one.
 + Request (application/json)
     + Attributes (General Messages)
-    
+
 + Response 200
 
+#######################
+# Group 05 - Support Requests
+#######################
+
+## Support Requests Collection [/supportReqests]
+
++ Attributes (object)
+    + requests (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
+    + count: 3 (number)
+
+### Support requests list [GET]
+Get the list with all the support requests.
++ Response 200 (application/json)
+    + Attributes (Support Requests Collection)
+
+## Support Request [/supportReqests/{id}]
+
++ Parameters
+    + id: 1 (required, number) - ID of the request
+
++ Attributes (object)
+    + id: 1 (required, number)
+    + status: Assigned (required, enum[string])
+        + Members
+            + Assigned
+            + Closed
+            + Open
+    + requestor (object)
+        + id: 321 (required, number)
+        + lastName: `Baggio` (required, string)
+        + firstName: `Alessandro` (required, string)
+    + date: `10/12/2015 12:12:10` (required, string)
+    + type: `EntDirect` (string)
+    + title: `titolo blablablablabla` (required, string)
+    + description: `descrizione blablablablablablablabla` (required, string)
+    + assignedDate: `12/12/2015 12:22:12` (string)
+    + assignedTo (object)
+        + id: 323 (required, number)
+        + lastName: `Ferraro` support request api (required, string)
+        + firstName: `Alberto` (required, string)
+    + closureDate (string)
+    + documents (array)
+        + `http://url.doc.1`
+        + `http://url.doc.2`
+        + `http://url.doc.3`
+
+### Support request Detail [GET]
+Get the detail of a support requests.
++ Response 200 (application/json)
+    + Attributes (Support Request)
+
+### Support request Document Upload [PUT]
+Allow you to upload a new document for a support request
++ Request (application/json)
+    + Attributes (Support Request Document Upload)
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + id: 1 (required, number) - the id of the request
+        + documents (array) - the new array of documents
+            + `http://url.doc.1`
+            + `http://url.doc.2`
+            + `http://url.doc.3`
+            + `http://url.doc.4`
+
+### Support request Document Remove [POST]
+Allow you to remove a support request's document
++ Request (application/json)
+    + Attributes (Support Request Document Remove)
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + id: 1 (required, number) - the id of the request
+        + documents (array) - the new array of documents
+            + `http://url.doc.1`
+            + `http://url.doc.2`
 
 # Data Structures
 
@@ -394,3 +470,58 @@ Update the general message with a new one.
 + lastName: `Tessarolo` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
+
+##Support Request Closed (object)
++ id: 1 (required, number)
++ status: `Closed`
++ date: `10/12/2015 12:12:10` (required, string)
++ title: `titolo blablablablabla` (string)
++ closureDate: `15/12/2015 13:13:13` (string)
++ assignedTo (object)
+    + id: 323 (required, number)
+    + lastName: `Ferraro` (required, string)
+    + firstName: `Alberto` (required, string)
+
+##Support Request Open (object)
++ id: 2 (required, number)
++ status: `Open`
++ date: `10/12/2015 12:12:10` (required, string)
++ title: `titolo blablablablabla` (string)
++ closureDate: `` (string)
++ assignedTo (object)
+
+##Support Request Assigned (object)
++ id: 3 (required, number)
++ status: `Closed`
++ date: `10/12/2015 12:12:10` (required, string)
++ title: `titolo blablablablabla` (string)
++ assignedDate: `12/12/2015 12:22:12` (string)
++ assignedTo (object)
+    + id: 323 (required, number)
+    + lastName: `Ferraro` (required, string)
+    + firstName: `Alberto` (required, string)
+
+##Support Request Update (object)
++ id: 1 (required, number) - id of the request that you wants to update
++ status: `Closed`
++ requestor (object)
+    + id: 321 (required, number)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
++ date: `10/12/2015 12:12:10` (required, string)
++ type: `EntDirect` (string)
++ title: `titolo blablablablabla` (string)
++ description: `descrizione blablablablablablablabla` (string)
++ assignedTo (object)
+    + id: 323 (required, number)
+    + lastName: `Ferraro` (required, string)
+    + firstName: `Alberto` (required, string)
+
+##Support Request Document Upload (object)
++ id: 1 (required, number) - id of the request that you wants to modify
++ document: `` (string) - base64 file to upload a document
+
+##Support Request Document Remove (object)
++ id: 1 (required, number) - id of the request that you wants to modify
++ removeDocuments (array[string]) - array with documents to remove
+    + `http://url.doc.3`
