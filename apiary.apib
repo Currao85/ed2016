@@ -259,7 +259,7 @@ Update the general message with a new one.
 # Group 05 - Support Requests
 #######################
 
-## Support Requests Collection [/supportReqests]
+## Support Requests Collection [/supportRequests]
 
 + Attributes (object)
     + requests (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
@@ -270,7 +270,7 @@ Get the list with all the support requests.
 + Response 200 (application/json)
     + Attributes (Support Requests Collection)
 
-## Support Request [/supportReqests/{id}]
+## Support Request [/supportRequests/{id}]
 
 + Parameters
     + id: 1 (required, number) - ID of the request
@@ -306,7 +306,7 @@ Get the detail of a support requests.
 + Response 200 (application/json)
     + Attributes (Support Request)
 
-## Documents Modify [/supportReqests/{id}/document]
+## Documents Modify [/supportRequests/{id}/document]
 + Parameters
     + id: 1 (required, number) - ID of the request
     
