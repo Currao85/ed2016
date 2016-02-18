@@ -30,7 +30,7 @@ Get the base URL configuration
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}]
+## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?sort}{?pageSize}]
 
 + Attributes
     + profiles (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
@@ -50,6 +50,8 @@ Search user profiles.
     + searchValue: BIANCHI (string) - value to search
     + orgType: UO (string) - Codice tipo struttura da filtrare
     + page: 1 (optional, number) - The page of profiles to return
+    + sort: firstName (optional) - Sorting order
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
 
