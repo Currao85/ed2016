@@ -152,6 +152,31 @@ Used to retrieve user personal details.
 
     + Body
 
+
+## Profiles types collections [/profiles/types]
+
++ Attributes
+  + count: 3 (number, required) - total number of resources fetched by the query.
+  + results (array[ProfileType1, ProfileType2, ProfileType3], required) - array of resources
+
+### List types [GET]
+The list of types of employee. (HR Admin - People modify)
+
++ Response 200 (application/json)
+  + Attributes (Profiles types collections)
+  
+
+## Profiles roles collections [/profiles/roles]
+
++ Attributes
+  + count: 3 (number, required) - total number of resources fetched by the query.
+  + results (array[UserRole1, UserRole2, UserRole3], required) - array of resources
+
+### List types [GET]
+The list of user's roles. (HR Admin)
++ Response 200 (application/json)
+  + Attributes (Profiles roles collections)
+
 #######################
 # Group 02 - Fields details
 #######################
@@ -168,20 +193,6 @@ The list of types of organization. (Homepage)
 + Response 200 (application/json)
   + Attributes (Organization types collections)
 
-
-## Employee types collections [/fieldsDetail/employeeTypes]
-
-+ Attributes (array)
-  + EmployeeType1
-  + EmployeeType2
-  + EmployeeType3
-
-### List types [GET]
-The list of types of employee. (HR Admin - People modify)
-+ Response 200 (application/json)
-  + Attributes (Employee types collections)
-
-
 ## Countries collections [/fieldsDetail/countries]
 
 + Attributes (array)
@@ -194,20 +205,6 @@ The list of types of employee. (HR Admin - People modify)
 The list countries. (HR Admin - People insert, HR Admin - People modify)
 + Response 200 (application/json)
   + Attributes (Countries collections)
-
-
-## User role collections [/fieldsDetail/userRoles]
-
-+ Attributes (array)
-  + User role 1
-  + User role 2
-  + User role 3
-  + User role 4
-
-### List types [GET]
-The list of user's roles. (HR Admin)
-+ Response 200 (application/json)
-  + Attributes (User role collections)
 
 
 ## Organization unit collections [/fieldsDetail/organizationUnit]
@@ -459,6 +456,30 @@ Allow you to remove a support request's document
 ## Profile Update (object)
 + Include Profile
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
+
+## ProfileType1
++ id: 1
++ descr: EmployeeType1
+
+## ProfileType2
++ id: 2
++ descr: EmployeeType2
+
+## ProfileType3
++ id: 3
++ descr: EmployeeType3 
+
+## UserRole1
++ id: 1
++ descr: User role 1
+
+## UserRole2
++ id: 2
++ descr: User role 2
+
+## UserRole3
++ id: 3
++ descr: User role 3 
 
 ## Organization1 (object)
 + ouCode:`XL9875`
