@@ -5,28 +5,9 @@ HOST: http://ed2016.vts.it/
 
 Service Oriented Architecture specified for the ED project.
 
-#######################
-# [DRAFT] Group 00 - Configuration
-#######################
-
-This returns the application configuration. 
-We keep this here for now just for documentation purpose,
-it shouldn't be part of the API.
-
-## Configuration BaseUrl [/configuration]
-
-+ Attributes (object)
-    + baseUrl: `http://private-bc401d-ed2016.apiary-mock.com` (string)
-
-### Base URL configuration [GET]
-Get the base URL configuration
-
-+ Response 200 (application/json)
-    + Attributes (Configuration BaseUrl)
-
 
 #######################
-# Group 01 - Profiles
+# Group Profiles
 #######################
 
 Resources related to user's profile in the API.
@@ -178,36 +159,22 @@ The list of user's roles. (HR Admin)
   + Attributes (Profiles roles collections)
 
 #######################
-# Group 02 - Fields details
+# Group Organization Units
 #######################
 
-## Organization types collections [/fieldsDetail/organizationTypes]
 
-+ Attributes (array)
-  + Business
-  + Manteinance
-  + Other
+## DRAFT - Business tree [/businessTree]
 
-### List types [GET]
-The list of types of organization. (Homepage)
++ Attributes
+    + organizations (array[Organization1,Organization2], required) - array of first-level organizations
+
+### Business tree [GET]
+Returns the company's organization structure tree.
 + Response 200 (application/json)
-  + Attributes (Organization types collections)
-
-## Countries collections [/fieldsDetail/countries]
-
-+ Attributes (array)
-  + Italy
-  + Germany
-  + Austria
-  + Spain
-
-### List types [GET]
-The list countries. (HR Admin - People insert, HR Admin - People modify)
-+ Response 200 (application/json)
-  + Attributes (Countries collections)
+  + Attributes (DRAFT - Business tree)
 
 
-## Organization unit collections [/fieldsDetail/organizationUnit]
+## DRAFT - Organization unit collections [/businessTree/organizationUnit]
 
 + Attributes (array)
   + Organization unit 1
@@ -218,38 +185,53 @@ The list countries. (HR Admin - People insert, HR Admin - People modify)
 ### List types [GET]
 The list of organization units. (People search)
 + Response 200 (application/json)
-  + Attributes (Organization unit collections)
-
-## Structure type collections [/fieldsDetail/structureTypes]
-
-+ Attributes (array)
-  + Structure type 1
-  + Structure type 2
-  + Structure type 3
-  + Structure type 4
-
-### List types [GET]
-The list of structure types. (Hierarchical View - List Organization)
-+ Response 200 (application/json)
-  + Attributes (Structure type collections)
+  + Attributes (DRAFT - Organization unit collections)
 
 
-#######################
-# Group 03 - Business organization tree
-#######################
-
-## Business tree [/businessTree]
+## Organization types collections [/businessTree/types]
 
 + Attributes
-    + organizations (array[Organization1,Organization2], required) - array of first-level organizations
+  + count: 3 (number, required) - total number of resources fetched by the query.
+  + results (array[OrganizationType1, OrganizationType2, OrganizationType3], required) - array of resources
+  
 
-### Business tree [GET]
-Returns the company's organization structure tree.
+### List types [GET]
+The list of structure types. (Hierarchical View - List Organization, Homepage)
 + Response 200 (application/json)
-  + Attributes (Business tree)
+  + Attributes (Organization types collections)
 
 #######################
-# Group 04 - General Messages
+# Group Countries
+#######################
+
+
+## Countries collections [/countries]
+
++ Attributes
+  + count: 3 (number, required) - total number of resources fetched by the query.
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + descr: Italy
+      + (object)
+          + id: 2
+          + descr: Germany
+      + (object)
+          + id: 3
+          + descr: Austria
+      + (object)
+          + id: 4
+          + descr: Spain
+
+
+### List countries [GET]
+The list countries. (HR Admin - People insert, HR Admin - People modify)
++ Response 200 (application/json)
+  + Attributes (Countries collections)
+
+
+#######################
+# Group General Messages
 #######################
 
 ## General Messages [/generalMessages]
@@ -275,7 +257,7 @@ Update the general message with a new one.
 + Response 200
 
 #######################
-# Group 05 - Support Requests
+# Group Support Requests
 #######################
 
 ## Support Requests Collection [/supportRequests]
@@ -365,6 +347,31 @@ Allow you to remove a support request's document
 
 
 + Response 200 
+
+
+#######################
+# Group DRAFT - Configuration
+#######################
+
+This returns the application configuration. 
+We keep this here for now just for documentation purpose,
+it shouldn't be part of the API.
+
+## Configuration [/configuration]
+
++ Attributes (object)
+    + baseUrl: `http://private-bc401d-ed2016.apiary-mock.com` (string)
+
+### Base URL configuration [GET]
+Get the base URL configuration
+
++ Response 200 (application/json)
+    + Attributes (Configuration)
+
+
+
+
+
 
 # Data Structures
 
@@ -498,6 +505,18 @@ Allow you to remove a support request's document
 + ouName:`organization name 1`
 + people (array[Person4,Person5], optional)
 + subOrganizations (array[], optional)
+
+## OrganizationType1
++ id: 1
++ descr: Business
+
+## OrganizationType2
++ id: 2
++ descr: Maintenance
+
+## OrganizationType3
++ id: 3
++ descr: Other
 
 ##Person1 (object)
 + id: 1 (required, number)
