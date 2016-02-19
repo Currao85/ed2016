@@ -177,6 +177,31 @@ The list of user's roles. (HR Admin)
   + Attributes (Profiles roles collections)
 
 #######################
+# Group Organizations
+#######################
+
+## Organization types collections [/organizations/types]
+
++ Attributes
+  + count: 3 (number, required) - total number of resources fetched by the query.
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + descr: Business
+      + (object)
+          + id: 2
+          + descr: Maintenance
+      + (object)
+          + id: 3
+          + descr: Other
+  
+
+### List types [GET]
+The list of structure types. (Hierarchical View - List Organization, Homepage)
++ Response 200 (application/json)
+  + Attributes (Organization types collections)
+
+#######################
 # Group Organization Units
 #######################
 
@@ -197,27 +222,6 @@ Returns the company's organization structure tree.
 + Response 200 (application/json)
   + Attributes (Organization Units collections)
 
-
-## Organization Unit types collections [/ous/types]
-
-+ Attributes
-  + count: 3 (number, required) - total number of resources fetched by the query.
-  + results (array, required) - array of resources
-      + (object)
-          + id: 1
-          + descr: Business
-      + (object)
-          + id: 2
-          + descr: Maintenance
-      + (object)
-          + id: 3
-          + descr: Other
-  
-
-### List types [GET]
-The list of structure types. (Hierarchical View - List Organization, Homepage)
-+ Response 200 (application/json)
-  + Attributes (Organization Unit types collections)
 
 #######################
 # Group Countries
