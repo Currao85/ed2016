@@ -15,7 +15,7 @@ Resources related to user's profile in the API.
 ## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?sort}{?pageSize}]
 
 + Attributes
-    + results (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
+    + results (array[Profile1, Profile2, Profile3], required) - array of profiles
     + count: 3 (number, required) - total number of resources fetched by the query.
 
 ### List Profiles [GET]
@@ -64,7 +64,7 @@ Search user profiles.
 + Parameters
     + id: 1 (required, number) - id of the user
 
-+ Attributes (ProfileDetail)
++ Attributes (Profile1)
 
 ### Read Profile [GET]
 
@@ -138,8 +138,191 @@ Used to retrieve user personal details.
 
     + Body
 
+## Profile Informations collections [/profiles/{id}/infos]
 
-## Profiles types collections [/profiles/types]
++ Parameters
+    + id: 1 (required, number) - id of the user
+
++ Attributes
+    + results (array[ProfileInfoExpertiseSummary, ProfileInfoCertification, ProfileInfoGeneralExperienceBusiness, ProfileInfoGeneralExperienceIndustry, ProfileInfoGeneralExperienceCustomer, ProfileInfoTechnicalExperience, ProfileInfoSolutionsProducts, ProfileInfoCommunities, ProfileInfoBusinessGoals, ProfileInfoProfessionalOrganizations, ProfileInfoProjects, ProfileInfoTeam], required) - array of profiles
+    + count: 12 (number, required) - total number of resources fetched by the query.
+
+### List Profile Informations [GET]
+List user profile informations.
+
++ Response 200 (application/json)
+
+    + Attributes (Profile Informations collections)
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+## Profile Information [/profiles/{id}/infos/{type}]
+
++ Parameters
+    + id: 1 (required, number) - id of the user
+    + type: expertiseSummary
+
++ Attributes (ProfileInfoExpertiseSummary)
+
+### Read Profile Information [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Profile Information)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Profile Information [PUT]
+
++ Request (application/json)
+
+    + Attributes (Profile Information)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Delete Profile Information [DELETE]
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## Profile Addresses collections [/profiles/{id}/addresses]
+
++ Parameters
+    + id: 1 (required, number) - id of the user
+
++ Attributes
+    + results (array[ProfileAddress], required) - array of profiles addresses
+    + count: 1 (number, required) - total number of resources fetched by the query.
+
+### List Profile Informations [GET]
+List user profile addresses.
+
++ Response 200 (application/json)
+
+    + Attributes (Profile Addresses collections)
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## Profile Address [/profiles/{id}/addresses/{type}]
+
++ Parameters
+    + id: 1 (required, number) - id of the user
+    + type: business (required) - type of the user address
+
++ Attributes (ProfileAddress)
+
+### Read Profile Address [GET]
+
++ Response 200 (application/json)
+
+    + Attributes (Profile Address)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Profile [PUT]
+
++ Request (application/json)
+
+    + Attributes (Profile Address)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Delete Profile [DELETE]
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## Profiles Types collections [/profiles/types]
 
 + Attributes
   + count: 3 (number, required) - total number of resources fetched by the query.
@@ -158,7 +341,7 @@ Used to retrieve user personal details.
 The list of types of employee. (HR Admin - People modify)
 
 + Response 200 (application/json)
-  + Attributes (Profiles types collections)
+  + Attributes (Profiles Types collections)
   
 
 ## Profiles roles collections [/profiles/roles]
@@ -411,47 +594,7 @@ Get the base URL configuration
 
 # Data Structures
 
-## ProfileResult1 (object)
-+ id: 1 (required, number) - id of the profile
-+ firstName: `MARIO` (required, string)
-+ lastName: `BIANCHI` (required, string)
-+ ouCode: `XL78481` (required, string)
-+ ouDescr: `C-BOM` (required, string)
-+ officeNumber: `B101` (string)
-+ email: `mbianchi@acme.it` (required, string)
-+ country: `Italy` (string)
-+ imageUrl: `http://url.of.image/image1.png`
-
-## ProfileResult2 (object)
-+ id: 2 (required, number) - id of the profile
-+ firstName: `ROSA`
-+ lastName: `BIANCHI`
-+ ouCode: `XL78439`
-+ ouDescr: `Service Management`
-+ officeNumber: `B103` (string)
-+ email: `rbianchi@acme.it`
-+ country: `Austria`
-+ imageUrl: `http://url.of.image/image2.png`
-
-## ProfileResult3 (object)
-+ id: 3 (required, number) - id of the profile
-+ firstName: `PAOLO`
-+ lastName: `BIANCHI`
-+ ouCode `XJ99196`
-+ ouDescr: `Open Special Support AT`
-+ officeNumber: `B205` (string)
-+ email: `pbianchi@acme.it`
-+ country: `Germany`
-+ imageUrl: `http://url.of.image/image3.png`
-
-## Address (object)
-- street: Via Nizza 15
-- city: Torino
-- country: Italy
-- zip: 12345
-
 ## ProfileDetail (object)
-+ id: 1 (required, number) - id of the profile
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + ouCode: `XL78481` (required, string)
@@ -471,34 +614,83 @@ Get the base URL configuration
     + country: `39` (string)
     + prefix: `02` (string)
     + number: `3904912345678` (string)
-+ address (Address)
 + imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
 + businessUnit: `not used ?`,
-+ jobResponsibility: `my job responsibility bla bla`
 + internetAddress: `firstname.lastname@organization.com`
 + altInternetAddress: `firstname.lastname@organization2.com`
 + notesAddress: `indirizzo_notes@aaaaa.it`
 + userId: `????`
-+ preferedAddress (Address)
-+ businessAddress (Address)
-+ expertiseSummary: `expertise summary text` (string)
-+ certifications: `certifications text` (string)
-+ experienceGeneral (object)
-    + business: `business experience text` (string)
-    + industry: `industry experience text` (string)
-    + customer: `customer experience text` (string)
-+ technicalExperience: `industry experience text` (string)
-+ solutionsProducts: `solutions products text` (string)
-+ communities: `communities text` (string)
-+ businessGoals: `business goals text` (string)
-+ professionalOrganizations: `professional organizations text` (string)
-+ projects: `projects text` (string)
-+ team: `team text` (string)
 + otherRoles: `????` (string)
+
+## Profile1 (ProfileDetail)
++ id: 1 (number) - id of the profile
+
+## Profile2 (ProfileDetail)
++ id: 2 (number) - id of the profile
+
+## Profile3 (ProfileDetail)
++ id: 3 (number) - id of the profile
 
 ## Profile Update (object)
 + Include Profile
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
+
+## ProfileInfoExpertiseSummary
++ type: expertiseSummary
++ infoContent: `expertise summary text`
+
+## ProfileInfoCertification
++ type: certification
++ infoContent: `certifications text`
+
+## ProfileInfoGeneralExperienceBusiness
++ type: generalExperienceBusiness
++ infoContent: `business experience text`
+
+## ProfileInfoGeneralExperienceIndustry
++ type: generalExperienceIndustry
++ infoContent: `industry experience text`
+
+## ProfileInfoGeneralExperienceCustomer
++ type: generalExperienceCustomer
++ infoContent: `customer experience text`
+
+## ProfileInfoTechnicalExperience
++ type: technicalExperience
++ infoContent: `industry experience text`
+
+## ProfileInfoSolutionsProducts
++ type: solutionsProducts
++ infoContent: `solutions products text`
+
+## ProfileInfoCommunities
++ type: communities
++ infoContent: `communities text`
+
+## ProfileInfoBusinessGoals
++ type: businessGoals
++ infoContent: `business goals text`
+
+## ProfileInfoProfessionalOrganizations
++ type: professionalOrganizations
++ infoContent: `professional organizations text`
+
+## ProfileInfoProjects
++ type: projects
++ infoContent: `projects text`
+
+## ProfileInfoTeam
++ type: team
++ infoContent: `team text`
+
+## ProfileAddress
++ type (enum) - type of profile information
+  + Members
+    + business
++ street: Via Nizza 15
++ city: Torino
++ country: Italy
++ zip: 12345
 
 ## Organization1 (object)
 + ouCode:`XL9875`
