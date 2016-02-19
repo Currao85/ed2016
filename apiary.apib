@@ -164,18 +164,21 @@ The list of types of employee. (HR Admin - People modify)
 ## Profiles roles collections [/profiles/roles]
 
 + Attributes
-  + count: 3 (number, required) - total number of resources fetched by the query.
+  + count: 4 (number, required) - total number of resources fetched by the query.
   + results (array, required) - array of resources
       + (object)
           + id: 1
-          + descr: User role 1
+          + descr: ADMIN
       + (object)
           + id: 2
-          + descr: User role 2
+          + descr: ND
       + (object)
           + id: 3
-          + descr: User role 3
-
+          + descr: RCM
+      + (object)
+          + id: 8
+          + descr: USER
+          
 ### List types [GET]
 The list of user's roles. (HR Admin)
 + Response 200 (application/json)
@@ -455,7 +458,7 @@ Get the base URL configuration
 + ouDescr: `C-BOM` (required, string)
 + email: `mbianchi@acme.it` (required, string)
 + profession: `Senior Developer` (required, string)
-+ isMmel anager: `true`
++ isManager: `true`
 + phone (object)
     + country: 39
     + prefix: `011`
