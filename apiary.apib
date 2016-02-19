@@ -32,7 +32,12 @@ Search user profiles.
     + searchValue: BIANCHI (string) - value to search
     + orgType: UO (string) - Codice tipo struttura da filtrare
     + page: 1 (optional, number) - The page of profiles to return
-    + sort: firstName (optional) - Sorting order
+    + sort: fname (enum[string], optional) - Sorting order
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
     + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
