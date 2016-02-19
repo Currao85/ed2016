@@ -15,7 +15,7 @@ Resources related to user's profile in the API.
 ## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?sort}{?pageSize}]
 
 + Attributes
-    + profiles (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
+    + results (array[ProfileResult1,ProfileResult2,ProfileResult3], required) - array of profiles
     + count: 3 (number, required) - total number of resources fetched by the query.
 
 ### List Profiles [GET]
@@ -57,7 +57,7 @@ Search user profiles.
 ## Profile [/profiles/{id}]
 
 + Parameters
-    + id: 1 (required, number) - ID of the user
+    + id: 1 (required, number) - id of the user
 
 + Attributes (ProfileDetail)
 
@@ -138,7 +138,16 @@ Used to retrieve user personal details.
 
 + Attributes
   + count: 3 (number, required) - total number of resources fetched by the query.
-  + results (array[ProfileType1, ProfileType2, ProfileType3], required) - array of resources
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + descr: EmployeeType1
+      + (object)
+          + id: 2
+          + descr: EmployeeType2
+      + (object)
+          + id: 3
+          + descr: EmployeeType3
 
 ### List types [GET]
 The list of types of employee. (HR Admin - People modify)
@@ -151,7 +160,16 @@ The list of types of employee. (HR Admin - People modify)
 
 + Attributes
   + count: 3 (number, required) - total number of resources fetched by the query.
-  + results (array[UserRole1, UserRole2, UserRole3], required) - array of resources
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + descr: User role 1
+      + (object)
+          + id: 2
+          + descr: User role 2
+      + (object)
+          + id: 3
+          + descr: User role 3
 
 ### List types [GET]
 The list of user's roles. (HR Admin)
@@ -163,42 +181,43 @@ The list of user's roles. (HR Admin)
 #######################
 
 
-## DRAFT - Business tree [/businessTree]
+## Organization Units collections [/ous{?page}{?sort}{?pageSize}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of results to return
+    + sort: firstName (optional) - Sorting order
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Attributes
-    + organizations (array[Organization1,Organization2], required) - array of first-level organizations
+    + results (array[Organization1, Organization2, Organization3], required) - array of first-level organizations
+    + count: 3 (number, required) - total number of resources fetched by the query.
 
-### Business tree [GET]
+### List Organization Units [GET]
 Returns the company's organization structure tree.
 + Response 200 (application/json)
-  + Attributes (DRAFT - Business tree)
+  + Attributes (Organization Units collections)
 
 
-## DRAFT - Organization unit collections [/businessTree/organizationUnit]
-
-+ Attributes (array)
-  + Organization unit 1
-  + Organization unit 2
-  + Organization unit 3
-  + Organization unit 4
-
-### List types [GET]
-The list of organization units. (People search)
-+ Response 200 (application/json)
-  + Attributes (DRAFT - Organization unit collections)
-
-
-## Organization types collections [/businessTree/types]
+## Organization Unit types collections [/ous/types]
 
 + Attributes
   + count: 3 (number, required) - total number of resources fetched by the query.
-  + results (array[OrganizationType1, OrganizationType2, OrganizationType3], required) - array of resources
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + descr: Business
+      + (object)
+          + id: 2
+          + descr: Maintenance
+      + (object)
+          + id: 3
+          + descr: Other
   
 
 ### List types [GET]
 The list of structure types. (Hierarchical View - List Organization, Homepage)
 + Response 200 (application/json)
-  + Attributes (Organization types collections)
+  + Attributes (Organization Unit types collections)
 
 #######################
 # Group Countries
@@ -260,10 +279,15 @@ Update the general message with a new one.
 # Group Support Requests
 #######################
 
-## Support Requests Collection [/supportRequests]
+## Support Requests Collection [/supportRequests{?page}{?sort}{?pageSize}]
+
++ Parameters
+    + page: 1 (optional, number) - The page of results to return
+    + sort: firstName (optional) - Sorting order
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Attributes (object)
-    + requests (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
+    + results (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
     + count: 3 (number)
 
 ### Support requests list [GET]
@@ -274,7 +298,7 @@ Get the list with all the support requests.
 ## Support Request [/supportRequests/{id}]
 
 + Parameters
-    + id: 1 (required, number) - ID of the request
+    + id: 1 (required, number) - id of the request
 
 + Attributes (object)
     + id: 1 (required, number)
@@ -312,9 +336,9 @@ Update a support requests (assign, close, force close,...).
     + Attributes (Support Request Detail Assigned)
     
 
-## Documents Modify [/supportRequests/{id}/document]
+## DRAFT - Documents Modify [/supportRequests/{id}/document]
 + Parameters
-    + id: 1 (required, number) - ID of the request
+    + id: 1 (required, number) - id of the request
     
 + Attributes (Support Request Document Upload)
 
@@ -376,7 +400,7 @@ Get the base URL configuration
 # Data Structures
 
 ## ProfileResult1 (object)
-+ id: 1 (required, number) - ID of the profile
++ id: 1 (required, number) - id of the profile
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + ouCode: `XL78481` (required, string)
@@ -387,7 +411,7 @@ Get the base URL configuration
 + imageUrl: `http://url.of.image/image1.png`
 
 ## ProfileResult2 (object)
-+ id: 2 (required, number) - ID of the profile
++ id: 2 (required, number) - id of the profile
 + firstName: `ROSA`
 + lastName: `BIANCHI`
 + ouCode: `XL78439`
@@ -398,7 +422,7 @@ Get the base URL configuration
 + imageUrl: `http://url.of.image/image2.png`
 
 ## ProfileResult3 (object)
-+ id: 3 (required, number) - ID of the profile
++ id: 3 (required, number) - id of the profile
 + firstName: `PAOLO`
 + lastName: `BIANCHI`
 + ouCode `XJ99196`
@@ -415,7 +439,7 @@ Get the base URL configuration
 - zip: 12345
 
 ## ProfileDetail (object)
-+ id: 1 (required, number) - ID of the profile
++ id: 1 (required, number) - id of the profile
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + ouCode: `XL78481` (required, string)
@@ -464,59 +488,23 @@ Get the base URL configuration
 + Include Profile
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
 
-## ProfileType1
-+ id: 1
-+ descr: EmployeeType1
-
-## ProfileType2
-+ id: 2
-+ descr: EmployeeType2
-
-## ProfileType3
-+ id: 3
-+ descr: EmployeeType3 
-
-## UserRole1
-+ id: 1
-+ descr: User role 1
-
-## UserRole2
-+ id: 2
-+ descr: User role 2
-
-## UserRole3
-+ id: 3
-+ descr: User role 3 
-
 ## Organization1 (object)
 + ouCode:`XL9875`
 + ouName:`organization name 1`
 + people (array[Person1,Person2], optional)
-+ subOrganizations (array[])
++ parentId
 
 ## Organization2 (object)
 + ouCode:`XL8654`
 + ouName:`organization name 2`
 + people (array[Person3], optional)
-+ subOrganizations (array[Organization2_1])
++ parentId: `XL9875`
 
-## Organization2_1 (object)
+## Organization3 (object)
 + ouCode:`XL9352`
 + ouName:`organization name 1`
 + people (array[Person4,Person5], optional)
-+ subOrganizations (array[], optional)
-
-## OrganizationType1
-+ id: 1
-+ descr: Business
-
-## OrganizationType2
-+ id: 2
-+ descr: Maintenance
-
-## OrganizationType3
-+ id: 3
-+ descr: Other
++ parentId: `XL9875`
 
 ##Person1 (object)
 + id: 1 (required, number)
