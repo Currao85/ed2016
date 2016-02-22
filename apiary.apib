@@ -239,21 +239,23 @@ composite object.
 
     + Body
 
-## Profile Addresses collections [/profiles/{id}/addresses]
+## DRAFT - Profile Addresses [/profiles/{id}/addresses]
+
+DRAFT REASON: Profile addresses are a dictionary, not an array.
 
 + Parameters
     + id: 1 (required, number) - id of the user
 
 + Attributes
-    + results (array[ProfileAddress], required) - array of profiles addresses
-    + count: 1 (number, required) - total number of resources fetched by the query.
+    + preferred (ProfileAddress) - preferred address of the user, if different from business address.
+    + business (ProfileAddress) - business address of the user.
 
-### List Profile Informations [GET]
-List user profile addresses.
+### Read Profile Addresses [GET]
+Returns all user's profile addresses.
 
 + Response 200 (application/json)
 
-    + Attributes (Profile Addresses collections)
+    + Attributes (DRAFT - Profile Addresses)
 
 + Response 400
     Returned when input does not pass validation.
@@ -270,38 +272,14 @@ List user profile addresses.
 
     + Body
 
-## Profile Address [/profiles/{id}/addresses/{type}]
-
-+ Parameters
-    + id: 1 (required, number) - id of the user
-    + type: business (required) - type of the user address
-
-+ Attributes (ProfileAddress)
-
-### Read Profile Address [GET]
-
-+ Response 200 (application/json)
-
-    + Attributes (Profile Address)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### DRAFT - Update Profile Address [PUT]
+### DRAFT - Update Profile Addresses [PUT]
 
 DRAFT REASON: Not strictly needed if we implement Update Profile working on the
 composite object.
 
 + Request (application/json)
 
-    + Attributes (Profile Address)
+    + Attributes (DRAFT - Profile Addresses)
 
 + Response 200
 
@@ -320,7 +298,7 @@ composite object.
 
     + Body
 
-### Delete Profile Address [DELETE]
+### Delete Profile Addresses [DELETE]
 
 + Response 204
 
