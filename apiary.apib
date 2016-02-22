@@ -82,7 +82,13 @@ Search user profiles.
 
     + Body
 
-### Update Profile [PUT]
+### DRAFT - Update Profile, Informations and Addresses [PUT]
+
+Updates a user profiles. 
+
+DRAFT REASON: This actions takes an object composed by the base
+profile, its informations and its addresses and updates everything in one single
+swoop instead of having three different calls.
 
 + Request (application/json)
 
@@ -193,7 +199,10 @@ List user profile informations.
 
     + Body
 
-### Update Profile Information [PUT]
+### DRAFT - Update Profile Information [PUT]
+
+DRAFT REASON: Not strictly needed if we implement Update Profile working on the
+composite object.
 
 + Request (application/json)
 
@@ -285,7 +294,10 @@ List user profile addresses.
 
     + Body
 
-### Update Profile Address [PUT]
+### DRAFT - Update Profile Address [PUT]
+
+DRAFT REASON: Not strictly needed if we implement Update Profile working on the
+composite object.
 
 + Request (application/json)
 
