@@ -144,50 +144,32 @@ Used to retrieve user personal details.
 
     + Body
 
-## Profile Informations collections [/profiles/{id}/infos]
+## DRAFT - Profile Informations [/profiles/{id}/infos]
+
+DRAFT REASON: Profile addresses are a dictionary, not an array.
 
 + Parameters
     + id: 1 (required, number) - id of the user
 
 + Attributes
-    + results (array[ProfileInfoExpertiseSummary, ProfileInfoCertification, ProfileInfoGeneralExperienceBusiness, ProfileInfoGeneralExperienceIndustry, ProfileInfoGeneralExperienceCustomer, ProfileInfoTechnicalExperience, ProfileInfoSolutionsProducts, ProfileInfoCommunities, ProfileInfoBusinessGoals, ProfileInfoProfessionalOrganizations, ProfileInfoProjects, ProfileInfoTeam], required) - array of profiles
-    + count: 12 (number, required) - total number of resources fetched by the query.
-
-### List Profile Informations [GET]
-List user profile informations.
-
-+ Response 200 (application/json)
-
-    + Attributes (Profile Informations collections)
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-    
-## Profile Information [/profiles/{id}/infos/{type}]
-
-+ Parameters
-    + id: 1 (required, number) - id of the user
-    + type: expertiseSummary
-
-+ Attributes (ProfileInfoExpertiseSummary)
+    + expertiseSummary: `expertise summary text`
+    + certification: `certifications text`
+    + generalExperienceBusiness: `business experience text`
+    + generalExperienceIndustry: `industry experience text`
+    + generalExperienceCustomer: `customer experience text`
+    + technicalExperience: `industry experience text`
+    + solutionsProducts: `solutions products text`
+    + communities: `communities text`
+    + businessGoals: `business goals text`
+    + professionalOrganizations: `professional organizations text`
+    + projects: `projects text`
+    + team: `team text`
 
 ### Read Profile Information [GET]
 
 + Response 200 (application/json)
 
-    + Attributes (Profile Information)
+    + Attributes (DRAFT - Profile Informations)
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -206,7 +188,7 @@ composite object.
 
 + Request (application/json)
 
-    + Attributes (Profile Information)
+    + Attributes (DRAFT - Profile Informations)
 
 + Response 200
 
@@ -624,57 +606,23 @@ Get the base URL configuration
 
 ## Profile Update (object)
 + Include Profile
-+ informations (array[ProfileInfoExpertiseSummary, ProfileInfoCertification, ProfileInfoGeneralExperienceBusiness, ProfileInfoGeneralExperienceIndustry, ProfileInfoGeneralExperienceCustomer, ProfileInfoTechnicalExperience, ProfileInfoSolutionsProducts, ProfileInfoCommunities, ProfileInfoBusinessGoals, ProfileInfoProfessionalOrganizations, ProfileInfoProjects, ProfileInfoTeam])
-+ addresses (array[ProfileAddress])
++ informations
+    + expertiseSummary: `expertise summary text`
+    + certification: `certifications text`
+    + generalExperienceBusiness: `business experience text`
+    + generalExperienceIndustry: `industry experience text`
+    + generalExperienceCustomer: `customer experience text`
+    + technicalExperience: `industry experience text`
+    + solutionsProducts: `solutions products text`
+    + communities: `communities text`
+    + businessGoals: `business goals text`
+    + professionalOrganizations: `professional organizations text`
+    + projects: `projects text`
+    + team: `team text`
++ addresses
+    + preferred (ProfileAddress) - preferred address of the user, if different from business address.
+    + business (ProfileAddress) - business address of the user.
 + image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
-
-## ProfileInfoExpertiseSummary
-+ type: expertiseSummary
-+ infoContent: `expertise summary text`
-
-## ProfileInfoCertification
-+ type: certification
-+ infoContent: `certifications text`
-
-## ProfileInfoGeneralExperienceBusiness
-+ type: generalExperienceBusiness
-+ infoContent: `business experience text`
-
-## ProfileInfoGeneralExperienceIndustry
-+ type: generalExperienceIndustry
-+ infoContent: `industry experience text`
-
-## ProfileInfoGeneralExperienceCustomer
-+ type: generalExperienceCustomer
-+ infoContent: `customer experience text`
-
-## ProfileInfoTechnicalExperience
-+ type: technicalExperience
-+ infoContent: `industry experience text`
-
-## ProfileInfoSolutionsProducts
-+ type: solutionsProducts
-+ infoContent: `solutions products text`
-
-## ProfileInfoCommunities
-+ type: communities
-+ infoContent: `communities text`
-
-## ProfileInfoBusinessGoals
-+ type: businessGoals
-+ infoContent: `business goals text`
-
-## ProfileInfoProfessionalOrganizations
-+ type: professionalOrganizations
-+ infoContent: `professional organizations text`
-
-## ProfileInfoProjects
-+ type: projects
-+ infoContent: `projects text`
-
-## ProfileInfoTeam
-+ type: team
-+ infoContent: `team text`
 
 ## ProfileAddress
 + street: Via Nizza 15
