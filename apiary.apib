@@ -16,8 +16,11 @@ Resources related to user's profile in the API.
 
 + Attributes
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
-    + count: 3 (number, required) - total number of resources fetched by the query.
-
+    + paginationData (object)
+        + count: 62 (number,required)
+        + pageNum: 1 (number, required)
+        + pageSize: 25 (number, required)
+    
 ### List Profiles [GET]
 Search user profiles.
 
