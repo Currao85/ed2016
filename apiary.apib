@@ -12,7 +12,7 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?sort}{?pageSize}]
+## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
 
 + Attributes
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
@@ -35,12 +35,16 @@ Search user profiles.
     + searchValue: BIANCHI (string) - Value to search
     + orgType: UO (string) - Structure type to filter for
     + page: 1 (optional, number) - The page of profiles to return
-    + sort: fname (enum[string], optional) - Sorting order
+    + sort: fname (enum[string], optional) - Sorting field
         + Members
             + lname
             + fname
             + dname
             + country
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
     + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
