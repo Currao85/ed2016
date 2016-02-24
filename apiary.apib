@@ -71,7 +71,7 @@ Search user profiles.
 + Parameters
     + id: 1 (required, number) - id of the user
 
-+ Attributes (Profile1)
++ Attributes (ProfileDetail)
 
 ### Read Profile [GET]
 
@@ -89,11 +89,9 @@ Search user profiles.
 
     + Body
 
-### DRAFT - Update Profile, Informations and Addresses [PUT]
+### Update Profile [PUT]
 
-Updates a user profiles. 
-
-DRAFT REASON: This actions takes an object composed by the base
+Updates a user profiles. This actions takes an object composed by the base
 profile, its informations and its addresses and updates everything in one single
 swoop instead of having three different calls.
 
@@ -140,156 +138,6 @@ Used to retrieve user personal details.
 
 + Response 200 (application/json)
   + Attributes (Profile)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-## DRAFT - Profile Informations [/profiles/{id}/infos]
-
-DRAFT REASON: Profile addresses are a dictionary, not an array.
-
-+ Parameters
-    + id: 1 (required, number) - id of the user
-
-+ Attributes
-    + expertiseSummary: `expertise summary text`
-    + certification: `certifications text`
-    + generalExperienceBusiness: `business experience text`
-    + generalExperienceIndustry: `industry experience text`
-    + generalExperienceCustomer: `customer experience text`
-    + technicalExperience: `industry experience text`
-    + solutionsProducts: `solutions products text`
-    + communities: `communities text`
-    + businessGoals: `business goals text`
-    + professionalOrganizations: `professional organizations text`
-    + projects: `projects text`
-    + team: `team text`
-
-### Read Profile Information [GET]
-
-+ Response 200 (application/json)
-
-    + Attributes (DRAFT - Profile Informations)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### DRAFT - Update Profile Information [PUT]
-
-DRAFT REASON: Not strictly needed if we implement Update Profile working on the
-composite object.
-
-+ Request (application/json)
-
-    + Attributes (DRAFT - Profile Informations)
-
-+ Response 200
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### Delete Profile Information [DELETE]
-
-+ Response 204
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-## DRAFT - Profile Addresses [/profiles/{id}/addresses]
-
-DRAFT REASON: Profile addresses are a dictionary, not an array.
-
-+ Parameters
-    + id: 1 (required, number) - id of the user
-
-+ Attributes
-    + preferred (ProfileAddress) - preferred address of the user, if different from business address.
-    + business (ProfileAddress) - business address of the user.
-
-### Read Profile Addresses [GET]
-Returns all user's profile addresses.
-
-+ Response 200 (application/json)
-
-    + Attributes (DRAFT - Profile Addresses)
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### DRAFT - Update Profile Addresses [PUT]
-
-DRAFT REASON: Not strictly needed if we implement Update Profile working on the
-composite object.
-
-+ Request (application/json)
-
-    + Attributes (DRAFT - Profile Addresses)
-
-+ Response 200
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### Delete Profile Addresses [DELETE]
-
-+ Response 204
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -573,7 +421,7 @@ Get the base URL configuration
 
 # Data Structures
 
-## ProfileDetail (object)
+## ProfileBase (object)
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + ouCode: `XL78481` (required, string)
@@ -593,7 +441,6 @@ Get the base URL configuration
     + country: `39` (string)
     + prefix: `02` (string)
     + number: `3904912345678` (string)
-+ imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
 + businessUnit: `not used ?`,
 + jobResponsibility: `job responsibility`,
 + internetAddress: `firstname.lastname@organization.com`
@@ -602,17 +449,26 @@ Get the base URL configuration
 + userId: `????`
 + otherRoles: `????` (string)
 
-## Profile1 (ProfileDetail)
+## ProfileDetail (ProfileBase)
++ Include ProfileInformations
++ Include ProfilesAddresses
++ imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
+
+## Profile1 (ProfileBase)
 + id: 1 (number) - id of the profile
 
-## Profile2 (ProfileDetail)
+## Profile2 (ProfileBase)
 + id: 2 (number) - id of the profile
 
-## Profile3 (ProfileDetail)
+## Profile3 (ProfileBase)
 + id: 3 (number) - id of the profile
 
-## Profile Update (object)
-+ Include Profile
+## Profile Update (ProfileBase)
++ Include ProfileInformations
++ Include ProfilesAddresses
++ image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
+
+## ProfileInformations (object)
 + informations
     + expertiseSummary: `expertise summary text`
     + certification: `certifications text`
@@ -626,10 +482,11 @@ Get the base URL configuration
     + professionalOrganizations: `professional organizations text`
     + projects: `projects text`
     + team: `team text`
+
+## ProfilesAddresses (object)
 + addresses
     + preferred (ProfileAddress) - preferred address of the user, if different from business address.
     + business (ProfileAddress) - business address of the user.
-+ image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
 
 ## ProfileAddress
 + street: Via Nizza 15
