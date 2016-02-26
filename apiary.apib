@@ -132,15 +132,40 @@ swoop instead of having three different calls.
 
 ## User personal profile [/profiles/my]
 
-Used to retrieve user personal details.
-
 ### Read Profile [GET]
+
+Used to retrieve user personal details.
 
 + Response 200 (application/json)
   + Attributes (Profile)
 
 + Response 404
     Returned when the user is not authenticated.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Profile [PUT]
+
+Updates user personal profile. 
+
++ Request (application/json)
+
+    + Attributes (Profile Update)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
 
     + Body
 
@@ -446,7 +471,7 @@ Get the base URL configuration
 + internetAddress: `firstname.lastname@organization.com`
 + altInternetAddress: `firstname.lastname@organization2.com`
 + notesAddress: `indirizzo_notes@aaaaa.it`
-+ userId: `????`
++ userId: `userid` (string) - login user (read only?)
 + otherRoles: `????` (string)
 
 ## ProfileDetail (ProfileBase)
