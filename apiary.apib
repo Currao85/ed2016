@@ -97,7 +97,7 @@ swoop instead of having three different calls.
 
 + Request (application/json)
 
-    + Attributes (Profile Update)
+    + Attributes (ProfileBase)
 
 + Response 200
 
@@ -130,7 +130,7 @@ swoop instead of having three different calls.
 
     + Body
 
-## User personal profile [/profiles/my]
+## User personal Profile [/profiles/my]
 
 ### Read Profile [GET]
 
@@ -155,7 +155,7 @@ Updates user personal profile.
 
 + Request (application/json)
 
-    + Attributes (Profile Update)
+    + Attributes (ProfileBase)
 
 + Response 200
 
@@ -166,6 +166,81 @@ Updates user personal profile.
 
 + Response 404
     Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## Profile Photo [/profiles/{id}/photo]
+
++ Parameters
+    + id: 1 (required, number) - id of the user
+
+### Read Profile Photo [GET]
+
+Returns the specified user's photo.
+
++ Response 200 (application/png)
+
++ Response 404
+    Returned when the user's photo cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Upsert Profile Photo [POST]
+
+Creates or updates the specified user's photo.
+
++ Request (application/png)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+## User personal Profile Photo [/profiles/my/photo]
+
+### Read Profile Photo [GET]
+
+Returns the current user's photo.
+
++ Response 200 (application/png)
+
++ Response 404
+    Returned when the user's photo cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Upsert Profile Photo [POST]
+
+Creates or updates the current user's photo.
+
++ Request (application/png)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
 
     + Body
 
@@ -481,17 +556,16 @@ Get the base URL configuration
 
 ## Profile1 (ProfileBase)
 + id: 1 (number) - id of the profile
++ imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
 
 ## Profile2 (ProfileBase)
 + id: 2 (number) - id of the profile
++ imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
 
 ## Profile3 (ProfileBase)
 + id: 3 (number) - id of the profile
++ imageUrl: `http://thesocialmediamonthly.com/wp-content/uploads/2015/08/photo.png`
 
-## Profile Update (ProfileBase)
-+ Include ProfileInformations
-+ Include ProfilesAddresses
-+ image: `R0lGODlhEAAOALMAAOazToeHh0tLS/7LZv/0jvb29t/f3//Ub//ge8WSLf/rhf/3kdbW1mxsbP//mf///yH5BAAAAAAAL` (string) - serialized stream (base64) representing the image.
 
 ## ProfileInformations (object)
 + informations
