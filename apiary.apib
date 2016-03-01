@@ -113,9 +113,7 @@ swoop instead of having three different calls.
 
     + Body
 
-### DRAFT - Dismiss Profile [PUT /profiles/{id}/dismiss]
-
-DRAFT REASON: do we need to add a dismiss date as request attribute?
+### Dismiss Profile [PUT /profiles/{id}/dismiss]
 
 Dismiss the specified user profile.
 This actions is a specialized version of an update on the specified profile.
@@ -123,6 +121,10 @@ This actions is a specialized version of an update on the specified profile.
 
 + Parameters
     + id: 1 (required, number) - id of the user
+
++ Request (application/json)
+  + Attributes
+      + date: `2016-03-31`
     
 + Response 200
 
