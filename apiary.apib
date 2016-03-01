@@ -116,6 +116,29 @@ swoop instead of having three different calls.
 
     + Body
 
+### DRAFT - Dismiss Profile [PUT /profiles/{id}/dismiss]
+
+DRAFT REASON: do we need to add a dismiss date as request attribute?
+
+Dismiss the specified user profile.
+This actions is a specialized version of an update on the specified profile.
+
+
++ Parameters
+    + id: 1 (required, number) - id of the user
+    
++ Response 200
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
 ### Delete Profile [DELETE]
 
 + Response 204
