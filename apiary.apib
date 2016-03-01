@@ -14,12 +14,9 @@ Resources related to user's profile in the API.
 
 ## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
 
-+ Attributes
++ Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
-    + paginationData (object)
-        + count: 62 (number,required)
-        + pageNum: 1 (number, required)
-        + pageSize: 25 (number, required)
+    + Include PaginationData
     
 ### List Profiles [GET]
 Search user profiles.
@@ -260,8 +257,7 @@ Creates or updates the current user's photo.
 
 ## Profiles Types collections [/profiles/types]
 
-+ Attributes
-  + count: 3 (number, required) - total number of resources fetched by the query.
++ Attributes (object)
   + results (array, required) - array of resources
       + (object)
           + id: ASG
@@ -272,6 +268,7 @@ Creates or updates the current user's photo.
       + (object)
           + id: EXT
           + descr: Extended Team IBM
+  + Include PaginationData
 
 ### List types [GET]
 The list of types of employee. (HR Admin - People modify)
@@ -282,8 +279,7 @@ The list of types of employee. (HR Admin - People modify)
 
 ## Profiles roles collections [/profiles/roles]
 
-+ Attributes
-  + count: 4 (number, required) - total number of resources fetched by the query.
++ Attributes (object)
   + results (array, required) - array of resources
       + (object)
           + id: 1
@@ -297,9 +293,13 @@ The list of types of employee. (HR Admin - People modify)
       + (object)
           + id: 8
           + descr: USER
-          
+  + Include PaginationData
+
+
 ### List types [GET]
+
 The list of user's roles. (HR Admin)
+
 + Response 200 (application/json)
   + Attributes (Profiles roles collections)
 
@@ -309,8 +309,7 @@ The list of user's roles. (HR Admin)
 
 ## Organization types collections [/organizations/types]
 
-+ Attributes
-  + count: 3 (number, required) - total number of resources fetched by the query.
++ Attributes (object)
   + results (array, required) - array of resources
       + (object)
           + id: 1
@@ -321,7 +320,7 @@ The list of user's roles. (HR Admin)
       + (object)
           + id: 3
           + descr: Other
-  
+  + Include PaginationData
 
 ### List types [GET]
 The list of structure types. (Hierarchical View - List Organization, Homepage)
@@ -336,18 +335,19 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 ## Organization Units collections [/ous{?page}{?sort}{?pageSize}]
 
 + Parameters
-    + page: 1 (optional, number) - The page of results to return
-    + sort: firstName (optional) - Sorting order
-    + pageSize: 25 (optional, number) - Amount of results to return
+  + page: 1 (optional, number) - The page of results to return
+  + sort: firstName (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
 
-+ Attributes
-    + results (array[Organization1, Organization2, Organization3], required) - array of first-level organizations
-    + count: 3 (number, required) - total number of resources fetched by the query.
++ Attributes (object)
+  + results (array[Organization1, Organization2, Organization3], required) - array of first-level organizations
+  + Include PaginationData
 
 ### List Organization Units [GET]
 Returns the company's organization structure tree.
-<br/>
-<strong>Released on feb 29</strong>
+
+**Released on feb 29**
+
 + Response 200 (application/json)
   + Attributes (Organization Units collections)
 
@@ -359,8 +359,7 @@ Returns the company's organization structure tree.
 
 ## Countries collections [/countries]
 
-+ Attributes
-  + count: 3 (number, required) - total number of resources fetched by the query.
++ Attributes (object)
   + results (array, required) - array of resources
       + (object)
           + id: 1
@@ -374,10 +373,13 @@ Returns the company's organization structure tree.
       + (object)
           + id: 4
           + descr: Spain
+  + Include PaginationData
 
 
 ### List countries [GET]
+
 The list countries. (HR Admin - People insert, HR Admin - People modify)
+
 + Response 200 (application/json)
   + Attributes (Countries collections)
 
@@ -415,16 +417,17 @@ Update the general message with a new one.
 ## Support Requests Collection [/supportRequests{?page}{?sort}{?pageSize}]
 
 + Parameters
-    + page: 1 (optional, number) - The page of results to return
-    + sort: firstName (optional) - Sorting order
-    + pageSize: 25 (optional, number) - Amount of results to return
+  + page: 1 (optional, number) - The page of results to return
+  + sort: firstName (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
 
 + Attributes (object)
-    + results (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
-    + count: 3 (number)
+  + results (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
+  + Include PaginationData
 
 ### Support requests list [GET]
 Get the list with all the support requests.
+
 + Response 200 (application/json)
     + Attributes (Support Requests Collection)
 
@@ -531,6 +534,12 @@ Get the base URL configuration
 
 
 # Data Structures
+
+## PaginationData (object)
++ paginationData (object, required) - Informations required for pagination
+    + count: 62 (number,required) - total number of resources
+    + pageNum: 1 (number, required) - slice of resources returned
+    + pageSize: 25 (number, required) - size of the slice
 
 ## ProfileBase (object)
 + firstName: `MARIO` (required, string)
