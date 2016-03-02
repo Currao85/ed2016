@@ -174,12 +174,24 @@ This actions is a specialized version of an update on the specified profile.
 
     + Body
 
-### DRAFT Same Manager [GET /profiles/{id}/sameManager]
+### DRAFT Same Manager [GET /profiles/{id}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
 
 Return all the people who are managed by the same manager of the person with id== **id** .
 
 + Parameters
     + id: 1 (required, number) - id of the user
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
 
@@ -195,12 +207,24 @@ Return all the people who are managed by the same manager of the person with id=
 
     + Body
 
-### DRAFT People Managed [GET /profiles/{id}/peopleManaged]
+### DRAFT People Managed [GET /profiles/{id}/peopleManaged{?page}{?pageSize}{?sort}{?sortOrder}]
 
 Return all the people who are managed the manager with id== **id** .
 
 + Parameters
     + id: 1 (required, number) - id of the user
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
 
