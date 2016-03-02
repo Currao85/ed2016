@@ -84,6 +84,32 @@ Creates a user profile.
     + Body
 
 
+## DRAFT Search [/profiles/advancedSearch]
+
+
+
+### DRAFT Advanced Search [POST]
+
++ Request (application/json)
+
+    + Attributes (SearchObject)
+
++ Response 200 (application/json)
+
+    + Attributes (Profiles collections)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+
 ## Profile [/profiles/{id}]
 
 + Parameters
@@ -673,7 +699,6 @@ Get the base URL configuration
 + personalCode: `one more data` (string)
 + hiringDate: `2016-02-28` (string)
 
-
 ## ProfileDetail (ProfileBase)
 + Include ProfileInformations
 + Include ProfilesAddresses
@@ -847,3 +872,51 @@ Get the base URL configuration
     + `http://url.doc.1`
     + `http://url.doc.2`
     + `http://url.doc.3`
+
+## SearchObject (object)
++ Include SearchQuery
++ orgType: UO (string, optional) - Structure type to filter for
++ page: 1 (optional, number) - The page of profiles to return
++ sort: fname (enum[string], optional) - Sorting field
+    + Members
+        + lname
+        + fname
+        + dname
+        + country
++ sortOrder: asc (enum, optional) - Sorting order
+    + Members
+        + asc
+        + desc
++ pageSize: 25 (optional, number) - Amount of results to return
+
+## SearchQuery (object)
++ searchQuery (object, required)
+    + and (array[AndQuery1, AndQuery2, AndQuery3, AndQuery4, AndQuery5, AndQuery6], required)
+
+## AndQuery1 (object)
++ or (array[OrQuery1, OrQuery2])
+
+## OrQuery1 (object)
++ id: 12
+
+## OrQuery2 (object)
++ id: 32
+
+# AndQuery2 (object)
++ lname: Rossi (string)
+
+
+# AndQuery3 (object)
++ fname: Mario (string)
+
+
+# AndQuery4 (object)
++ email: mrossi@ibm.it (string)
+
+
+# AndQuery5 (object)
++ dcode: XL1231 (string)
+
+
+# AndQuery6 (object)
++ dname: Austria CEO (string)
