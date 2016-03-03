@@ -10,7 +10,7 @@ Service Oriented Architecture specified for the ED project.
 # Group Profiles
 #######################
 
-Resources related to user's profile in the API. 
+Resources related to user's profile in the API.
 
 ## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
 
@@ -325,6 +325,11 @@ Returns the specified user's photo.
 
 + Response 200 (application/png)
 
++ Response 404
+    Returned when the user's photo cannot be found.
+
+    + Body
+
 + Response 500
     Returned when a generic error occours.
 
@@ -339,6 +344,11 @@ Returns the current user's photo.
 **Released on feb 29**
 
 + Response 200 (application/png)
+
++ Response 404
+    Returned when the user's photo cannot be found.
+
+    + Body
 
 + Response 500
     Returned when a generic error occours.
