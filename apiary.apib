@@ -17,7 +17,8 @@ Resources related to user's profile in the API.
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
     + Include PaginationData
-    
+
+  
 ### List Profiles [GET]
 Search user profiles.
 
@@ -62,6 +63,7 @@ Search user profiles.
     Returned when a generic error occours.
 
     + Body
+
 
 ### Create Profile [POST]
 
@@ -473,6 +475,83 @@ Returns the company's organization structure tree.
 
 + Response 200 (application/json)
   + Attributes (Organization Units collections)
+
+
+## DRAFT Organization Units Person Update [POST /ous/{ouCode}/people]
+
+Update a person inside the Organization Units (set as manager) or Organization Tree (change ous/person).
+
++ Parameters
+    + ouCode: XL1232 (required, string) - id of the ou
+
++ Request (application/json)
+    + Attributes
+        + id: 2 (required, number) - id of the person
+        + lastName: Rossi (required, string) - the last name of the person
+        + firstName: Mario (required, string) - the first name of the person
+        + isManager: true (required, boolean) - isManager attribute (inside the ou with *ouCode* )
+        + startDate: `2016-03-02` (string) - the start date if you want to change person's ou (not required)
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+## DRAFT Organization Units Update [POST /ous/{ouCode}]
+
+Update the name of an Organization Units.
+
++ Parameters
+    + ouCode: XL1232 (required, string) - code of the ou
+
++ Request (application/json)
+    + Attributes
+        + ouCode: 2 (required, number) - code of the ou
+        + ouName: new organization name (required, string) - the new name of the ou
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+## DRAFT Organization Units Disable [POST /ous/{ouCode}/disable]
+
+Disable an Organization Units.
+
++ Parameters
+    + ouCode: XL1232 (required, string) - code of the ou
+
++ Request (application/json)
+    + Attributes (object)
+        + date: `2016-02-03` (required, number) - end date of an organization
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 
 #######################
