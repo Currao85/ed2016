@@ -70,7 +70,8 @@ Creates a user profile.
 
     + Attributes (ProfileMini)
 
-+ Response 200 
++ Response 201 
+    + Attributes (ProfileMini)
 
 + Response 400
     Returned when the required resource cannot be found.
@@ -763,10 +764,10 @@ Get the base URL configuration
 + email: `mbianchi@acme.it` (required, string)
 + addresses
     + business (ProfileAddressCountry) - business address of the user.
-+ userId: `userid` (string) - login user (read only?)
-+ employeeType: `EMP` (string) - code of profile type
++ userId: `userid` (required,string) - login user (read only?)
++ employeeType: `EMP` (required,string) - code of profile type
 + personalCode: `one more data` (string)
-+ hiringDate: `2016-02-28` (string)
++ hiringDate: `2016-02-28` (required,string)
 
 ## ProfileDetail (ProfileBase)
 + Include ProfileInformations
