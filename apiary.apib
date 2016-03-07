@@ -70,8 +70,13 @@ Creates a user profile.
 
     + Attributes (ProfileMini)
 
-+ Response 201 
-    + Attributes (ProfileMini)
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /profiles/123
+
+    + Attributes (ProfileMiniRes)
 
 + Response 400
     Returned when the required resource cannot be found.
@@ -759,6 +764,18 @@ Get the base URL configuration
 + personalCode: `one more data` (string)
 
 ## ProfileMini (object)
++ firstName: `MARIO` (required, string)
++ lastName: `BIANCHI` (required, string)
++ email: `mbianchi@acme.it` (required, string)
++ addresses
+    + business (ProfileAddressCountry) - business address of the user.
++ userId: `userid` (required,string) - login user (read only?)
++ employeeType: `EMP` (required,string) - code of profile type
++ personalCode: `one more data` (string)
++ hiringDate: `2016-02-28` (required,string)
+
+## ProfileMiniRes (object)
++ id: 123 (required, number)
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + email: `mbianchi@acme.it` (required, string)
