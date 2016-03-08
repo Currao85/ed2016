@@ -89,15 +89,27 @@ Creates a user profile.
     + Body
 
 
-## DRAFT Search [/profiles/advancedSearch]
+## DRAFT Search [/profiles/advancedSearch{?searchQuery}{?orgType}{?page}{?pageSize}{?sort}{?sortOrder}]
 
 
 
-### DRAFT Advanced Search [POST]
+### DRAFT Advanced Search [GET]
 
-+ Request (application/json)
-
-    + Attributes (SearchObject)
++ Parameters
+    + searchQuery : {"lname":"Stewart","fname":"John"} (object) - json filter object
+    + orgType: UO (string) - Structure type to filter for
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
 
