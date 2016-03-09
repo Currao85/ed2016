@@ -93,10 +93,10 @@ Creates a user profile.
 
 
 
-### DRAFT Advanced Search [GET]
+### Advanced Search [GET]
 
 + Parameters
-    + searchQuery : {"lname":"Stewart","fname":"John"} (object) - json filter object
+    + searchQuery: {"lname":"Stewart","fname":"John"} (Object) - json filter object
     + orgType: UO (string) - Structure type to filter for
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -458,6 +458,29 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
   + Attributes (Organization types collections)
 
 #######################
+# Group DRAFT - Revisions
+#######################
+
+## Revisions collection [/revisions{?page}{?sort}{?pageSize}]
+
++ Parameters
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+
++ Attributes (object)
+  + results (array[Revision1, Revision2, Revision3], required) - array of revisions
+  + Include PaginationData
+
+### List Revisions [GET]
+Returns the revisions list.
+
++ Response 200 (application/json)
+  + Attributes (Revisions collection)
+
+
+
+#######################
 # Group Organization Units
 #######################
 
@@ -618,66 +641,129 @@ Update the general message with a new one.
 + Response 200
 
 #######################
-# Group Support Requests
+# Group DRAFT - Support Requests
 #######################
 
-## Support Requests Collection [/supportRequests{?page}{?sort}{?pageSize}]
-
-+ Parameters
-  + page: 1 (optional, number) - The page of results to return
-  + sort: firstName (optional) - Sorting order
-  + pageSize: 25 (optional, number) - Amount of results to return
+## Support Requests Collection [/supportRequests{?page}{?pageSize}{?sort}{?sortOrder}{?viewAllAssignee}{?excludeClosed}]
 
 + Attributes (object)
-  + results (array[Support Request Closed, Support Request Open, Support Request Assigned], required)
+  + results (array[SupportRequestClosed, SupportRequestOpen, SupportRequestAssigned], required)
   + Include PaginationData
 
 ### Support requests list [GET]
-Get the list with all the support requests.
+
++ Parameters
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: requestDate (enum[string], optional) - Sorting field
+        + Members
+            + requestDate
+            + assignmentDate
+            + closureDate
+            + status
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
+    + viewAllAssignee: true (optional, boolean)
+    + excludeClosed: false (optional, boolean)
 
 + Response 200 (application/json)
     + Attributes (Support Requests Collection)
+    
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Create Support Request [POST]
+
++ Request (application/json)
+
+    + Attributes (SupportRequestNew)
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /supportRequests/2
+
+    + Attributes (SupportRequestOpen)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 ## Support Request [/supportRequests/{id}]
 
 + Parameters
-    + id: 1 (required, number) - id of the request
+    + id: 1 (required, number) - id of the support request
 
-+ Attributes (object)
-    + id: 1 (required, number)
-    + status: `Open` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
-    + requestor (object)
-        + id: 3231 (required, number)
-        + lastName: `Baggio` (required, string)
-        + firstName: `Alessandro` (required, string)
-    + date: `10/12/2015 12:12:10` (required, string)
-    + type: `EntDirectory` (string)
-    + title: `titolo blablablablabla` (required, string)
-    + description: `descrizione blablablablablablablabla` (required, string)
-    + closureDate (string)
-    + documents (array)
-        + `http://url.doc.1`
-        + `http://url.doc.2`
-        + `http://url.doc.3`
++ Attributes (SupportRequestClosed)
 
-### Support request Detail [GET]
-Get the detail of a support requests.
+### Read Support Request [GET]
+
 + Response 200 (application/json)
+
     + Attributes (Support Request)
 
-### Support requests update [POST]
-Update a support requests (assign, close, force close,...).
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Update Support Request [PUT]
+
 + Request (application/json)
+
     + Attributes (Support Request)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
     
-+ Response 200 (application/json)
-    + Attributes (Support Request Detail Assigned)
-    
+### Delete Support Request  [DELETE]
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 ## DRAFT - Documents Modify [/supportRequests/{id}/document]
 + Parameters
@@ -890,52 +976,109 @@ Get the base URL configuration
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 
-##Support Request Closed (object)
+##SupportRequestMessageAlpha (object)
 + id: 1 (required, number)
-+ status: `Closed`
-+ date: `10/12/2015 12:12:10` (required, string)
-+ title: `titolo bla` (string)
-+ closureDate: `15/12/2015 13:13:13` (string)
-+ assignedTo (object)
-    + id: 323 (required, number)
-    + lastName: `Ferraro` (required, string)
-    + firstName: `Alberto` (required, string)
++ profile: 323 (required, number)
++ date: `2015-12-10 12:12:10` (required, string)
++ description: `This support request was assigned to Baggio Alessandro(bAlessandro@email.it)` (required, string)
 
-##Support Request Open (object)
+##SupportRequestMessageBeta (object)
 + id: 2 (required, number)
-+ status: `Open`
-+ date: `10/12/2015 12:12:10` (required, string)
-+ title: `titolo blablaaaaaablablabla` (string)
-+ assignedTo (object)
++ profile: 323 (required, number)
++ date: `2015-12-10 12:14:10` (required, string)
++ description: `This ticket was closed (Motivazione chiusura lorem ipsum)` (required, string)
 
-##Support Request Assigned (object)
-+ id: 3 (required, number)
-+ status: `Assigned`
-+ date: `10/12/2015 12:12:10` (required, string)
-+ title: `titolo blablablablablwfwfwefa` (string)
-+ assignedDate: `12/12/2015 12:22:12` (string)
-+ assignedTo (object)
-    + id: 323 (required, number)
-    + lastName: `Ferraro` (required, string)
-    + firstName: `Andrea` (required, string)
-    + email: `fAlberto@email.it` (required, string)
-
-##Support Request Update (object)
+##SupportRequestClosed (object)
 + id: 1 (required, number) - id of the request that you wants to update
-+ status: `Closed`
++ status: `Closed` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
 + requestor (object)
-    + id: 321 (required, number)
     + lastName: `Baggio` (required, string)
     + firstName: `Alessandro` (required, string)
-+ date: `10/12/2015 12:12:10` (required, string)
-+ type: `EntDirect` (string)
-+ title: `titolo blablablablabla` (string)
-+ description: `descrizione blablablablablablablabla` (string)
-+ assignedTo (object)
-    + id: 323 (required, number)
-    + lastName: `Ferraro` (required, string)
-    + firstName: `Alberto` (required, string)
-    + email: `fAlberto@email.it` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate: `2015-12-10 12:12:10` (string)
++ assignedTo: 323 (number)
++ closureDate: `2015-12-10 12:14:10` (string)
++ closureReason: `Motivazione chiusura lorem ipsum` (string)
++ messages (array[SupportRequestMessageAlpha,SupportRequestMessageBeta])
+
+##SupportRequestNew (object)
++ id (number)
++ status (enum[string])
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title (string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate (string)
++ assignedTo (number)
++ closureDate (string)
++ closureReason (string)
++ messages (array)
+
+##SupportRequestOpen (object)
++ id: 2 (required, number) - id of the request that you wants to update
++ status: `Open` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:2` (required, string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate (string)
++ assignedTo (number)
++ closureDate (string)
++ closureReason (string)
++ messages (array)
+
+##SupportRequestAssigned (object)
++ id: 3 (required, number)
++ status: `Assigned` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:3` (required, string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate: `2015-12-10 12:12:10` (string)
++ assignedTo: 323 (number)
++ closureDate (string)
++ closureReason (string)
++ messages (array[SupportRequestMessageAlpha])
 
 ##Support Request Document Upload (object)
 + id: 1 (required, number) - id of the request that you wants to modify
@@ -944,34 +1087,6 @@ Get the base URL configuration
 ##Support Request Document Remove (object)
 + id: 1 (required, number) - id of the request that you wants to modify
 + removeDocuments (array[string]) - array with documents to remove
-    + `http://url.doc.3`
-
-##Support Request Detail Assigned (object)
-+ id: 1 (required, number)
-+ status: Assigned (required, enum[string])
-    + Members
-        + Assigned
-        + Closed
-        + Force closed
-        + Open
-+ requestor (object)
-    + id: 321 (required, number)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-+ date: `10/12/2015 12:12:10` (required, string)
-+ type: `EntDirect` (string)
-+ title: `titolo blablablablabla` (required, string)
-+ description: `descrizione blablablablablablablabla` (required, string)
-+ assignedDate: `12/12/2015 12:22:12` (string)
-+ assignedTo (object)
-    + id: 323 (required, number)
-    + lastName: `Ferraro` (required, string)
-    + firstName: `Alberto` (required, string)
-    + email: `fAlberto@email.it` (required, string)
-+ closureDate (string)
-+ documents (array)
-    + `http://url.doc.1`
-    + `http://url.doc.2`
     + `http://url.doc.3`
 
 ## SearchObject (object)
@@ -1021,3 +1136,24 @@ Get the base URL configuration
 
 # AndQuery6 (object)
 + dname: Austria CEO (string)
+
+## Revision1 (object)
++ id: 1
++ description:`Struttura 1`
++ startdate : `2016-03-01`
++ enddate : ``
++ status : `active`
+
+## Revision2 (object)
++ id: 2
++ description:`Struttura 2`
++ startdate : ``
++ enddate : ``
++ status : `draft`
+
+## Revision3 (object)
++ id: 3
++ description:`Struttura 3`
++ startdate : `2015-06-30`
++ enddate : `2016-02-29`
++ status : `expired`
