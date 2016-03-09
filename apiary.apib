@@ -481,13 +481,14 @@ Returns the revisions list.
 
 
 #######################
-# Group Organization Units
+# Group DRAFT - Organization Units
 #######################
 
 
-## Organization Units collections [/ous{?page}{?sort}{?pageSize}]
+## Organization Units collections [/revisions/{id}/ous{?page}{?sort}{?pageSize}]
 
 + Parameters
+  + id: 1 or active (required) - id of the requested revision 
   + page: 1 (optional, number) - The page of results to return
   + sort: firstName (optional) - Sorting order
   + pageSize: 25 (optional, number) - Amount of results to return
@@ -1141,14 +1142,14 @@ Get the base URL configuration
 + id: 1
 + description:`Struttura 1`
 + startdate : `2016-03-01`
-+ enddate : ``
++ enddate : ""
 + status : `active`
 
 ## Revision2 (object)
 + id: 2
 + description:`Struttura 2`
-+ startdate : ``
-+ enddate : ``
++ startdate : ""
++ enddate :  ""
 + status : `draft`
 
 ## Revision3 (object)
