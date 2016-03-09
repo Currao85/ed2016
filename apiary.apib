@@ -321,32 +321,6 @@ Updates user personal profile.
     Returned when a generic error occours.
 
     + Body
-    
-### Change Password [PUT /profiles/my/password]
-
-Change password for currently logged in user.
-
-+ Request (application/json)
-  + Attributes
-      + currentPassword: `XXXX` (required),
-      + newPassword: `YYYY` (required)
-    
-+ Response 200
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body    
 
 ## Profile Photo [/profiles/{id}/photo]
 
@@ -709,6 +683,7 @@ Update the general message with a new one.
     + Body
     
 ### Create Support Request [POST]
+Creates a new support request and adds the proper messages depending on the 'assign' and 'closure' field values
 
 + Request (application/json)
 
@@ -737,13 +712,11 @@ Update the general message with a new one.
 + Parameters
     + id: 1 (required, number) - id of the support request
 
-+ Attributes (SupportRequestClosed)
-
 ### Read Support Request [GET]
 
 + Response 200 (application/json)
 
-    + Attributes (Support Request)
+    + Attributes (SupportRequestClosed)
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -759,7 +732,7 @@ Update the general message with a new one.
 
 + Request (application/json)
 
-    + Attributes (Support Request)
+    + Attributes (SupportRequestClosedUpdate)
 
 + Response 200
 
@@ -781,6 +754,63 @@ Update the general message with a new one.
 ### Delete Support Request  [DELETE]
 
 + Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Assign Support Request [PUT /supportRequests/{id}/assign]
+Changes the status of the support request to 'Assigned' and adds a proper message
+    
++ Attributes (object)
+    + idProfile: 323 (required, number) - id of the assignee profile
+
++ Response 200 (application/json)
+
+    + Attributes (SupportRequestAssigned)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Close Support Request [PUT /supportRequests/{id}/close]
+Changes the status of the support request to 'Closed' and adds a proper message
+
++ Attributes (object)
+    + reason: 'Motivazione chiusura lorem ipsum' (required, number)
+
++ Response 200 (application/json)
+
+    + Attributes (SupportRequestClosed)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Forced closure Support Request [PUT /supportRequests/{id}/force]
+Changes the status of the support request to 'Forced closure' and adds a proper message
+
++ Response 200 (application/json)
+
+    + Attributes (SupportRequestForced)
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -1015,8 +1045,75 @@ Get the base URL configuration
 + date: `2015-12-10 12:14:10` (required, string)
 + description: `This ticket was closed (Motivazione chiusura lorem ipsum)` (required, string)
 
+##SupportRequestNew (object)
++ status (enum[string])
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Forced closure`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title (string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate (string)
++ assignedTo (number)
++ closureDate (string)
++ closureReason (string)
+
 ##SupportRequestClosed (object)
-+ id: 1 (required, number) - id of the request that you wants to update
++ id: 1 (required, number)
++ status: `Closed` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Forced closure`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate: `2015-12-10 12:12:10` (string)
++ assignedTo: 323 (number)
++ closureDate: `2015-12-10 12:14:10` (string)
++ closureReason: `Motivazione chiusura lorem ipsum` (string)
++ messages (array[SupportRequestMessageAlpha,SupportRequestMessageBeta]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
+
+##SupportRequestForced (object)
++ id: 4 (required, number)
++ status: `Forced closure` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Forced closure`
++ requestor (object)
+    + lastName: `Baggio` (required, string)
+    + firstName: `Alessandro` (required, string)
+    + email: `bAlessandro@email.it` (required, string)
+    + phoneNumber: `0000 000000` (string)
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ type: `EntDirectory` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
++ description: `Descrizione lorem ipsum` (required, string)
++ assignmentDate: `2015-12-10 12:12:10` (string)
++ assignedTo: 323 (number)
++ closureDate: `2015-12-10 12:14:10` (string)
++ closureReason (string)
++ messages (array[SupportRequestMessageAlpha]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
+
+##SupportRequestClosedUpdate (object)
++ id: 1 (required, number)
 + status: `Closed` (enum[string],required)
         + Members
             + `Open`
@@ -1036,33 +1133,9 @@ Get the base URL configuration
 + assignedTo: 323 (number)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
-+ messages (array[SupportRequestMessageAlpha,SupportRequestMessageBeta])
-
-##SupportRequestNew (object)
-+ id (number)
-+ status (enum[string])
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
-+ requestDate: `2015-12-10 12:10:10` (required, string)
-+ type: `EntDirectory` (required, string)
-+ title (string)
-+ description: `Descrizione lorem ipsum` (required, string)
-+ assignmentDate (string)
-+ assignedTo (number)
-+ closureDate (string)
-+ closureReason (string)
-+ messages (array)
 
 ##SupportRequestOpen (object)
-+ id: 2 (required, number) - id of the request that you wants to update
++ id: 2 (required, number)
 + status: `Open` (enum[string],required)
         + Members
             + `Open`
@@ -1082,7 +1155,7 @@ Get the base URL configuration
 + assignedTo (number)
 + closureDate (string)
 + closureReason (string)
-+ messages (array)
++ messages (array) - Automatically created messages when the request status changes, refer to assign/close/forced req.
 
 ##SupportRequestAssigned (object)
 + id: 3 (required, number)
@@ -1105,7 +1178,7 @@ Get the base URL configuration
 + assignedTo: 323 (number)
 + closureDate (string)
 + closureReason (string)
-+ messages (array[SupportRequestMessageAlpha])
++ messages (array[SupportRequestMessageAlpha]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
 
 ##Support Request Document Upload (object)
 + id: 1 (required, number) - id of the request that you wants to modify
