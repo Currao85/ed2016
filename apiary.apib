@@ -678,7 +678,7 @@ Update the general message with a new one.
 ## Support Requests Collection [/supportRequests{?page}{?pageSize}{?sort}{?sortOrder}{?viewAllAssignee}{?excludeClosed}]
 
 + Attributes (object)
-  + results (array[SupportRequestClosed, SupportRequestOpen, SupportRequestAssigned], required)
+  + results (array[SupportRequestClosedMini, SupportRequestOpenMini, SupportRequestAssignedMini, SupportRequestForcedMini], required)
   + Include PaginationData
 
 ### Support requests list [GET]
@@ -1063,17 +1063,29 @@ Get the base URL configuration
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 
-##SupportRequestMessageAlpha (object)
+##SupportRequestMessageAssigned (object)
 + id: 1 (required, number)
-+ profile: 323 (required, number)
++ profile: 323 (number)
 + date: `2015-12-10 12:12:10` (required, string)
 + description: `This support request was assigned to Baggio Alessandro(bAlessandro@email.it)` (required, string)
 
-##SupportRequestMessageBeta (object)
+##SupportRequestMessageClosed (object)
 + id: 2 (required, number)
-+ profile: 323 (required, number)
++ profile: 323 (number)
 + date: `2015-12-10 12:14:10` (required, string)
-+ description: `This ticket was closed (Motivazione chiusura lorem ipsum)` (required, string)
++ description: `This support request was closed (Motivazione chiusura lorem ipsum)` (required, string)
+
+##SupportRequestMessageForced (object)
++ id: 3 (required, number)
++ profile: 323 (number)
++ date: `2015-12-10 12:14:10` (required, string)
++ description: `This support request was forcefully closed` (required, string)
+
+##SupportRequestMessageOpen (object)
++ id: 4 (required, number)
++ profile (number)
++ date: `2015-12-10 12:10:10` (required, string)
++ description: `This support request was created` (required, string)
 
 ##SupportRequestNew (object)
 + status (enum[string])
@@ -1117,7 +1129,7 @@ Get the base URL configuration
 + assignedTo: 323 (number)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
-+ messages (array[SupportRequestMessageAlpha,SupportRequestMessageBeta]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
++ messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageClosed]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
 
 ##SupportRequestForced (object)
 + id: 4 (required, number)
@@ -1140,7 +1152,7 @@ Get the base URL configuration
 + assignedTo: 323 (number)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason (string)
-+ messages (array[SupportRequestMessageAlpha]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
++ messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageForced]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
 
 ##SupportRequestClosedUpdate (object)
 + id: 1 (required, number)
@@ -1185,7 +1197,7 @@ Get the base URL configuration
 + assignedTo (number)
 + closureDate (string)
 + closureReason (string)
-+ messages (array) - Automatically created messages when the request status changes, refer to assign/close/forced req.
++ messages (array[SupportRequestMessageOpen]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
 
 ##SupportRequestAssigned (object)
 + id: 3 (required, number)
@@ -1208,7 +1220,59 @@ Get the base URL configuration
 + assignedTo: 323 (number)
 + closureDate (string)
 + closureReason (string)
-+ messages (array[SupportRequestMessageAlpha]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
++ messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
+
+##SupportRequestClosedMini (object)
++ id: 1 (required, number)
++ status: `Closed` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Forced closure`
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
++ assignedTo: 323 (number)
++ closureDate: `2015-12-10 12:14:10` (string)
+
+##SupportRequestForcedMini (object)
++ id: 4 (required, number)
++ status: `Forced closure` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Forced closure`
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
++ assignedTo: 323 (number)
++ closureDate: `2015-12-10 12:14:10` (string)
+
+##SupportRequestOpenMini (object)
++ id: 2 (required, number)
++ status: `Open` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:2` (required, string)
++ assignedTo (number)
++ closureDate (string)
+
+##SupportRequestAssignedMini (object)
++ id: 3 (required, number)
++ status: `Assigned` (enum[string],required)
+        + Members
+            + `Open`
+            + `Assigned`
+            + `Closed`
+            + `Force closed`
++ requestDate: `2015-12-10 12:10:10` (required, string)
++ title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:3` (required, string)
++ assignedTo: 323 (number)
++ closureDate (string)
 
 ##Support Request Document Upload (object)
 + id: 1 (required, number) - id of the request that you wants to modify
