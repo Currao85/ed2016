@@ -12,7 +12,7 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
+## Profiles collections [/profiles{?searchQuery}{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
 
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
@@ -23,14 +23,7 @@ Resources related to user's profile in the API.
 Search user profiles.
 
 + Parameters
-    + searchType: lname (enum[string]) - Field to filter
-        + Members
-            + lname
-            + fname
-            + email
-            + dname
-            + dcode
-    + searchValue: BIANCHI (string) - Value to search
+    + searchQuery: {"lname":"Stewart","fname":"John"} (Object) - json filter object
     + orgType: UO (string) - Structure type to filter for
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -87,44 +80,6 @@ Creates a user profile.
     Returned when a generic error occours.
 
     + Body
-
-
-## DRAFT Search [/profiles/advancedSearch{?searchQuery}{?orgType}{?page}{?pageSize}{?sort}{?sortOrder}]
-
-
-
-### Advanced Search [GET]
-
-+ Parameters
-    + searchQuery: {"lname":"Stewart","fname":"John"} (Object) - json filter object
-    + orgType: UO (string) - Structure type to filter for
-    + page: 1 (optional, number) - The page of profiles to return
-    + sort: fname (enum[string], optional) - Sorting field
-        + Members
-            + lname
-            + fname
-            + dname
-            + country
-    + sortOrder: asc (enum, optional) - Sorting order
-        + Members
-            + asc
-            + desc
-    + pageSize: 25 (optional, number) - Amount of results to return
-
-+ Response 200 (application/json)
-
-    + Attributes (Profiles collections)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
 
 
 ## Profile [/profiles/{id}]
