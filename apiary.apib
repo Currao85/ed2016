@@ -1058,7 +1058,7 @@ Get the base URL configuration
 + id: 1 (required, number)
 + profile: 323 (number)
 + date: `2015-12-10 12:12:10` (required, string)
-+ description: `This support request was assigned to Baggio Alessandro(bAlessandro@email.it)` (required, string)
++ description: `This support request was assigned to balessandro(bAlessandro@email.it)` (required, string)
 
 ##SupportRequestMessageClosed (object)
 + id: 2 (required, number)
@@ -1080,44 +1080,50 @@ Get the base URL configuration
 
 ##SupportRequestNew (object)
 + status (enum[string])
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Forced closure`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Forced closure`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title (string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate (string)
-+ assignedTo (number)
++ assignedEmployeeProfileId (number)
++ assignedEmployeeProfileFirstName (string)
++ assignedEmployeeProfileLastName (string)
++ assignedEmployeeProfileEmail (string)
++ assignedEmployeeProfileUserId (string)
 + closureDate (string)
 + closureReason (string)
 
 ##SupportRequestClosed (object)
 + id: 1 (required, number)
 + status: `Closed` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Forced closure`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Forced closure`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate: `2015-12-10 12:12:10` (string)
-+ assignedTo: 323 (number)
++ assignedEmployeeProfileId: 323 (number)
++ assignedEmployeeProfileFirstName: `Alessandro` (string)
++ assignedEmployeeProfileLastName: `Baggio` (string)
++ assignedEmployeeProfileEmail: `bAlessandro@email.it` (string)
++ assignedEmployeeProfileUserId: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageClosed]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -1125,22 +1131,25 @@ Get the base URL configuration
 ##SupportRequestForced (object)
 + id: 4 (required, number)
 + status: `Forced closure` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Forced closure`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Forced closure`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate: `2015-12-10 12:12:10` (string)
-+ assignedTo: 323 (number)
++ assignedEmployeeProfileId: 323 (number)
++ assignedEmployeeProfileFirstName: `Alessandro` (string)
++ assignedEmployeeProfileLastName: `Baggio` (string)
++ assignedEmployeeProfileEmail: `bAlessandro@email.it` (string)
++ assignedEmployeeProfileUserId: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageForced]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -1148,44 +1157,50 @@ Get the base URL configuration
 ##SupportRequestClosedUpdate (object)
 + id: 1 (required, number)
 + status: `Closed` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Force closed`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate: `2015-12-10 12:12:10` (string)
-+ assignedTo: 323 (number)
++ assignedEmployeeProfileId: 323 (number)
++ assignedEmployeeProfileFirstName: `Alessandro` (string)
++ assignedEmployeeProfileLastName: `Baggio` (string)
++ assignedEmployeeProfileEmail: `bAlessandro@email.it` (string)
++ assignedEmployeeProfileUserId: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
 
 ##SupportRequestOpen (object)
 + id: 2 (required, number)
 + status: `Open` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Force closed`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:2` (required, string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate (string)
-+ assignedTo (number)
++ assignedEmployeeProfileId (number)
++ assignedEmployeeProfileFirstName (string)
++ assignedEmployeeProfileLastName (string)
++ assignedEmployeeProfileEmail (string)
++ assignedEmployeeProfileUserId (string)
 + closureDate (string)
 + closureReason (string)
 + messages (array[SupportRequestMessageOpen]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -1193,22 +1208,25 @@ Get the base URL configuration
 ##SupportRequestAssigned (object)
 + id: 3 (required, number)
 + status: `Assigned` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
-+ requestor (object)
-    + lastName: `Baggio` (required, string)
-    + firstName: `Alessandro` (required, string)
-    + email: `bAlessandro@email.it` (required, string)
-    + phoneNumber: `0000 000000` (string)
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Force closed`
++ requestorLastName: `Baggio` (required, string)
++ requestorFirstName: `Alessandro` (required, string)
++ requestorEmail: `bAlessandro@email.it` (required, string)
++ requestorPhoneNumber: `0000 000000` (string)
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + type: `EntDirectory` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:3` (required, string)
 + description: `Descrizione lorem ipsum` (required, string)
 + assignmentDate: `2015-12-10 12:12:10` (string)
-+ assignedTo: 323 (number)
++ assignedEmployeeProfileId: 323 (number)
++ assignedEmployeeProfileFirstName: `Alessandro` (string)
++ assignedEmployeeProfileLastName: `Baggio` (string)
++ assignedEmployeeProfileEmail: `bAlessandro@email.it` (string)
++ assignedEmployeeProfileUserId: `balessandro` (string)
 + closureDate (string)
 + closureReason (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -1216,11 +1234,11 @@ Get the base URL configuration
 ##SupportRequestClosedMini (object)
 + id: 1 (required, number)
 + status: `Closed` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Forced closure`
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Forced closure`
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
 + assignedTo: 323 (number)
@@ -1229,11 +1247,11 @@ Get the base URL configuration
 ##SupportRequestForcedMini (object)
 + id: 4 (required, number)
 + status: `Forced closure` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Forced closure`
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Forced closure`
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:1` (required, string)
 + assignedTo: 323 (number)
@@ -1242,11 +1260,11 @@ Get the base URL configuration
 ##SupportRequestOpenMini (object)
 + id: 2 (required, number)
 + status: `Open` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Force closed`
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:2` (required, string)
 + assignedTo (number)
@@ -1255,11 +1273,11 @@ Get the base URL configuration
 ##SupportRequestAssignedMini (object)
 + id: 3 (required, number)
 + status: `Assigned` (enum[string],required)
-        + Members
-            + `Open`
-            + `Assigned`
-            + `Closed`
-            + `Force closed`
+	+ Members
+		+ `Open`
+		+ `Assigned`
+		+ `Closed`
+		+ `Force closed`
 + requestDate: `2015-12-10 12:10:10` (required, string)
 + title: `ED Supp. Req. - Alessandro Baggio Ph:0000 000000 Id:3` (required, string)
 + assignedTo: 323 (number)
