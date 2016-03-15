@@ -228,8 +228,9 @@ Change password for currently logged in user.
 
 + Request (application/json)
   + Attributes
-      + currentPassword: `XXXX` (required),
-      + newPassword: `YYYY` (required)
+      + userId: `user` (required, string),
+      + currentPassword: `XXXX` (required, string),
+      + newPassword: `YYYY` (required, string)
     
 + Response 200
 
@@ -940,8 +941,8 @@ Get the base URL configuration
 + id: 3 (number)
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
-+ ouCode: `XL78481` (required, string)
-+ ouDescr: `C-BOM` (required, string)
++ ouCode: `XL78481` (string)
++ ouDescr: `C-BOM` (string)
 + email: `mbianchi@acme.it` (required, string)
 + profession: `Senior Developer` (required, string)
 + isManager: `true`
