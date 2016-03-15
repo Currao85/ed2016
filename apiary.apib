@@ -318,13 +318,13 @@ Creates or updates the current user's photo.
   + results (array, required) - array of resources
       + (object)
           + id: ASG
-          + descr: IBM Assigned
+          + description: IBM Assigned
       + (object)
           + id: UBD
-          + descr: UBIS Delegates
+          + description: UBIS Delegates
       + (object)
           + id: EXT
-          + descr: Extended Team IBM
+          + description: Extended Team IBM
   + Include PaginationData
 
 ### List types [GET]
@@ -340,16 +340,16 @@ The list of types of employee. (HR Admin - People modify)
   + results (array, required) - array of resources
       + (object)
           + id: 1
-          + descr: ADMIN
+          + description: ADMIN
       + (object)
           + id: 2
-          + descr: ND
+          + description: ND
       + (object)
           + id: 3
-          + descr: RCM
+          + description: RCM
       + (object)
           + id: 8
-          + descr: USER
+          + description: USER
   + Include PaginationData
 
 
@@ -370,13 +370,13 @@ The list of user's roles. (HR Admin)
   + results (array, required) - array of resources
       + (object)
           + id: UO
-          + descr: Business
+          + description: Business
       + (object)
           + id: FU
-          + descr: Functional
+          + description: Functional
       + (object)
           + id: OT
-          + descr: Other
+          + description: Other
   + Include PaginationData
 
 ### List types [GET]
@@ -621,16 +621,16 @@ Return all the people who are managed the manager with id== **id** .
   + results (array, required) - array of resources
       + (object)
           + id: 1
-          + descr: Italy
+          + description: Italy
       + (object)
           + id: 2
-          + descr: Germany
+          + description: Germany
       + (object)
           + id: 3
-          + descr: Austria
+          + description: Austria
       + (object)
           + id: 4
-          + descr: Spain
+          + description: Spain
   + Include PaginationData
 
 
@@ -1393,8 +1393,8 @@ Get the base URL configuration
   + orgtype: UO (string) - Organization type to filter for
   + description: Struttura 1 (string) - description of revision
   + startDate: `2015-06-30` (string) - start date for the revision
-  + endDate: (string) - end date for the revision
-  + status: (enum[string]) - status of the revision
+  + endDate: `` (string) - end date for the revision
+  + status: `active` (enum[string]) - status of the revision
    + Members
         + active
         + expired
@@ -1404,14 +1404,14 @@ Get the base URL configuration
 + id: 1
 + description:`Struttura 1`
 + startdate : `2016-03-01`
-+ enddate : (string)
++ enddate : ``(string)
 + status : `active`
 
 ## Revision2 (object)
 + id: 2
 + description:`Struttura 2`
-+ startdate : (string)
-+ enddate : (string)
++ startdate : `` (string)
++ enddate : `` (string)
 + status : `draft`
 
 ## Revision3 (object)
