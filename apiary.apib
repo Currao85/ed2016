@@ -437,6 +437,25 @@ Used to retrieve revision detail.
 # Group DRAFT - Organization Units
 #######################
 
+## Organization Units collection [/ous{?page}{?sort}{?pageSize}]
+
++ Parameters
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+
++ Attributes (object)
+  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
+  + Include PaginationData
+
+### List Organization Units [GET]
+Returns the Organization Units list.
+
++ Response 200 (application/json)
+  + Attributes (Organization Units collection)
+
+
+
 ## Organization Unit [/ous/{ouCode}]
 
 ### Organization Unit Update [POST]
@@ -1030,6 +1049,18 @@ Get the base URL configuration
 + ouName:`organization name 1`
 + people (array[Person4,Person5], optional)
 + parentId: `XL9875`
+
+## OrganizationMini1 (object)
++ ouCode:`XL9875`
++ ouName:`organization name 1`
+
+## OrganizationMini2 (object)
++ ouCode:`XL9352`
++ ouName:`organization name 1`
+
+## OrganizationMini3 (object)
++ ouCode:`XL8654`
++ ouName:`organization name 1`
 
 ##Person1 (object)
 + id: 1 (required, number)
