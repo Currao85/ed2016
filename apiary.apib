@@ -814,7 +814,7 @@ Creates a new support request and adds the proper messages depending on the 'ass
 Changes the status of the support request to 'Assigned' and adds a proper message
     
 + Attributes (object)
-    + idProfile: 323 (required, number) - id of the assignee profile
+    + userId: "balessandro" (required, string) - id of the assignee profile
 
 + Response 200 (application/json)
 
@@ -834,7 +834,7 @@ Changes the status of the support request to 'Assigned' and adds a proper messag
 Changes the status of the support request to 'Closed' and adds a proper message
 
 + Attributes (object)
-    + reason: 'Motivazione chiusura lorem ipsum' (required, number)
+    + reason: 'Motivazione chiusura lorem ipsum' (required, string)
 
 + Response 200 (application/json)
 
@@ -1136,7 +1136,7 @@ Get the base URL configuration
 + description: `This support request was created` (required, string)
 
 ##SupportRequestNew (object)
-+ status (enum[string])
++ status (enum[string],required)
         + Members
             + `Open`
             + `Assigned`
