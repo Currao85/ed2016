@@ -498,7 +498,7 @@ Update the name of an Organization Unit.
 
 + Attributes (object)
   + results (array[Organization1, Organization2, Organization3], required) - array of first-level organizations
-  + Include PaginationData
+  + Include PaginationDataTree
 
 ### List Organization Units [GET]
 Returns the revision organization structure tree.
@@ -934,6 +934,12 @@ Get the base URL configuration
 ## PaginationData (object)
 + paginationData (object, required) - Informations required for pagination
     + count: 62 (number,required) - total number of resources
+    + pageNum: 1 (number, required) - slice of resources returned
+    + pageSize: 25 (number, required) - size of the slice
+
+## PaginationDataTree (object)
++ paginationData (object, required) - Informations required for pagination
+    + count: 3 (number,required) - total number of resources
     + pageNum: 1 (number, required) - slice of resources returned
     + pageSize: 25 (number, required) - size of the slice
 
