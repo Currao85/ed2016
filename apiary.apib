@@ -814,8 +814,9 @@ Creates a new support request and adds the proper messages depending on the 'ass
 ### Assign Support Request [PUT /supportRequests/{id}/assign]
 Changes the status of the support request to 'Assigned' and adds a proper message
     
-+ Attributes (object)
-    + userId: "balessandro" (required, string) - id of the assignee profile
++ Request (application/json)
+    + Attributes (object)
+        + userId: `balessandro` (required, string) - id of the assignee profile
 
 + Response 200 (application/json)
 
@@ -834,8 +835,9 @@ Changes the status of the support request to 'Assigned' and adds a proper messag
 ### Close Support Request [PUT /supportRequests/{id}/close]
 Changes the status of the support request to 'Closed' and adds a proper message
 
-+ Attributes (object)
-    + reason: 'Motivazione chiusura lorem ipsum' (required, string)
++ Request (application/json)
+    + Attributes (object)
+        + reason: `Motivazione chiusura lorem ipsum` (required, string)
 
 + Response 200 (application/json)
 
