@@ -12,7 +12,7 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?searchQuery}{?orgType}{?searchType}{?searchValue}{?page}{?pageSize}{?sort}{?sortOrder}]
+## Profiles collections [/profiles{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}]
 
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
@@ -390,12 +390,6 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 
 ## Revisions collection [/organizations/{type}/revisions{?page}{?sort}{?pageSize}]
 
-+ Parameters
-  + type: UO (string) - Structure type to filter for
-  + page: 1 (optional, number) - The page of results to return
-  + sort: description (optional) - Sorting order
-  + pageSize: 25 (optional, number) - Amount of results to return
-
 + Attributes (object)
   + results (array[Revision1, Revision2, Revision3], required) - array of revisions
   + Include PaginationData
@@ -403,8 +397,44 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 ### List Revisions [GET]
 Returns the revisions list.
 
++ Parameters
+  + type: UO (string) - Structure type to filter for
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+
 + Response 200 (application/json)
   + Attributes (Revisions collection)
+
+
+### Create Revision [POST]
+
+Creates a new revision. 
+
++ Parameters
+  + type: UO (string) - Reference structure type 
+
++ Request (application/json)
+
+    + Attributes (RevisionMini)
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /revisions/123
+
+    + Attributes (NewRevisionDetail)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 
 ## Revision [/organizations/{type}/revisions/{id}]
@@ -421,6 +451,45 @@ Used to retrieve revision detail.
 + Response 200 (application/json)
 
     + Attributes (Revision1)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Publish Revision [PUT /organizations/{type}/revisions/{id}/publish]
+
+Publish the specified revision setting it as active.
+
++ Parameters
+  + type: UO (string) - Reference structure type 
+  + id: 1 (required, number) - id of the user
+
++ Request (application/json)
+  + Attributes
+      + startdate: `2016-03-31`
+    
++ Response 200
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Delete Revision [DELETE]
+
+
++ Response 204
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -1428,6 +1497,10 @@ Get the base URL configuration
 # AndQuery6 (object)
 + dname: Austria CEO (string)
 
+## RevisionMini (object)
+  + description: Struttura 1 (string) - description of revision
+
+
 ## RevisionDetail (object)
   + id: 1 (required) - id of the revision 
   + orgtype: UO (string) - Organization type to filter for
@@ -1439,6 +1512,15 @@ Get the base URL configuration
         + active
         + expired
         + draft
+
+## NewRevisionDetail (object)
+  + id: 1 (required) - id of the revision 
+  + orgtype: UO (string) - Organization type to filter for
+  + description: Struttura 1 (string) - description of revision
+  + startDate: (string) - start date for the revision
+  + endDate: (string) - end date for the revision
+  + status: `draft` (enum[string]) - status of the revision
+
 
 ## Revision1 (object)
 + id: 1
