@@ -572,7 +572,7 @@ Update the name of an Organization Unit.
 ### List Organization Units [GET]
 Returns the revision organization structure tree.
 
-**Released on feb 29**
+**Released on Mar 17**
 
 + Response 200 (application/json)
   + Attributes (Tree Organization Units)
@@ -639,6 +639,8 @@ Disable an Organization Units.
 
 Return all the people who are managed by the same manager of the person with id== **id** .
 
+**Released on Mar 17**
+
 + Parameters
     + type: UO (string) - Structure type to filter for
     + revisionid: 1 (required, number) - id of the revision
@@ -668,7 +670,9 @@ Return all the people who are managed by the same manager of the person with id=
 
 ### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/ous/{ouCode}/people/{peopleid}/peopleManaged{?page}{?pageSize}{?sort}{?sortOrder}]
 
-Return all the people who are managed the manager with id== **id** .
+Return all the people who are managed the manager with id== **id**.
+
+**Released on Mar 17**
 
 + Parameters
     + type: UO (string) - Structure type to filter for
