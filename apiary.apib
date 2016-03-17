@@ -23,7 +23,7 @@ Resources related to user's profile in the API.
 Search user profiles.
 
 + Parameters
-    + searchQuery: {"orgtype":"UO","lname":"Stewart"} (Object) - json filter object
+    + searchQuery: {"orgtype":"UO","lname":"Stewart","revision":"1"} (Object) - json filter object     
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
         + Members
@@ -371,12 +371,16 @@ The list of user's roles. (HR Admin)
       + (object)
           + id: UO
           + description: Business
+          + activerevision: 1
       + (object)
           + id: FU
           + description: Functional
+          + activerevision: 7
       + (object)
           + id: OT
           + description: Other
+          + activerevision: 12
+
   + Include PaginationData
 
 ### List types [GET]
