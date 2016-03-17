@@ -472,7 +472,8 @@ Publish the specified revision setting it as active.
 
 + Request (application/json)
   + Attributes
-      + startdate: `2016-03-31`
+      + description (string)
+      + startDate: `2016-03-31` (string, required)
     
 + Response 200
 
@@ -761,7 +762,7 @@ Update the general message with a new one.
 + Response 200
 
 #######################
-# Group DRAFT - Support Requests
+# Group Support Requests
 #######################
 
 ## Support Requests Collection [/supportRequests{?page}{?pageSize}{?sort}{?sortOrder}{?viewAllAssignee}{?excludeClosed}]
@@ -1521,8 +1522,8 @@ Get the base URL configuration
   + id: 1 (required) - id of the revision 
   + orgtype: UO (string) - Organization type to filter for
   + description: Struttura 1 (string) - description of revision
-  + startDate: (string) - start date for the revision
-  + endDate: (string) - end date for the revision
+  + startDate (string) - start date for the revision
+  + endDate (string) - end date for the revision
   + status: `draft` (enum[string]) - status of the revision
 
 
