@@ -23,7 +23,15 @@ Resources related to user's profile in the API.
 Search user profiles.
 
 + Parameters
-    + searchQuery: {"orgtype":"UO","lname":"Stewart","revision":"1"} (Object) - json filter object     
+    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object  
+       + revision (required,number) : numeric id of the revision
+       + revisionstrict (optional,boolean) : filter only profiles linked to the revision 
+       + lname (optional,String) : last name
+       + fname (optional,String) : fist name
+       + email (optional,String) : email
+       + dcode (optional,String) : department code
+       + dname (optional,String) : department name
+
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
         + Members
@@ -508,59 +516,7 @@ Publish the specified revision setting it as active.
 
 
 #######################
-# Group DRAFT - Organization Units
-#######################
-
-## Organization Units collection [/ous{?page}{?sort}{?pageSize}]
-
-+ Parameters
-  + page: 1 (optional, number) - The page of results to return
-  + sort: description (optional) - Sorting order
-  + pageSize: 25 (optional, number) - Amount of results to return
-
-+ Attributes (object)
-  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
-  + Include PaginationData
-
-### List Organization Units [GET]
-Returns the Organization Units list.
-
-+ Response 200 (application/json)
-  + Attributes (Organization Units collection)
-
-
-
-## Organization Unit [/ous/{ouCode}]
-
-### Organization Unit Update [PUT]
-
-Update the name of an Organization Unit.
-
-**Released on Mar 18**
-
-+ Parameters
-    + ouCode: XL1232 (required, string) - code of the ou
-
-+ Request (application/json)
-    + Attributes
-        + ouCode: 2 (required, number) - code of the ou
-        + ouName: new organization name (required, string) - the new name of the ou
-
-+ Response 200 (application/json)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-
-#######################
-# Group DRAFT - Tree Organizations
+# Group Revisions / Tree Organizations
 #######################
 
 ## Tree Organization Units [/organizations/{type}/revisions/{id}/ous{?page}{?sort}{?pageSize}]
@@ -599,10 +555,8 @@ Update a person inside the Organization Units (set as manager) or Organization T
 + Request (application/json)
     + Attributes
         + id: 2 (required, number) - id of the person
-        + lastName: Rossi (required, string) - the last name of the person
-        + firstName: Mario (required, string) - the first name of the person
         + isManager: true (required, boolean) - isManager attribute (inside the ou with *ouCode* )
-        + startDate: `2016-03-02` (string) - the start date if you want to change person's ou (not required)
+        + startDate: `2016-03-02` (required, string) - the start date if you want to change person's ou (not required)
 
 + Response 200 (application/json)
 
@@ -702,6 +656,57 @@ Return all the people who are managed the manager with id== **id**.
 + Response 200 (application/json)
 
     + Attributes (Profiles collections)
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+#######################
+# Group DRAFT - Organization Units
+#######################
+
+## Organization Units collection [/ous{?page}{?sort}{?pageSize}]
+
++ Parameters
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+
++ Attributes (object)
+  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
+  + Include PaginationData
+
+### List Organization Units [GET]
+Returns the Organization Units list.
+
++ Response 200 (application/json)
+  + Attributes (Organization Units collection)
+
+
+
+## Organization Unit [/ous/{ouCode}]
+
+### Organization Unit Update [PUT]
+
+Update the name of an Organization Unit.
+
+**Released on Mar 18**
+
++ Parameters
+    + ouCode: XL1232 (required, string) - code of the ou
+
++ Request (application/json)
+    + Attributes
+        + ouCode: 2 (required, number) - code of the ou
+        + ouName: new organization name (required, string) - the new name of the ou
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
 
 + Response 500
     Returned when a generic error occours.
