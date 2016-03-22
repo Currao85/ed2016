@@ -533,12 +533,22 @@ Publish the specified revision setting it as active.
   + Include PaginationDataTree
 
 ### List Organization Units [GET]
-Returns the revision organization structure tree.
+Returns the revision organization structure tree with assigned people.
 
 **Released on Mar 17**
 
 + Response 200 (application/json)
   + Attributes (Tree Organization Units)
+
+
+### List Organization Units types [GET /organizations/{type}/revisions/{id}/ous/types]
+Returns the revision organization unit list.
+
+**Released on Mar 22**
+
++ Response 200 (application/json)
++ Attributes (object)
+  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
 
 
 ## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}] 
