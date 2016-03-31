@@ -578,6 +578,27 @@ Used to retrieve revision detail.
     Returned when a generic error occours.
 
     + Body
+    
+### Update Revision [PUT /organizations/{type}/revisions/{id}]
+
++ Parameters
+    + type: UO (string) - Reference structure type
+    + id: 1 (required, number) - id of the user
+
++ Request (application/json)
+  + Attributes (Revision1)
+
++ Response 200
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body    
 
 ### Publish Revision [PUT /organizations/{type}/revisions/{id}/publish]
 
