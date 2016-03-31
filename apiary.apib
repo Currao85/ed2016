@@ -381,6 +381,98 @@ The list of user's roles. (HR Admin)
 + Response 200 (application/json)
   + Attributes (Profiles roles collections)
 
+  
+#######################
+# Group Structure Types
+#######################
+
+## Structure Type collection [/organizations]
+
+### Create Structure Type [POST]
+
++ Request (application/json)
+    + Attributes (StructureType)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /supportRequests/ZZ
+
+    + Attributes (StructureType)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+## Structure Type [/organizations/{type}]
+
+### Read Structure Type [GET]
+
++ Parameters
+    + type: ZZ (required, string)
+
++ Response 200 (application/json)
+
+    + Attributes (StructureType)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Structure Type [PUT]
+
++ Parameters
+    + type: ZZ (required, string)
+
++ Request (application/json)
+    + Attributes
+        + id: ZZ (required, string)
+        + description: new structure type name (required, string)
+        + active: Y (required, string)
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Delete Structure Type [DELETE]
+
++ Parameters
+    + type: ZZ (required, string)
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
 #######################
 # Group Organizations
 #######################
@@ -1213,6 +1305,11 @@ Get the base URL configuration
 
 ## ProfileAddressCountry
 + country: Italy
+
+## StructureType (object)
++ id:`ZZ`
++ description:`Structure type desc`
++ active:`Y`
 
 ## Organization1 (object)
 + ouCode:`XL9875`
