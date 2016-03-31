@@ -18,14 +18,14 @@ Resources related to user's profile in the API.
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
     + Include PaginationData
 
-  
+
 ### List Profiles [GET]
 Search user profiles.
 
 + Parameters
-    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object  
+    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
-       + revisionstrict (optional,boolean) : filter only profiles linked to the revision 
+       + revisionstrict (optional,boolean) : filter only profiles linked to the revision
        + lname (optional,String) : last name
        + fname (optional,String) : fist name
        + email (optional,String) : email
@@ -62,7 +62,7 @@ Search user profiles.
 
 ### Create Profile [POST]
 
-Creates a user profile. 
+Creates a user profile.
 
 **Released on Mar 03**
 
@@ -153,7 +153,7 @@ This actions is a specialized version of an update on the specified profile.
 + Request (application/json)
   + Attributes
       + date: `2016-03-31` (required)
-    
+
 + Response 200
 
 + Response 404
@@ -205,7 +205,7 @@ Used to retrieve user personal details.
 
 ### Update Profile [PUT]
 
-Updates user personal profile. 
+Updates user personal profile.
 
 + Request (application/json)
 
@@ -239,7 +239,7 @@ Change password for currently logged in user.
       + userId: `user` (required, string),
       + currentPassword: `XXXX` (required, string),
       + newPassword: `YYYY` (required, string)
-    
+
 + Response 200
 
 + Response 400
@@ -255,7 +255,7 @@ Change password for currently logged in user.
 + Response 500
     Returned when a generic error occours.
 
-    + Body 
+    + Body
 
 ## Profile Photo [/profiles/{id}/photo]
 
@@ -353,7 +353,7 @@ The list of types of employee. (HR Admin - People modify)
 
 + Response 200 (application/json)
   + Attributes (Profiles Types collections)
-  
+
 
 ## Profiles roles collections [/profiles/roles]
 
@@ -381,7 +381,7 @@ The list of user's roles. (HR Admin)
 + Response 200 (application/json)
   + Attributes (Profiles roles collections)
 
-  
+
 #######################
 # Group Structure Types
 #######################
@@ -454,7 +454,7 @@ The list of user's roles. (HR Admin)
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Delete Structure Type [DELETE]
 
 + Parameters
@@ -526,10 +526,10 @@ Returns the revisions list.
 
 ### Create Revision [POST]
 
-Creates a new revision. 
+Creates a new revision.
 
 + Parameters
-  + type: UO (string) - Reference structure type 
+  + type: UO (string) - Reference structure type
 
 + Request (application/json)
 
@@ -558,7 +558,7 @@ Creates a new revision.
 
 + Parameters
   + type: UO (string) - Structure type to filter for
-  + id: 1 or active (required) - id of the requested revision 
+  + id: 1 or active (required) - id of the requested revision
 
 + Attributes (RevisionDetail)
 
@@ -584,14 +584,14 @@ Used to retrieve revision detail.
 Publish the specified revision setting it as active.
 
 + Parameters
-  + type: UO (string) - Reference structure type 
+  + type: UO (string) - Reference structure type
   + id: 1 (required, number) - id of the user
 
 + Request (application/json)
   + Attributes
       + description (string)
       + startDate: `2016-03-31` (string, required)
-    
+
 + Response 200
 
 + Response 404
@@ -628,7 +628,7 @@ Publish the specified revision setting it as active.
 
 + Parameters
   + type: UO (string) - Structure type to filter for
-  + id: 1 or active (required) - id of the requested revision 
+  + id: 1 or active (required) - id of the requested revision
   + page: 1 (optional, number) - The page of results to return
   + sort: firstName (optional) - Sorting order
   + pageSize: 25 (optional, number) - Amount of results to return
@@ -656,7 +656,7 @@ Returns the revision organization unit list.
   + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
 
 
-## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}] 
+## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}]
 
 ### Organization Unit Person Update [PUT /organizations/{type}/revisions/{id}/ous/{ouCode}/people]
 
@@ -666,7 +666,7 @@ Update a person inside the Organization Units (set as manager) or Organization T
 
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + id: 1 or active (required) - id of the requested revision 
+    + id: 1 or active (required) - id of the requested revision
     + ouCode: XL1232 (required, string) - id of the ou
 
 + Request (application/json)
@@ -695,7 +695,7 @@ Disable an Organization Units.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + id: 1 or active (required) - id of the requested revision 
+    + id: 1 or active (required) - id of the requested revision
     + ouCode: XL1232 (required, string) - code of the ou
 
 + Request (application/json)
@@ -797,14 +797,14 @@ Returns the Organization Units list.
 **Unnecessary; not used**
 
 + Parameters
-    + searchQuery: {"type":"UO","uoname":"stor"} (Object) - json filter object  
+    + searchQuery: {"type":"UO","uoname":"stor"} (Object) - json filter object
     + page: 1 (optional, number) - The page of results to return
     + sort: uoname (optional) - Sorting order
     + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
     + Attributes (Organization Units collection)
-  
+
 
 ### Create Organization Units [POST]
 
@@ -875,7 +875,7 @@ Update the name of an Organization Unit.
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Delete Organization Unit  [DELETE]
 
 + Parameters
@@ -982,7 +982,7 @@ Update the general message with a new one.
 
 + Response 200 (application/json)
     + Attributes (Support Requests Collection)
-    
+
 + Response 404
     Returned when the required resource cannot be found.
 
@@ -992,7 +992,7 @@ Update the general message with a new one.
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Create Support Request [POST]
 Creates a new support request and adds the proper messages depending on the 'assign' and 'closure' field values
 
@@ -1038,7 +1038,7 @@ Creates a new support request and adds the proper messages depending on the 'ass
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Update Support Request [PUT]
 
 + Request (application/json)
@@ -1061,7 +1061,7 @@ Creates a new support request and adds the proper messages depending on the 'ass
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Delete Support Request  [DELETE]
 
 + Response 204
@@ -1078,7 +1078,7 @@ Creates a new support request and adds the proper messages depending on the 'ass
 
 ### Assign Support Request [PUT /supportRequests/{id}/assign]
 Changes the status of the support request to 'Assigned' and adds a proper message
-    
+
 + Request (application/json)
     + Attributes (object)
         + userId: `balessandro` (required, string) - id of the assignee profile
@@ -1096,7 +1096,7 @@ Changes the status of the support request to 'Assigned' and adds a proper messag
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Close Support Request [PUT /supportRequests/{id}/close]
 Changes the status of the support request to 'Closed' and adds a proper message
 
@@ -1117,7 +1117,7 @@ Changes the status of the support request to 'Closed' and adds a proper message
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Forced closure Support Request [PUT /supportRequests/{id}/force]
 Changes the status of the support request to 'Forced closure' and adds a proper message
 
@@ -1138,7 +1138,7 @@ Changes the status of the support request to 'Forced closure' and adds a proper 
 ## DRAFT - Documents Modify [/supportRequests/{id}/document]
 + Parameters
     + id: 1 (required, number) - id of the request
-    
+
 + Attributes (Support Request Document Upload)
 
 ### Support request Document Upload [PUT]
@@ -1169,14 +1169,14 @@ Allow you to remove a support request's document
             + `http://url.doc.2`
 
 
-+ Response 200 
++ Response 200
 
 
 #######################
 # Group DRAFT - Configuration
 #######################
 
-This returns the application configuration. 
+This returns the application configuration.
 We keep this here for now just for documentation purpose,
 it shouldn't be part of the API.
 
@@ -1345,42 +1345,45 @@ Get the base URL configuration
 + ouCode:`XL8654`
 + ouName:`organization name 1bis`
 
-##Person1 (object)
+## Person1 (object)
 + id: 1 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: true (boolean)
 + isMainManager: true (boolean)
++ employeeType: EXT (string, required)
 
-
-##Person2 (object)
+## Person2 (object)
 + id: 2 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 + isMainManager: false (boolean)
++ employeeType: EXT (string, required)
 
-##Person3 (object)
+## Person3 (object)
 + id: 3 (required, number)
 + lastName: `Signori` (required, string)
 + firstName: `Marco` (required, string)
 + isManager: true (boolean)
 + isMainManager: false (boolean)
++ employeeType: EXT (string, required)
 
-##Person4 (object)
+## Person4 (object)
 + id: 4 (required, number)
 + lastName: `Moretto` (required, string)
 + firstName: `Alberto` (required, string)
 + isManager: true (boolean)
 + isMainManager: true (boolean)
++ employeeType: EXT (string, required)
 
-
-##Person5 (object)
+## Person5 (object)
 + id: 5 (required, number)
 + lastName: `Tessarolo` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 + isMainManager: false (boolean)
++ employeeType: EXT (string, required)
 
 ##SupportRequestMessageAssigned (object)
 + id: 1 (required, number)
@@ -1715,7 +1718,7 @@ Get the base URL configuration
 
 
 ## RevisionDetail (object)
-  + id: 1 (required) - id of the revision 
+  + id: 1 (required) - id of the revision
   + orgtype: UO (string) - Organization type to filter for
   + description: Struttura 1 (string) - description of revision
   + startDate: `2015-06-30` (string) - start date for the revision
@@ -1727,7 +1730,7 @@ Get the base URL configuration
         + draft
 
 ## NewRevisionDetail (object)
-  + id: 1 (required) - id of the revision 
+  + id: 1 (required) - id of the revision
   + orgtype: UO (string) - Organization type to filter for
   + description: Struttura 1 (string) - description of revision
   + startDate (string) - start date for the revision
