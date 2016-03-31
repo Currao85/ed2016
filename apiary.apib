@@ -695,42 +695,101 @@ Return all the people who are managed the manager with id== **id**.
 
 ## Organization Units collection [/ous{?searchQuery}{?page}{?sort}{?pageSize}]
 
-+ Parameters
-  + searchQuery: {"type":"UO","uoname":"stor"} (Object) - json filter object  
-  + page: 1 (optional, number) - The page of results to return
-  + sort: uoname (optional) - Sorting order
-  + pageSize: 25 (optional, number) - Amount of results to return
-
 + Attributes (object)
-  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
-  + Include PaginationData
+    + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
+    + Include PaginationData
 
 ### List Organization Units [GET]
 Returns the Organization Units list.
 
 **Unnecessary; not used**
 
++ Parameters
+    + searchQuery: {"type":"UO","uoname":"stor"} (Object) - json filter object  
+    + page: 1 (optional, number) - The page of results to return
+    + sort: uoname (optional) - Sorting order
+    + pageSize: 25 (optional, number) - Amount of results to return
+
 + Response 200 (application/json)
-  + Attributes (Organization Units collection)
+    + Attributes (Organization Units collection)
+  
+
+### Create Organization Units [POST]
+
++ Request (application/json)
+    + Attributes (OrganizationMini3)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /supportRequests/XL8654
+
+    + Attributes (OrganizationMini3)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 
 ## Organization Unit [/ous/{ouCode}]
 
-### Organization Unit Update [PUT]
+### Read Organization Unit [GET]
+
++ Parameters
+    + ouCode: XL8654 (required, string) - code of the ou
+
++ Response 200 (application/json)
+
+    + Attributes (OrganizationMini3)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Organization Unit [PUT]
 
 Update the name of an Organization Unit.
 
 **Released on Mar 21**
 
 + Parameters
-    + ouCode: XL1232 (required, string) - code of the ou
+    + ouCode: XL8654 (required, string) - code of the ou
 
 + Request (application/json)
     + Attributes
-        + ouCode: 2 (required, number) - code of the ou
+        + ouCode: XL8654 (required, string) - code of the ou
         + ouName: new organization name (required, string) - the new name of the ou
 
 + Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+### Delete Organization Unit  [DELETE]
+
++ Parameters
+    + ouCode: XL8654 (required, string) - code of the ou
+
++ Response 204
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -1184,6 +1243,10 @@ Get the base URL configuration
 ## OrganizationMini3 (object)
 + ouCode:`XL8654`
 + ouName:`organization name 1`
+
+## OrganizationMini4 (object)
++ ouCode:`XL8654`
++ ouName:`organization name 1bis`
 
 ##Person1 (object)
 + id: 1 (required, number)
