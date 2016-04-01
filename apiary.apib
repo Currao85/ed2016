@@ -508,7 +508,7 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 ## Revisions collection [/organizations/{type}/revisions{?page}{?sort}{?pageSize}]
 
 + Attributes (object)
-  + results (array[Revision1, Revision2, Revision3], required) - array of revisions
+  + results (array[Revision1, Revision2, Revision3, Revision4], required) - array of revisions
   + Include PaginationData
 
 ### List Revisions [GET]
@@ -1779,3 +1779,10 @@ Get the base URL configuration
 + startdate : `2015-06-30`
 + enddate : `2016-02-29`
 + status : `expired`
+
+## Revision4 (object)
++ id: 4
++ description:`Struttura 4`
++ startdate : `` (string)
++ enddate : `` (string)
++ status : `draft`
