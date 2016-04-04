@@ -763,9 +763,13 @@ Assign Organization Unit to Parent from a specified date.
 
     + Body
 
+#######################
+# Group Revisions / People
+#######################
 
+## Person  [/organizations/{type}/revisions/{id}/people/{peopleid}]
 
-### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/ous/{ouCode}/people/{peopleid}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
+### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
 
 Return all the people who are managed by the same manager of the person with id== **id** .
 
@@ -774,7 +778,6 @@ Return all the people who are managed by the same manager of the person with id=
 + Parameters
     + type: UO (string) - Structure type to filter for
     + revisionid: 1 (required, number) - id of the revision
-    + ouCode: XL1232 (required, string) - id of the ou
     + peopleid: 1 (required, number) - id of the user
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -798,7 +801,7 @@ Return all the people who are managed by the same manager of the person with id=
 
     + Body
 
-### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/ous/{ouCode}/people/{peopleid}/peopleManaged{?page}{?pageSize}{?sort}{?sortOrder}]
+### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/peopleManaged{?page}{?pageSize}{?sort}{?sortOrder}]
 
 Return all the people who are managed the manager with id== **id**.
 
@@ -807,7 +810,6 @@ Return all the people who are managed the manager with id== **id**.
 + Parameters
     + type: UO (string) - Structure type to filter for
     + revisionid: 1 (required, number) - id of the revision
-    + ouCode: XL1232 (required, string) - id of the ou
     + peopleid: 1 (required, number) - id of the user
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
