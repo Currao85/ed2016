@@ -769,6 +769,26 @@ Assign Organization Unit to Parent from a specified date.
 
 ## Person  [/organizations/{type}/revisions/{id}/people/{peopleid}]
 
+### Person Organization Unit [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}]
+
+Return the current OrganizationUnit of the given person for the given structureType/revision
+
+**Released on Apr 05**
+
++ Parameters
+    + type: UO (string) - Structure type to filter for
+    + revisionid: 1 (required, number) - id of the revision
+    + peopleid: 1 (required, number) - id of the user
+
++ Response 200 (application/json)
+
+    + Attributes (Organization2)
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
 ### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
 
 Return all the people who are managed by the same manager of the person with id== **id** .
