@@ -811,6 +811,25 @@ Return the current OrganizationUnit of the given person for the given structureT
     Returned when a generic error occours.
 
     + Body
+    
+### MyProfile Organization Unit [GET /organizations/{type}/revisions/{revisionid}/people/my]
+
+Return the current OrganizationUnit of the currently logged profile
+
+**Released on Apr 06**
+
++ Parameters
+    + type: UO (string) - Structure type to filter for
+    + revisionid: 1 (required, number) - id of the revision
+
++ Response 200 (application/json)
+
+    + Attributes (Organization2)
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 ### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
 
