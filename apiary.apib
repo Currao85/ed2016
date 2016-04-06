@@ -736,9 +736,11 @@ Disable an Organization Units.
     + Body
 
 
-### Organization Unit Assign - DRAFT [PUT /organizations/{type}/revisions/{id}/ous/{ouCode}]
+### Organization Unit Assign [PUT /organizations/{type}/revisions/{id}/ous/{ouCode}]
 
 Assign Organization Unit to Parent from a specified date.
+
+**Released on Apr 06**
 
 
 + Parameters
@@ -752,6 +754,27 @@ Assign Organization Unit to Parent from a specified date.
       + startDate: `2016-04-05` (required)
 
 + Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+    
+
+### Delete Tree Node - DRAFT [DELETE /organizations/{type}/revisions/{id}/ous/{ouCode}?{recursively}]
+
+Deletes a node in the tree and, eventually all the children nodes.
+Does NOT delete the related OrganizationUnit.
+
++ Parameters
+    + recursively: true (string) - Structure type to filter for
+
++ Response 204
 
 + Response 404
     Returned when the required resource cannot be found.
