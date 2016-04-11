@@ -58,7 +58,7 @@ Search user profiles.
     Returned when a generic error occours.
 
     + Body
-    
+
 ### List Vendor Profiles [GET /profiles/vendor{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}]
 Search vendor profiles.
 
@@ -637,7 +637,7 @@ Used to retrieve revision detail.
     Returned when a generic error occours.
 
     + Body
-    
+
 ### Update Revision [PUT /organizations/{type}/revisions/{id}]
 
 + Parameters
@@ -657,7 +657,7 @@ Used to retrieve revision detail.
 + Response 500
     Returned when a generic error occours.
 
-    + Body    
+    + Body
 
 ### Publish Revision [PUT /organizations/{type}/revisions/{id}/publish]
 
@@ -725,7 +725,7 @@ Returns the revision organization structure tree with assigned people.
 + Response 200 (application/json)
   + Attributes (Tree Organization Units)
 
-  
+
 ### List Organization Units Vendor [GET /organizations/{type}/revisions/{id}/ous/vendor{?page}{?sort}{?pageSize}]
 Returns the revision organization structure tree with assigned vendor profiles.
 
@@ -746,6 +746,10 @@ Returns the revision organization structure tree with assigned vendor profiles.
 Returns the revision organization unit list.
 
 **Released on Mar 22**
+
++ Parameters
+  + type: UO (string) - Structure type to filter for
+  + id: 1 or active (required) - id of the requested revision
 
 + Response 200 (application/json)
 + Attributes (object)
@@ -839,7 +843,7 @@ Assign Organization Unit to Parent from a specified date.
     Returned when a generic error occours.
 
     + Body
-    
+
 
 ### Delete Tree Node - DRAFT [DELETE /organizations/{type}/revisions/{id}/ous/{ouCode}?{recursively}]
 
@@ -886,7 +890,7 @@ Return the current OrganizationUnit of the given person for the given structureT
     Returned when a generic error occours.
 
     + Body
-    
+
 ### MyProfile Organization Unit [GET /organizations/{type}/revisions/{revisionid}/people/my]
 
 Return the current OrganizationUnit of the currently logged profile
