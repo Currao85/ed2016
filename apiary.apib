@@ -58,6 +58,50 @@ Search user profiles.
     Returned when a generic error occours.
 
     + Body
+    
+### List Vendor Profiles [GET /profiles/vendor{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}]
+Search vendor profiles.
+
++ Parameters
+    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
+       + revision (required,number) : numeric id of the revision
+       + revisionstrict (optional,boolean) : filter only profiles linked to the revision
+       + lname (optional,String) : last name
+       + fname (optional,String) : fist name
+       + email (optional,String) : email
+       + dcode (optional,String) : department code
+       + dname (optional,String) : department name
+       + vendorid (optional, number): vendor id
+       + vendorname (optional, String): vendor name
+
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + vendorname
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
+
++ Response 200 (application/json)
+
++ Attributes (object)
+  + results (array[VendorProfile1, VendorProfile2, VendorProfile3], required) - array of profiles
+  + Include PaginationData
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 
 ### Create Profile [POST]
@@ -1426,6 +1470,18 @@ Get the base URL configuration
 ## Profile3 (ProfileBase)
 + id: 3 (number) - id of the profile
 
+## VendorProfile1 (ProfileBase)
++ id: 1 (number) - id of the profile
++ Include ProfileVendor1
+
+## VendorProfile2 (ProfileBase)
++ id: 2 (number) - id of the profile
++ Include ProfileVendor1
+
+## VendorProfile3 (ProfileBase)
++ id: 3 (number) - id of the profile
++ Include ProfileVendor2
+
 ## ProfileInformations (object)
 + informations
     + expertiseSummary: `expertise summary text`
@@ -1570,6 +1626,9 @@ Get the base URL configuration
 
 ## ProfileVendor1 (object)
 + vendor (Vendor1)
+
+## ProfileVendor2 (object)
++ vendor (Vendor2)
 
 ## Vendor1 (object)
 + id: 1 (required, number)
