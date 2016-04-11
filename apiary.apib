@@ -1083,6 +1083,100 @@ Update the name of an Organization Unit.
     + Body
 
 
+
+
+#######################
+# Group DRAFT - Vendor
+#######################
+
+## Vendor collection [/vendors]
+
+### Create Vendor [POST]
+
++ Request (application/json)
++ Attributes (object)
+  + id
+  + name: vendor name (required, string)
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /vendors/1
+
+    + Attributes (Vendor1)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+## Vendor [/vendors/{id}]
+
+### Read Vendor [GET]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Response 200 (application/json)
+
+    + Attributes (Vendor1)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Update Vendor [PUT]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Request (application/json)
+    + Attributes
+        + id: 1 (required, number)
+        + name: new vendor name (required, string)
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### Delete Vendor [DELETE]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
 #######################
 # Group Countries
 #######################
@@ -1613,16 +1707,16 @@ Get the base URL configuration
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + vendor (object)
-  + vendorid : 1 (required, number)
-  + vendorname: `IBM` (required, string)
+  + id : 1 (required, number)
+  + name: `IBM` (required, string)
 
 ## PersonVendor2 (object)
 + id: 2 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + vendor (object)
-  + vendorid : 1 (required, number)
-  + vendorname: `IBM` (required, string)
+  + id : 1 (required, number)
+  + name: `IBM` (required, string)
 
 ## ProfileVendor1 (object)
 + vendor (Vendor1)
@@ -1632,15 +1726,15 @@ Get the base URL configuration
 
 ## Vendor1 (object)
 + id: 1 (required, number)
-+ lastName: `IBM Italia S.p.a.` (required, string)
++ name: `IBM Italia S.p.a.` (required, string)
 
 ## Vendor2 (object)
 + id: 2 (required, number)
-+ lastName: `EUDATA S.R.L.` (required, string)
++ name: `EUDATA S.R.L.` (required, string)
 
 ## Vendor3 (object)
 + id: 3 (required, number)
-+ lastName: `MAUDEN SPA` (required, string)
++ name: `MAUDEN SPA` (required, string)
 
 ##SupportRequestMessageAssigned (object)
 + id: 1 (required, number)
