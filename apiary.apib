@@ -112,6 +112,21 @@ Creates a user profile.
 
     + Body
 
+### Read Profile Vendor [GET /profiles/{id}/vendor]
+
++ Response 200 (application/json)
+
+    + Attributes (ProfileVendorDetail)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 ### Update Profile [PUT]
 
@@ -1398,6 +1413,10 @@ Get the base URL configuration
 + Include ProfileInformations
 + Include ProfilesAddresses
 
+## ProfileVendorDetail (ProfileBase)
++ Include ProfilesAddresses
++ Include ProfileVendor1
+
 ## Profile1 (ProfileBase)
 + id: 1 (number) - id of the profile
 
@@ -1548,6 +1567,21 @@ Get the base URL configuration
 + vendor (object)
   + vendorid : 1 (required, number)
   + vendorname: `IBM` (required, string)
+
+## ProfileVendor1 (object)
++ vendor (Vendor1)
+
+## Vendor1 (object)
++ id: 1 (required, number)
++ lastName: `IBM Italia S.p.a.` (required, string)
+
+## Vendor2 (object)
++ id: 2 (required, number)
++ lastName: `EUDATA S.R.L.` (required, string)
+
+## Vendor3 (object)
++ id: 3 (required, number)
++ lastName: `MAUDEN SPA` (required, string)
 
 ##SupportRequestMessageAssigned (object)
 + id: 1 (required, number)
