@@ -745,6 +745,25 @@ Returns the revision organization structure tree with assigned vendor profiles.
   + results (array[OrganizationVendor1, OrganizationVendor2, OrganizationVendor3], required) - array of organization units with vendor profiles
   + Include PaginationDataTree
 
+### List Organization Units Managers [GET /organizations/{type}/revisions/{id}/ous/managers{?sort}]
+Returns a list with managers for specified revision organization of a structure tree
+
++ Parameters
+  + type: UO (string) - Structure type to filter for
+  + id: 1 or active (required) - id of the requested revision
+  + sort: fname (enum[string], optional) - Sorting field
+      + Members
+          + lname
+          + fname
+
++ Response 200 (application/json)
++ Attributes (object)
+  + results (array[Person1,Person1,Person1]) - array of organization units with vendor profiles
+  + paginationData (object) - Informations required for pagination
+      + count: 3 (number) - total number of resources
+      + pageNum: 1 (number) - slice of resources returned
+      + pageSize: 3 (number) - size of the slice
+
 
 ### List Organization Units types [GET /organizations/{type}/revisions/{id}/ous/types]
 Returns the revision organization unit list.
