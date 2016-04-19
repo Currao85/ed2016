@@ -94,7 +94,7 @@ Search vendor profiles.
         + Members
             + json
             + xlsx
-            
+
 + Response 200 (application/json)
 
 + Attributes (object)
@@ -454,6 +454,27 @@ The list of user's roles. (HR Admin)
 
 + Response 200 (application/json)
   + Attributes (Profiles roles collections)
+
+## Profiles professions collections [/profiles/professions]
+
++ Attributes (object)
+  + results (array, required) - array of resources
+      + (object)
+          + description: Architect
+      + (object)
+          + description: Consultant
+      + (object)
+          + description: Enterprise Operations
+      + (object)
+          + description: Finance
+
+### List types [GET]
+
+The list of user's professions fetched from profiles (My Report filter).<br/>
+For now a table with all professions doesn't exists.
+
++ Response 200 (application/json)
+  + Attributes (Profiles professions collections)
 
 
 #######################
