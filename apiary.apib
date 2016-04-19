@@ -1262,6 +1262,113 @@ The list of vendors.
 
 
 #######################
+# Group Locations
+#######################
+
+## Locations collection [/locations]
+
++ Attributes (object)
+  + results (array[Location1, Location2, Location3], required) - array of locations
+  + Include PaginationData
+
+### List Locations [GET]
+The list of locations.
+
++ Response 200 (application/json)
+  + Attributes (Locations collection)
+
+### DRAFT - Create Location [POST]
+
++ Request (application/json)
++ Attributes (object)
+  + id: 1 (required, number)
+  + street: Via Lisbona (required, string)
+  + city: Padova (required, string)
+  + state: PD (string)
+  + country: Italy (required, string) 
+
++ Response 201 (application/json)
+    + Headers
+
+            Location: /locations/1
+
+    + Attributes (Location1)
+
++ Response 400
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
+## Location [/locations/{id}]
+
+### DRAFT - Read Location [GET]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Response 200 (application/json)
+
+    + Attributes (Location1)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### DRAFT - Update Location [PUT]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Request (application/json)
+    + Attributes (object)
+      + id: 1 (required, number)
+      + street: Via Lisbona (required, string)
+      + city: Padova (required, string)
+      + state: PD (string)
+      + country: Italy (required, string) 
+
++ Response 200 (application/json)
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+### DRAFT - Delete Location [DELETE]
+
++ Parameters
+    + id: 1 (required, number)
+
++ Response 204
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+#######################
 # Group Countries
 #######################
 
@@ -2200,3 +2307,24 @@ Get the base URL configuration
 + startdate : `` (string)
 + enddate : `` (string)
 + status : `draft`
+
+## Location1 (object)
++ id: 1 (required, number)
++ street: Via Lisbona (required, string)
++ city: Padova (required, string)
++ state: PD (string)
++ country: Italy (required, string) 
+
+## Location2 (object)
++ id: 2 (required, number)
++ street: Via Roma 12 (required, string)
++ city: Milano (required, string)
++ state: MI (string)
++ country: Italy (required, string) 
+
+## Location3 (object)
++ id: 3 (required, number)
++ street: Lassallestrasse 233 (required, string)
++ city: Vienna (required, string)
++ state: (string)
++ country: Austria (required, string)
