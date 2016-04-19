@@ -392,7 +392,7 @@ Deletes the current user's photo.
 
     + Body
 
-## Profiles Types collections [/profiles/types]
+## Profiles Types collections [/profiles/types{?area}]
 
 + Attributes (object)
   + results (array, required) - array of resources
@@ -406,6 +406,13 @@ Deletes the current user's photo.
           + id: EXT
           + description: Extended Team IBM
   + Include PaginationData
+
++ Parameters
+  + area: ED (enum[string], optional) - Area filter
+    + Default: ED
+      + Members
+          + ED
+          + VD
 
 ### List types [GET]
 The list of types of employee. (HR Admin - People modify)
@@ -1202,27 +1209,6 @@ Update the name of an Organization Unit.
     Returned when a generic error occours.
 
     + Body
-
-## Vendors Types collections [/vendors/types]
-
-+ Attributes (object)
-  + results (array, required) - array of resources
-      + (object)
-          + id: NDE
-          + description: Not Delivery
-      + (object)
-          + id: MAI
-          + description: Maintenance
-  + paginationData (object) - Informations required for pagination
-      + count: 2 (number) - total number of resources
-      + pageNum: 1 (number) - slice of resources returned
-      + pageSize: 2 (number) - size of the slice
-
-### List types [GET]
-The list of types of vendors.
-
-+ Response 200 (application/json)
-  + Attributes (Vendors Types collections)
 
 
 #######################
