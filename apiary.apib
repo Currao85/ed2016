@@ -12,7 +12,7 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}]
+## Profiles collections [/profiles{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}{?output}]
 
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
@@ -44,6 +44,10 @@ Search user profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
+    + output: json (enum[string], optional) - Output type (default json)
+        + Members
+            + json
+            + xlsx
 
 + Response 200 (application/json)
 
@@ -59,7 +63,7 @@ Search user profiles.
 
     + Body
 
-### List Vendor Profiles [GET /profiles/vendor{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}]
+### List Vendor Profiles [GET /profiles/vendor{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}{?output}]
 Search vendor profiles.
 
 + Parameters
@@ -86,7 +90,11 @@ Search vendor profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
-
+    + output: json (enum[string], optional) - Output type (default json)
+        + Members
+            + json
+            + xlsx
+            
 + Response 200 (application/json)
 
 + Attributes (object)
