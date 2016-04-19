@@ -1146,13 +1146,30 @@ Update the name of an Organization Unit.
     + Body
 
 
-
-
 #######################
 # Group DRAFT - Vendor
 #######################
 
 ## Vendor collection [/vendors]
+
++ Attributes (object)
+  + results (array, required) - array of resources
+      + (object)
+          + id: 1
+          + description: IBM Italia S.p.a.
+      + (object)
+          + id: 2
+          + description: EUDATA S.R.L.
+      + (object)
+          + id: 3
+          + description: MAUDEN SPA
+  + Include PaginationData
+
+### List Vendors [GET]
+The list of vendors.
+
++ Response 200 (application/json)
+  + Attributes (Vendor collection)
 
 ### Create Vendor [POST]
 
