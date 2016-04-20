@@ -48,10 +48,11 @@ Search user profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
-    + output: json (enum[string], optional) - Output type (default json)
+    + report: EL (enum[string], optional) - Type of report (<strong>throws error when invalid value</strong>)
         + Members
-            + json
-            + xlsx
+            + DL
+            + EL
+            + UR
 
 + Response 200 (application/json)
 
@@ -97,10 +98,9 @@ Search vendor profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
-    + output: json (enum[string], optional) - Output type (default json)
+    + report: VL (enum[string], optional) - Type of report (<strong>throws error when invalid value</strong>)
         + Members
-            + json
-            + xlsx
+            + VL
 
 + Response 200 (application/json)
 
