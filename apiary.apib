@@ -1040,6 +1040,42 @@ Return all the people who are managed the manager with id== **id**.
 
     + Body
 
+### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/otherRoles{?page}{?pageSize}{?sort}{?sortOrder}]
+
+
+Return all roles of the person with id== **id** other than then one in structure type== **type**   .
+
++ Parameters
+    + type: UO (string) - Structure type to filter for
+    + revisionid: 1 (required, number) - id of the revision
+    + peopleid: 1 (required, number) - id of the user
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
+
++ Response 200 (application/json)
++ Attributes (object)
+  + results (array[OtherRolesPerson1,OtherRolesPerson2,OtherRolesPerson3]) - array of assigned profiles
+  + paginationData (object) - Informations required for pagination
+      + count: 3 (number) - total number of resources
+      + pageNum: 1 (number) - slice of resources returned
+      + pageSize: 3 (number) - size of the slice
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
+
 #######################
 # Group DRAFT - Organization Units
 #######################
@@ -2336,3 +2372,38 @@ Get the base URL configuration
 + city: Vienna (required, string)
 + state: (string)
 + country: Austria (required, string)
+
+
+
+## OtherRolesPerson1 (object)
++ id: 1 (required, number)
++ lastName: `Linzi` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: true (boolean)
++ isMainManager: true (boolean)
++ revision: (object)
+    + id: 323 (number)
+    + description: `struttura XX` (string)
+    + structTypeId: `XX` (string)
+
+## OtherRolesPerson2 (object)
++ id: 1 (required, number)
++ lastName: `Linzi` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: false (boolean)
++ isMainManager: false (boolean)
++ revision: (object)
+    + id: 434 (number)
+    + description: `struttura YY` (string)
+    + structTypeId: `YY` (string)
+
+## OtherRolesPerson3 (object)
++ id: 1 (required, number)
++ lastName: `Linzi` (required, string)
++ firstName: `Giovanni` (required, string)
++ isManager: false (boolean)
++ isMainManager: false (boolean)
++ revision: (object)
+    + id: 545 (number)
+    + description: `struttura ZZ` (string)
+    + structTypeId: `ZZ` (string)
