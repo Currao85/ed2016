@@ -32,7 +32,8 @@ Search user profiles.
        + dcode (optional,String) : department code
        + dname (optional,String) : department name
        + emptype (optional,String) : employee type code
-       + profession (optional,String) : profession description
+       + profession (optional, string) : profession description
+       + manager (optional,boolean)
 
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -1285,7 +1286,7 @@ The list of locations.
   + street: Via Lisbona (required, string)
   + city: Padova (required, string)
   + state: PD (string)
-  + country: Italy (required, string) 
+  + country: Italy (required, string)
 
 + Response 201 (application/json)
     + Headers
@@ -1337,7 +1338,7 @@ The list of locations.
       + street: Via Lisbona (required, string)
       + city: Padova (required, string)
       + state: PD (string)
-      + country: Italy (required, string) 
+      + country: Italy (required, string)
 
 + Response 200 (application/json)
 
@@ -2313,14 +2314,14 @@ Get the base URL configuration
 + street: Via Lisbona (required, string)
 + city: Padova (required, string)
 + state: PD (string)
-+ country: Italy (required, string) 
++ country: Italy (required, string)
 
 ## Location2 (object)
 + id: 2 (required, number)
 + street: Via Roma 12 (required, string)
 + city: Milano (required, string)
 + state: MI (string)
-+ country: Italy (required, string) 
++ country: Italy (required, string)
 
 ## Location3 (object)
 + id: 3 (required, number)
