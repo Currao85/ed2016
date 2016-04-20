@@ -1275,10 +1275,12 @@ The list of vendors.
 ### List Locations [GET]
 The list of locations.
 
+**Released on Apr 19**
+
 + Response 200 (application/json)
   + Attributes (Locations collection)
 
-### DRAFT - Create Location [POST]
+### Create Location [POST]
 
 + Request (application/json)
 + Attributes (object)
@@ -1308,7 +1310,7 @@ The list of locations.
 
 ## Location [/locations/{id}]
 
-### DRAFT - Read Location [GET]
+### Read Location [GET]
 
 + Parameters
     + id: 1 (required, number)
@@ -1327,7 +1329,7 @@ The list of locations.
 
     + Body
 
-### DRAFT - Update Location [PUT]
+### Update Location [PUT]
 
 + Parameters
     + id: 1 (required, number)
@@ -1352,7 +1354,7 @@ The list of locations.
 
     + Body
 
-### DRAFT - Delete Location [DELETE]
+### Delete Location [DELETE]
 
 + Parameters
     + id: 1 (required, number)
@@ -1793,9 +1795,12 @@ Get the base URL configuration
 + city: Torino
 + country: Italy
 + zip: 12345
++ locationId: 1
+
 
 ## ProfileAddressCountry
 + country: Italy
++ locationId: 1
 
 ## StructureType (object)
 + id:`ZZ`
