@@ -23,7 +23,7 @@ Resources related to user's profile in the API.
 Search user profiles.
 
 + Parameters
-    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
+    + searchQuery : {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
        + revisionstrict (optional,boolean) : filter only profiles linked to the revision
        + lname (optional,String) : last name
@@ -42,6 +42,7 @@ Search user profiles.
             + fname
             + dname
             + country
+            + emptype
     + sortOrder: asc (enum, optional) - Sorting order
         + Members
             + asc
@@ -89,6 +90,7 @@ Search vendor profiles.
             + lname
             + fname
             + dname
+            + emptype
             + vendorname
     + sortOrder: asc (enum, optional) - Sorting order
         + Members
