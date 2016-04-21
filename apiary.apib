@@ -2386,10 +2386,13 @@ Get the base URL configuration
 + firstName: `Giovanni` (required, string)
 + isManager: true (boolean)
 + isMainManager: true (boolean)
++ role: `BC COMMITTEE`
 + revision: (object)
     + id: 323 (number)
-    + description: `struttura XX` (string)
-    + structTypeId: `XX` (string)
+    + description: `Revision XX` (string)
+    + structureType: (object)
+      + id: `XX` (string)
+      + description: `Business Continuity` (string)
 
 ## OtherRolesPerson2 (object)
 + id: 1 (required, number)
@@ -2397,10 +2400,14 @@ Get the base URL configuration
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 + isMainManager: false (boolean)
++ role: `Role 2`
 + revision: (object)
     + id: 434 (number)
-    + description: `struttura YY` (string)
-    + structTypeId: `YY` (string)
+    + description: `Revision YY` (string)
+    + structureType: (object)
+      + id: `YY` (string)
+      + description: `struttura YY` (string)
+
 
 ## OtherRolesPerson3 (object)
 + id: 1 (required, number)
@@ -2408,7 +2415,10 @@ Get the base URL configuration
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 + isMainManager: false (boolean)
++ role: `Role 3`
 + revision: (object)
     + id: 545 (number)
-    + description: `struttura ZZ` (string)
-    + structTypeId: `ZZ` (string)
+    + description: `Revision ZZ` (string)
+    + structureType: (object)
+      + id: `ZZ` (string)
+      + description: `struttura ZZ` (string)
