@@ -1052,10 +1052,8 @@ Return all roles of the person with id== **id** other than then one in structure
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
         + Members
-            + lname
-            + fname
-            + dname
-            + country
+            + role
+            + structure
     + sortOrder: asc (enum, optional) - Sorting order
         + Members
             + asc
@@ -2381,44 +2379,43 @@ Get the base URL configuration
 
 
 ## OtherRolesPerson1 (object)
-+ id: 1 (required, number)
++ id: 99 (number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: true (boolean)
 + isMainManager: true (boolean)
 + role: `BC COMMITTEE`
 + revision: (object)
-    + id: 323 (number)
-    + description: `Revision XX` (string)
+    + id: 334 (number)
+    + description: `Attiva` (string)
     + structureType: (object)
-      + id: `XX` (string)
-      + description: `Business Continuity` (string)
+      + id: `UO` (string)
+      + description: `Business` (string)
 
 ## OtherRolesPerson2 (object)
-+ id: 1 (required, number)
++ id: 99 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
 + isManager: false (boolean)
 + isMainManager: false (boolean)
-+ role: `Role 2`
++ role: `EMPLOYEE`
 + revision: (object)
-    + id: 434 (number)
-    + description: `Revision YY` (string)
+    + id: 467 (number)
+    + description: `Revisione BC TEST` (string)
     + structureType: (object)
-      + id: `YY` (string)
-      + description: `struttura YY` (string)
-
+      + id: `BC` (string)
+      + description: `Business Continuity` (string)
 
 ## OtherRolesPerson3 (object)
-+ id: 1 (required, number)
++ id: 99 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
-+ isManager: false (boolean)
-+ isMainManager: false (boolean)
-+ role: `Role 3`
++ isManager: true (boolean)
++ isMainManager: true (boolean)
++ role: `MANAGER`
 + revision: (object)
-    + id: 545 (number)
-    + description: `Revision ZZ` (string)
+    + id: 473 (number)
+    + description: `Revisione SE TEST` (string)
     + structureType: (object)
-      + id: `ZZ` (string)
-      + description: `struttura ZZ` (string)
+      + id: `SE` (string)
+      + description: `Security` (string)
