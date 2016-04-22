@@ -23,7 +23,7 @@ Resources related to user's profile in the API.
 Search user profiles.
 
 + Parameters
-    + searchQuery : {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
+    + searchQuery : {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["EXT","EMP"]} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
        + revisionstrict (optional,boolean) : filter only profiles linked to the revision
        + lname (optional,String) : last name
@@ -33,7 +33,8 @@ Search user profiles.
        + dname (optional,String) : department name
        + emptype (optional,String) : employee type code
        + profession (optional, string) : profession description
-       + manager (optional,boolean)
+       + manager (optional,boolean) : filters only managers
+       + emptype (optiona,array[string]) : array of employee types
 
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -72,7 +73,7 @@ Search user profiles.
 Search vendor profiles.
 
 + Parameters
-    + searchQuery: {"revision":"1","revisionstrict":"true","lname":"Stewart"} (Object) - json filter object
+    + searchQuery: {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["DEL","MAI"]} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
        + revisionstrict (optional,boolean) : filter only profiles linked to the revision
        + lname (optional,String) : last name
@@ -82,6 +83,7 @@ Search vendor profiles.
        + dname (optional,String) : department name
        + emptype (optional,String) : employee type code
        + profession (optional,String) : profession description
+       + emptype (optiona,array[string]) : array of employee types
        + vendorid (optional, number): vendor id
        + vendorname (optional, String): vendor name
 
