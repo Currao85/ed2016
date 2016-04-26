@@ -1,0 +1,12 @@
+{
+  "name": "bxx-api",
+  "version": "1.0.0",
+  "description": "Bxx Timesheet API",
+  "author": "Wintech",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "dredd": "^1.0.10"
+  }
+}
