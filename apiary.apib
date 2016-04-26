@@ -26,15 +26,18 @@ Search user profiles.
     + searchQuery : {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["EXT","EMP"]} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
        + revisionstrict (optional,boolean) : filter only profiles linked to the revision
-       + lname (optional,String) : last name
-       + fname (optional,String) : fist name
-       + email (optional,String) : email
-       + dcode (optional,String) : department code
-       + dname (optional,String) : department name
-       + emptype (optional,String) : employee type code
-       + profession (optional, string) : profession description
-       + manager (optional,boolean) : filters only managers
-       + emptype (optiona,array[string]) : array of employee types
+       + lname (optional,String) <br/>last name
+       + fname (optional,String) <br/>fist name
+       + email (optional,String) <br/>email
+       + dcode (optional,String) <br/>department code
+       + dname (optional,String) <br/>department name
+       + emptype (optional,String) <br/>employee type code
+       + profession (optional, string) <br/>profession description
+       + manager (optional,boolean) <br/>filters only managers (<strong>my report</strong>)
+       + emptype (optional,array[string]) <br/>array of employee types (<strong>my report</strong>)
+       + location (optional,number) <br/>location id (<strong>my report</strong>)
+       + rootmanager (optional,number) <br/>root manager id (<strong>my report</strong> - to identify start node of pyramid search)
+       + rootdcode (optional,string) <br/>department code (<strong>my report</strong> - to identify start node of pyramid search)
 
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -76,16 +79,16 @@ Search vendor profiles.
     + searchQuery: {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["DEL","MAI"]} (Object) - json filter object
        + revision (required,number) : numeric id of the revision
        + revisionstrict (optional,boolean) : filter only profiles linked to the revision
-       + lname (optional,String) : last name
-       + fname (optional,String) : fist name
-       + email (optional,String) : email
-       + dcode (optional,String) : department code
-       + dname (optional,String) : department name
-       + emptype (optional,String) : employee type code
-       + profession (optional,String) : profession description
-       + emptype (optiona,array[string]) : array of employee types
-       + vendorid (optional, number): vendor id
-       + vendorname (optional, String): vendor name
+       + lname (optional,String) <br/>last name
+       + fname (optional,String) <br/>first name
+       + email (optional,String) <br/>email
+       + dcode (optional,String) <br/>department code
+       + dname (optional,String) <br/>department name
+       + emptype (optional,String) <br/>employee type code
+       + profession (optional,String) <br/>profession description
+       + emptype (optiona,array[string]) <br/>array of employee types (<strong>my report</strong>)
+       + vendorid (optional, number) <br/>vendor id (<strong>my report</strong>)
+       + vendorname (optional, String) <br/>vendor name
 
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
