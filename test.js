@@ -22,7 +22,8 @@ var dredd = new Dredd({
     'inline-errors': true, // Boolean, If failures/errors are display immediately in Dredd run
 
     'color': true,
-    'timestamp': false
+    'timestamp': false,
+    'hookfiles': ['./hooks/*.js']
   },
 });
 

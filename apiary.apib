@@ -202,7 +202,9 @@ swoop instead of having three different calls.
 
     + Attributes (ProfileBase)
 
-+ Response 200
++ Response 200 (application/json)
+
+    + Attributes (ProfileBase)
 
 + Response 400
     Returned when input does not pass validation.
@@ -1730,7 +1732,7 @@ Get the base URL configuration
     + pageSize: 25 (number, required) - size of the slice
 
 ## ProfileBase (object)
-+ id: 3 (number)
++ id: 1 (number)
 + firstName: `MARIO` (required, string)
 + lastName: `BIANCHI` (required, string)
 + ouCode: `XL78481` (string)
@@ -1754,7 +1756,7 @@ Get the base URL configuration
 + jobResponsibility: `job responsibility`,
 + altInternetAddress: `firstname.lastname@organization2.com`
 + notesAddress: `indirizzo_notes@aaaaa.it`
-+ userId: `userid` (string) - login user
++ userId: `user` (string) - login user
 + otherRoles: `????` (string)
 + employeeType: `EMP` (string) - code of profile type
 + personalCode: `one more data` (required, string)
