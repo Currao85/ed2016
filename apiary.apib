@@ -72,7 +72,7 @@ Search user profiles.
 
     + Body
 
-### List Vendor Profiles [GET /profiles/vendor{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}{?report}]
+### List Vendor Profiles [GET /profiles/vendor{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search vendor profiles.
 
 + Parameters
@@ -103,15 +103,15 @@ Search vendor profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
-    + report: VL (enum[string], optional) - Type of report (<strong>throws error when invalid value</strong>)
+    + report: VL (enum[string], optional) - Type of report (**throws error when invalid value**). If none is specified, JSON will return
         + Members
             + VL
 
 + Response 200 (application/json)
 
-+ Attributes (object)
-  + results (array[VendorProfile1, VendorProfile2, VendorProfile3], required) - array of profiles
-  + Include PaginationData
+    + Attributes
+      + results (array[VendorProfile1, VendorProfile2, VendorProfile3], required) - array of profiles
+      + Include PaginationData
 
 + Response 400
     Returned when input does not pass validation.

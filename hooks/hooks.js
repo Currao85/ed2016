@@ -1,5 +1,6 @@
 var hooks = require('hooks');
 var request = require('superagent');
+var _ = require('lodash');
 
 var stash = {};
 
@@ -18,5 +19,13 @@ var login = function (transaction, done) {
     done();  
   })
 }
+
+hooks.before("Profiles > Profiles collections > List Vendor Profiles", function(transaction, done) {
+  // we have to remove the 'report' parameter or we'll receive binary data
+  var params = transaction.fullPath.split('&');
+  // the 'report' parameter is currently the last one
+  transaction.fullPath = params.splice(0, params.length - 1).join('&');
+  done();
+});
 
 hooks.before("Profiles > Profile > Update Profile", login);
