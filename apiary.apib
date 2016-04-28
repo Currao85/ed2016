@@ -142,7 +142,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Request (application/json)
 
-    + Attributes (ProfileDetail)
+    + Attributes (ProfileCreate)
 
 + Response 201 (application/json)
 
@@ -1769,12 +1769,14 @@ Get the base URL configuration
     + number: `3904912345678` (string)
 + vendor (Vendor1) - Vendor object for vendor employees. Only its `id` is used.
 + functionalManager (object) - Profile of the functional manager. Only its `id` is used.
-    + id: 1
-+ dismissDate: `2016-02-28` (required, string) - Dismiss date. Only considered when inserting the profile.
+    + id: 1 (number)
 
 ## ProfileDetail (ProfileBase)
 + Include ProfileInformations
 + Include ProfilesAddresses
+
+## ProfileCreate (ProfileDetail)
++ dismissDate: `2016-02-28` (required, string) - Dismiss date. Only considered when inserting the profile.
 
 ## ProfileVendorDetail (ProfileBase)
 + Include ProfilesAddresses
@@ -1830,7 +1832,7 @@ Get the base URL configuration
 + city: Torino
 + country: Italy
 + zip: 12345
-+ locationId: 1
++ locationId: 1 (number)
 
 
 ## ProfileAddressCountry
