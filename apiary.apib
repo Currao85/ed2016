@@ -12,33 +12,36 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?searchQuery}{?page}{?pageSize}{?sort}{?sortOrder}{?report}]
+## Profiles collections [/profiles{?searchQuery,page,pageSize,sort,sortOrder,report}]
 
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
     + Include PaginationData
 
 
-### List Profiles [GET]
+### List Profiles [GET /profiles{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search user profiles.
 
-+ Parameters
-    + searchQuery : {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["EXT","EMP"]} (Object) - json filter object
-       + revision (required,number) : numeric id of the revision
-       + revisionstrict (optional,boolean) : filter only profiles linked to the revision
-       + lname (optional,String) <br/>last name
-       + fname (optional,String) <br/>fist name
-       + email (optional,String) <br/>email
-       + dcode (optional,String) <br/>department code
-       + dname (optional,String) <br/>department name
-       + emptype (optional,String) <br/>employee type code
-       + profession (optional, string) <br/>profession description
-       + manager (optional,boolean) <br/>filters only managers (<strong>my report</strong>)
-       + emptype (optional,array[string]) <br/>array of employee types (<strong>my report</strong>)
-       + location (optional,number) <br/>location id (<strong>my report</strong>)
-       + rootmanager (optional,number) <br/>root manager id (<strong>my report</strong> - to identify start node of pyramid search)
-       + rootdcode (optional,string) <br/>department code (<strong>my report</strong> - to identify start node of pyramid search)
+Takes a `searchQuery` parameter object defined as follows
+  + revision (required,number) - numeric id of the revision
+  + revisionstrict (optional,boolean) - filter only profiles linked to the revision
+  + lname (optional,String) - last name
+  + fname (optional,String) - fist name
+  + email (optional,String) - email
+  + dcode (optional,String) - department code
+  + dname (optional,String) - department name
+  + emptype (optional,String) - employee type code
+  + profession (optional, string) - profession description
+  + manager (optional,boolean) - filters only managers (**my report**)
+  + emptype (optional,array[string]) - array of employee types (**my report**)
+  + location (optional,number) - location id (**my report**)
+  + rootmanager (optional,number) - root manager id (**my report** - to identify start node of pyramid search)
+  + rootdcode (optional,string) - department code (**my report** - to identify start node of pyramid search)
 
+This action does not require authentication.
+
++ Parameters
+    + searchQuery: {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["EXT","EMP"]} (Object) - json filter object
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
         + Members
@@ -52,7 +55,7 @@ Search user profiles.
             + asc
             + desc
     + pageSize: 25 (optional, number) - Amount of results to return
-    + report: EL (enum[string], optional) - Type of report (<strong>throws error when invalid value</strong>)
+    + report: EL (enum[string], optional) - Type of report (**throws error when invalid value**)
         + Members
             + DL
             + EL
@@ -76,21 +79,24 @@ Search user profiles.
 ### List Vendor Profiles [GET /profiles/vendor{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search vendor profiles.
 
+Takes a `searchQuery` parameter object defined as follows
+  + revision (required,number) - numeric id of the revision
+  + revisionstrict (optional,boolean) - filter only profiles linked to the revision
+  + lname (optional,String) - last name
+  + fname (optional,String) - first name
+  + email (optional,String) - email
+  + dcode (optional,String) - department code
+  + dname (optional,String) - department name
+  + emptype (optional,String) - employee type code
+  + profession (optional,String) - profession description
+  + emptype (optiona,array[string]) - array of employee types (**my report**)
+  + vendorid (optional, number) - vendor id (**my report**)
+  + vendorname (optional, String) - vendor name
+
+This action does not require authentication.
+
 + Parameters
     + searchQuery: {"revision":"1", "revisionstrict":"true", "lname":"Stewart", "emptype":["DEL","MAI"]} (Object) - json filter object
-       + revision (required,number) : numeric id of the revision
-       + revisionstrict (optional,boolean) : filter only profiles linked to the revision
-       + lname (optional,String) <br/>last name
-       + fname (optional,String) <br/>first name
-       + email (optional,String) <br/>email
-       + dcode (optional,String) <br/>department code
-       + dname (optional,String) <br/>department name
-       + emptype (optional,String) <br/>employee type code
-       + profession (optional,String) <br/>profession description
-       + emptype (optiona,array[string]) <br/>array of employee types (<strong>my report</strong>)
-       + vendorid (optional, number) <br/>vendor id (<strong>my report</strong>)
-       + vendorname (optional, String) <br/>vendor name
-
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
         + Members
@@ -130,19 +136,21 @@ Search vendor profiles.
 
 Creates a user profile.
 
+This action is available only to `ADMIN` and `HRITADMIN` roles.
+
 **Released on Mar 03**
 
 + Request (application/json)
 
-    + Attributes (ProfileMini)
+    + Attributes (ProfileDetail)
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /profiles/123
+            Location: /profiles/1
 
-    + Attributes (ProfileMiniRes)
+    + Attributes (ProfileDetail1)
 
 + Response 400
     Returned when the required resource cannot be found.
@@ -200,13 +208,15 @@ Updates a user profiles. This actions takes an object composed by the base
 profile, its informations and its addresses and updates everything in one single
 swoop instead of having three different calls.
 
+This action is available only to `ADMIN` and `HRITADMIN` roles.
+
 + Request (application/json)
 
-    + Attributes (ProfileBase)
+    + Attributes (ProfileDetail1)
 
 + Response 200 (application/json)
 
-    + Attributes (ProfileBase)
+    + Attributes (ProfileDetail1)
 
 + Response 400
     Returned when input does not pass validation.
@@ -616,7 +626,7 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 # Group Revisions
 #######################
 
-## Revisions collection [/organizations/{type}/revisions{?page}{?sort}{?pageSize}]
+## Revisions collection [/organizations/{type}/revisions{?page,sort,pageSize}]
 
 + Attributes (object)
   + results (array[Revision1, Revision2, Revision3, Revision4], required) - array of revisions
@@ -756,7 +766,7 @@ Publish the specified revision setting it as active.
 # Group Revisions / Tree Organizations
 #######################
 
-## Tree Organization Units [/organizations/{type}/revisions/{id}/ous{?page}{?sort}{?pageSize}]
+## Tree Organization Units [/organizations/{type}/revisions/{id}/ous{?page,sort,pageSize}]
 
 + Parameters
   + type: UO (string) - Structure type to filter for
@@ -782,7 +792,7 @@ Returns the revision organization structure tree with assigned people.
   + Attributes (Tree Organization Units)
 
 
-### List Organization Units Vendor [GET /organizations/{type}/revisions/{id}/ous/vendor{?page}{?sort}{?pageSize}]
+### List Organization Units Vendor [GET /organizations/{type}/revisions/{id}/ous/vendor{?page,sort,pageSize}]
 Returns the revision organization structure tree with assigned vendor profiles.
 
 + Parameters
@@ -985,7 +995,7 @@ Return the current OrganizationUnit of the currently logged profile
 
     + Body
 
-### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page}{?pageSize}{?sort}{?sortOrder}]
+### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page,pageSize,sort,sortOrder}]
 
 Return all the people who are managed by the same manager of the person with id== **id** .
 
@@ -1017,7 +1027,7 @@ Return all the people who are managed by the same manager of the person with id=
 
     + Body
 
-### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/peopleManaged{?page}{?pageSize}{?sort}{?sortOrder}]
+### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/peopleManaged{?page,pageSize,sort,sortOrder}]
 
 Return all the people who are managed the manager with id== **id**.
 
@@ -1049,7 +1059,7 @@ Return all the people who are managed the manager with id== **id**.
 
     + Body
 
-### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/otherRoles{?page}{?pageSize}{?sort}{?sortOrder}]
+### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/otherRoles{?page,pageSize,sort,sortOrder}]
 
 
 Return all roles of the person with id== **id** other than then one in structure type== **type**.
@@ -1088,7 +1098,7 @@ Return all roles of the person with id== **id** other than then one in structure
 # Group DRAFT - Organization Units
 #######################
 
-## Organization Units collection [/ous{?searchQuery}{?page}{?sort}{?pageSize}]
+## Organization Units collection [/ous{?searchQuery,page,sort,pageSize}]
 
 + Attributes (object)
     + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of revisions
@@ -1479,7 +1489,7 @@ Update the general message with a new one.
 # Group Support Requests
 #######################
 
-## Support Requests Collection [/supportRequests{?page}{?pageSize}{?sort}{?sortOrder}{?viewAllAssignee}{?excludeClosed}]
+## Support Requests Collection [/supportRequests{?page,pageSize,sort,sortOrder,viewAllAssignee,excludeClosed}]
 
 + Attributes (object)
   + results (array[SupportRequestClosedMini, SupportRequestOpenMini, SupportRequestAssignedMini, SupportRequestForcedMini], required)
@@ -1734,63 +1744,33 @@ Get the base URL configuration
     + pageSize: 25 (number, required) - size of the slice
 
 ## ProfileBase (object)
-+ id: 1 (number)
-+ firstName: `MARIO` (required, string)
-+ lastName: `BIANCHI` (required, string)
-+ ouCode: `XL78481` (string)
-+ ouDescr: `C-BOM` (string)
-+ email: `mbianchi@acme.it` (required, string)
-+ profession: `Senior Developer` (required, string)
-+ isManager: `true`
++ firstName: `MARIO` (required, string) - First name of the profile. Must be between 2 and 50 chars long.
++ lastName: `BIANCHI` (required, string) - Last name of the profile. Must be between 2 and 50 chars long.
++ email: `mbianchi@acme.it` (required, string) - Email of the profile. Must be a valid email, as specified in RFC2822.
++ profession: `Senior Developer` (string)
++ businessUnit: `not used?` (string)
++ jobResponsability: `job responsability` (string)
++ altInternetAddress: `firstname.lastname@organization2.com` (string) - Must be a valid email, as specified in RFC2822.
++ notesAddress: `indirizzo_notes@aaaaa.it` (string) - Must be a valid email, as specified in RFC2822.
++ userId: `userid` (string) - Username of the profile. If present this field must match with the field used to authenticate on the application server.
++ employeeType: `EMP` (required, string) - Code of profile type
++ personalCode: `X123456` (required, string)
++ bluePageCode: `L123456` (required, string)
++ hiringDate: `2016-02-28` (required, string) - Hiring date of the profile. The profile can be found through queries only starting from the specified date.
++ managerRole: `true` (boolean)
 + phone (object)
-    + country: 39
-    + prefix: `011`
+    + country: `39` (string)
     + number: `12345678` (string)
 + mobilePhone (object)
-    + country: `39`
-    + prefix: `335`
+    + country: `39` (string)
     + number: `1234567` (string)
 + fax (object)
     + country: `39` (string)
-    + prefix: `02` (string)
     + number: `3904912345678` (string)
-+ businessUnit: `not used ?`,
-+ jobResponsibility: `job responsibility`,
-+ altInternetAddress: `firstname.lastname@organization2.com`
-+ notesAddress: `indirizzo_notes@aaaaa.it`
-+ userId: `user` (string) - login user
-+ otherRoles: `????` (string)
-+ employeeType: `EMP` (string) - code of profile type
-+ personalCode: `one more data` (required, string)
-+ hiringDate: `2016-02-28` (string) - ignored on update
-+ functionalManager (object)
-    + id: 2 (number)
-    + lastName: `Rossi`
-    + firstName: `Mario`
-    + email: `mrossi@jsdjaksdj.it`
-
-## ProfileMini (object)
-+ firstName: `MARIO` (required, string)
-+ lastName: `BIANCHI` (required, string)
-+ email: `mbianchi@acme.it` (required, string)
-+ addresses
-    + business (ProfileAddressCountry) - business address of the user.
-+ userId: `userid` (string) - login user
-+ employeeType: `EMP` (required,string) - code of profile type
-+ personalCode: `one more data` (required, string)
-+ hiringDate: `2016-02-28` (required,string)
-
-## ProfileMiniRes (object)
-+ id: 123 (required, number)
-+ firstName: `MARIO` (required, string)
-+ lastName: `BIANCHI` (required, string)
-+ email: `mbianchi@acme.it` (required, string)
-+ addresses
-    + business (ProfileAddressCountry) - business address of the user.
-+ userId: `userid` (string) - login user
-+ employeeType: `EMP` (required,string) - code of profile type
-+ personalCode: `one more data` (required, string)
-+ hiringDate: `2016-02-28` (required,string)
++ vendor (Vendor1) - Vendor object for vendor employees. Only its `id` is used.
++ functionalManager (object) - Profile of the functional manager. Only its `id` is used.
+    + id: 1
++ dismissDate: `2016-02-28` (required, string) - Dismiss date. Only considered when inserting the profile.
 
 ## ProfileDetail (ProfileBase)
 + Include ProfileInformations
@@ -1799,6 +1779,10 @@ Get the base URL configuration
 ## ProfileVendorDetail (ProfileBase)
 + Include ProfilesAddresses
 + Include ProfileVendor1
+
+
+## ProfileDetail1 (ProfileDetail)
++ id: 1 (number) - id of the profile
 
 ## Profile1 (ProfileBase)
 + id: 1 (number) - id of the profile
