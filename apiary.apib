@@ -162,6 +162,34 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
     + Body
 
+### Change Password [PUT /profiles/password]
+
+Change password for specified user.
+
+**Released on Mar 10**
+
++ Request (application/json)
+  + Attributes
+      + userId: `user` (required, string),
+      + currentPassword: `XXXX` (required, string),
+      + newPassword: `YYYY` (required, string)
+
++ Response 200
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 404
+    Returned when the required resource cannot be found.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
 
 ## Profile [/profiles/{id}]
 
@@ -303,35 +331,6 @@ Updates user personal profile.
 + Request (application/json)
 
     + Attributes (ProfileBase)
-
-+ Response 200
-
-+ Response 400
-    Returned when input does not pass validation.
-
-    + Body
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### Change Password [PUT /profiles/my/password]
-
-Change password for currently logged in user.
-
-**Released on Mar 10**
-
-+ Request (application/json)
-  + Attributes
-      + userId: `user` (required, string),
-      + currentPassword: `XXXX` (required, string),
-      + newPassword: `YYYY` (required, string)
 
 + Response 200
 
