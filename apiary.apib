@@ -1330,20 +1330,21 @@ The list of vendors.
 ### List Locations [GET]
 The list of locations.
 
-**Released on Apr 19**
-
 + Response 200 (application/json)
   + Attributes (Locations collection)
 
 ### Create Location [POST]
+Creates a new location.
+
+This action is available only to `ADMIN` role.
 
 + Request (application/json)
 + Attributes (object)
-  + id: 1 (required, number)
-  + street: Via Lisbona (required, string)
-  + city: Padova (required, string)
+  + street: Via Lisbona (string)
+  + zip: 12345 (string)
+  + city: Padova (string)
   + state: PD (string)
-  + country: Italy (required, string)
+  + country: Italy (string)
 
 + Response 201 (application/json)
     + Headers
@@ -1391,11 +1392,11 @@ The list of locations.
 
 + Request (application/json)
     + Attributes (object)
-      + id: 1 (required, number)
-      + street: Via Lisbona (required, string)
-      + city: Padova (required, string)
-      + state: PD (string)
-      + country: Italy (required, string)
+      + id: 1 (number)
+      + street: Via Lisbona (string)
+      + city: Padova (string)
+      + state: PD (required, string)
+      + country: Italy (string)
 
 + Response 200 (application/json)
 
@@ -2330,6 +2331,7 @@ Allow you to remove a support request's document
 ## Location1 (object)
 + id: 1 (required, number)
 + street: Via Lisbona (required, string)
++ zip: 12345 (string)
 + city: Padova (required, string)
 + state: PD (string)
 + country: Italy (required, string)
@@ -2337,6 +2339,7 @@ Allow you to remove a support request's document
 ## Location2 (object)
 + id: 2 (required, number)
 + street: Via Roma 12 (required, string)
++ zip: 12345 (string)
 + city: Milano (required, string)
 + state: MI (string)
 + country: Italy (required, string)
@@ -2344,6 +2347,7 @@ Allow you to remove a support request's document
 ## Location3 (object)
 + id: 3 (required, number)
 + street: Lassallestrasse 233 (required, string)
++ zip: 12345 (string)
 + city: Vienna (required, string)
 + state: (string)
 + country: Austria (required, string)
