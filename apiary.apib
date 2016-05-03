@@ -442,7 +442,6 @@ Deletes the current user's photo.
 
 + Parameters
   + area: ED (enum[string], optional) - Area filter
-    + Default: ED
       + Members
           + ED
           + VD
@@ -1094,7 +1093,7 @@ Return all roles of the person with id== **id** other than then one in structure
 
 
 #######################
-# Group DRAFT - Organization Units
+# Group Organization Units
 #######################
 
 ## Organization Units collection [/ous{?searchQuery,page,sort,pageSize}]
@@ -1105,8 +1104,6 @@ Return all roles of the person with id== **id** other than then one in structure
 
 ### List Organization Units [GET]
 Returns the Organization Units list.
-
-**Unnecessary; not used**
 
 + Parameters
     + searchQuery: {"type":"UO","uoname":"stor"} (Object) - json filter object
@@ -1119,6 +1116,8 @@ Returns the Organization Units list.
 
 
 ### Create Organization Unit [POST]
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Request (application/json)
     + Attributes (OrganizationMini3)
@@ -1166,7 +1165,7 @@ Returns the Organization Units list.
 
 Update the name of an Organization Unit.
 
-**Released on Mar 21**
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + ouCode: XL8654 (required, string) - code of the ou
@@ -1189,6 +1188,8 @@ Update the name of an Organization Unit.
     + Body
 
 ### Delete Organization Unit  [DELETE]
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + ouCode: XL8654 (required, string) - code of the ou
@@ -1866,8 +1867,8 @@ Allow you to remove a support request's document
 + ouName:`organization name 1`
 
 ## OrganizationMini3 (object)
-+ ouCode:`XL8654`
-+ ouName:`organization name 1`
++ ouCode:`XL8654` (required, string)
++ ouName:`organization name 1` (required, string)
 
 ## OrganizationMini4 (object)
 + ouCode:`XL8654`
@@ -2349,7 +2350,7 @@ Allow you to remove a support request's document
 + street: Lassallestrasse 233 (string)
 + zip: 12345 (string)
 + city: Vienna (string)
-+ state: (string)
++ state: AT (string)
 + country: Austria (string)
 
 
@@ -2363,10 +2364,10 @@ Allow you to remove a support request's document
 + role: `BC COMMITTEE`
 + ouCode: `XL8651`
 + ouName: `organization name aaa`
-+ revision: (object)
++ revision (object)
     + id: 334 (number)
     + description: `Attiva` (string)
-    + structureType: (object)
+    + structureType (object)
       + id: `UO` (string)
       + description: `Business` (string)
 
@@ -2382,7 +2383,7 @@ Allow you to remove a support request's document
 + revision: (object)
     + id: 467 (number)
     + description: `Revisione BC TEST` (string)
-    + structureType: (object)
+    + structureType (object)
       + id: `BC` (string)
       + description: `Business Continuity` (string)
 
@@ -2395,9 +2396,9 @@ Allow you to remove a support request's document
 + role: `MANAGER`
 + ouCode: `XL8653`
 + ouName: `organization name ccc`
-+ revision: (object)
++ revision (object)
     + id: 473 (number)
     + description: `Revisione SE TEST` (string)
-    + structureType: (object)
+    + structureType (object)
       + id: `SE` (string)
       + description: `Security` (string)
