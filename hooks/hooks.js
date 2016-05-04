@@ -8,6 +8,10 @@ var authenticateTransaction = function (transaction) {
   transaction.request['headers']['Cookie'] = stash['token'];
 }
 
+var randomUserId = function() {
+  return Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+}
+
 hooks.beforeAll(function(transaction, done) {
   request
   .get('http://192.168.2.225/vts-ed-rest-api/secured/login')
@@ -15,12 +19,21 @@ hooks.beforeAll(function(transaction, done) {
   .end(function(err, res) {
     if (err) {
       transaction.fail = err;
-      return;
     }
     stash['token'] = res.header['set-cookie'][0].split(';')[0];
   
     done();  
   })
+});
+
+
+hooks.before("Profiles > Profiles collections > Create Profile", function(transaction, done) {
+  // we create a random user id instead of the one specified 
+  // in API docs, in order to avoid duplicates
+  var body = JSON.parse(transaction.request.body);
+  body.userId = randomUserId();
+  transaction.request.body = JSON.stringify(body);
+  done();
 });
 
 hooks.before("Profiles > Profiles collections > List Profiles", function(transaction, done) {
@@ -49,7 +62,6 @@ hooks.beforeValidation("Profiles > Profiles collections > Change Password", func
     if (err) {
       transaction.fail = err;
       hooks.log(err);
-      return;
     }
     
     done();
@@ -65,18 +77,48 @@ hooks.after("Profiles > Profile > Dismiss Profile", function(transaction, done) 
     if (err) {
       transaction.fail = err;
       hooks.log(err);
-      return;
     }
     
     done();
   });
 });
 
+// delete a newly created profile instead of the one specified in the API
+hooks.before("Profiles > Profile > Delete Profile", function(transaction, done) {
+  request
+  .post('http://192.168.2.225/vts-ed-rest-api/profiles')
+  .set('Cookie', stash['token'])
+  .send({
+    firstName: "MARIO",
+    lastName: "BIANCHI",
+    email: "mbianchi@acme.it",
+    personalCode: "X123456",
+    userId: randomUserId(),
+    employeeType: "MAI",
+    bluePageCode: "L123456",
+    hiringDate: "2016-02-28",
+    dismissDate: "2099-12-31"
+  }).end(function(err, res) {
+    if (err) {
+      transaction.fail = err;
+      hooks.log(err);
+    }
+    
+    // change the last parth of the URI (the id) with 
+    // the id of the generated profile
+    var uriParts = transaction.fullPath.split('/');
+    transaction.fullPath = transaction.fullPath.replace(/\d+/, res.body.id);
+    
+    done();
+  });
+});
 
 // set authentication token (cookie) on actions that require authentication
 [
+  "Profiles > Profiles collections > Create Profile",
   "Profiles > Profile > Update Profile",
-  "Profiles > Profile > Dismiss Profile"
+  "Profiles > Profile > Dismiss Profile",
+  "Profiles > Profile > Delete Profile"
 ].map(function(action) {
   hooks.before(action, authenticateTransaction);
 });

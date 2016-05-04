@@ -12,7 +12,7 @@ Service Oriented Architecture specified for the ED project.
 
 Resources related to user's profile in the API.
 
-## Profiles collections [/profiles{?searchQuery,page,pageSize,sort,sortOrder,report}]
+## Profiles collections [/profiles]
 
 + Attributes (object)
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
@@ -144,10 +144,6 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Response 201 (application/json)
 
-    + Headers
-
-            Location: /profiles/1
-
     + Attributes (ProfileDetail1)
 
 + Response 400
@@ -193,6 +189,8 @@ This action does not require authentication.
 
 ### Read Profile [GET]
 
+This action does not require authentication.
+
 + Response 200 (application/json)
 
     + Attributes (Profile)
@@ -208,6 +206,8 @@ This action does not require authentication.
     + Body
 
 ### Read Profile Vendor [GET /profiles/{id}/vendor]
+
+This action does not require authentication.
 
 + Response 200 (application/json)
 
@@ -259,7 +259,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 Dismiss the specified user profile.
 This actions is a specialized version of an update on the specified profile.
 
-**Released on Mar 03**
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + id: 1 (required, number) - id of the user
@@ -282,7 +282,9 @@ This actions is a specialized version of an update on the specified profile.
 
 ### Delete Profile [DELETE]
 
-**Released on Mar 09**
+Deletes the specified profile.
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Response 204
 
@@ -302,6 +304,8 @@ This actions is a specialized version of an update on the specified profile.
 ### Read Profile [GET]
 
 Used to retrieve user personal details.
+
+This action is available to all authenticated users.
 
 + Response 200 (application/json)
   + Attributes (Profile)
@@ -1723,7 +1727,7 @@ Allow you to remove a support request's document
 + jobResponsability: `job responsability` (string)
 + altInternetAddress: `firstname.lastname@organization2.com` (string) - Must be a valid email, as specified in RFC2822.
 + notesAddress: `indirizzo_notes@aaaaa.it` (string) - Must be a valid email, as specified in RFC2822.
-+ userId: `userid` (string) - Username of the profile. If present this field must match with the field used to authenticate on the application server.
++ userId: `userid` (required, string) - Username of the profile. This field must match with the field used to authenticate on the application server.
 + employeeType: `MAI` (required, string) - Code of profile type
 + personalCode: `X123456` (required, string)
 + bluePageCode: `L123456` (required, string)
