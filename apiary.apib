@@ -954,35 +954,33 @@ Does NOT delete the related OrganizationUnit.
 
 ## Person  [/organizations/{type}/revisions/{id}/people/{peopleid}]
 
-### Person Organization Unit [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}]
+### Person Organization Unit [GET /organizations/{type}/revisions/{id}/people/{peopleid}]
 
 Return the current OrganizationUnit of the given person for the given structureType/revision
 
-**Released on Apr 05**
-
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + revisionid: 1 (required, number) - id of the revision
+    + id: 1 or active (required, string) - id of the requested revision
     + peopleid: 1 (required, number) - id of the user
 
 + Response 200 (application/json)
 
-    + Attributes (Organization2)
+    + Attributes (Oranization2)
 
 + Response 500
     Returned when a generic error occours.
 
     + Body
 
-### MyProfile Organization Unit [GET /organizations/{type}/revisions/{revisionid}/people/my]
+### MyProfile Organization Unit [GET /organizations/{type}/revisions/{id}/people/my]
 
 Return the current OrganizationUnit of the currently logged profile
 
-**Released on Apr 06**
+This action is available only to `USER` role.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + revisionid: 1 (required, number) - id of the revision
+    + id: 1 or active (required, string) - id of the requested revision
 
 + Response 200 (application/json)
 
@@ -993,15 +991,13 @@ Return the current OrganizationUnit of the currently logged profile
 
     + Body
 
-### Person Same Manager [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/sameManager{?page,pageSize,sort,sortOrder}]
+### Person Same Manager [GET /organizations/{type}/revisions/{id}/people/{peopleid}/sameManager{?page,pageSize,sort,sortOrder}]
 
 Return all the people who are managed by the same manager of the person with id== **id** .
 
-**Released on Mar 17**
-
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + revisionid: 1 (required, number) - id of the revision
+    + id: 1 (required, number) - id of the requested revision
     + peopleid: 1 (required, number) - id of the user
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -1025,15 +1021,13 @@ Return all the people who are managed by the same manager of the person with id=
 
     + Body
 
-### Person People Managed [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/peopleManaged{?page,pageSize,sort,sortOrder}]
+### Person People Managed [GET /organizations/{type}/revisions/{id}/people/{peopleid}/peopleManaged{?page,pageSize,sort,sortOrder}]
 
 Return all the people who are managed the manager with id== **id**.
 
-**Released on Mar 17**
-
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + revisionid: 1 (required, number) - id of the revision
+    + id: 1 (required, number) - id of the requested revision
     + peopleid: 1 (required, number) - id of the user
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -1057,14 +1051,13 @@ Return all the people who are managed the manager with id== **id**.
 
     + Body
 
-### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{revisionid}/people/{peopleid}/otherRoles{?page,pageSize,sort,sortOrder}]
-
+### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{id}/people/{peopleid}/otherRoles{?page,pageSize,sort,sortOrder}]
 
 Return all roles of the person with id== **id** other than then one in structure type== **type**.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
-    + revisionid: 1 (required, number) - id of the revision
+    + id: 1 (required, number) - id of the requested revision
     + peopleid: 1 (required, number) - id of the user
     + page: 1 (optional, number) - The page of profiles to return
     + sort: fname (enum[string], optional) - Sorting field
@@ -1459,7 +1452,7 @@ The list countries. (HR Admin - People insert, HR Admin - People modify)
 + Response 200 (application/json)
   + Attributes (Countries collections)
 
-
+<!--
 #######################
 # Group General Messages
 #######################
@@ -1486,7 +1479,7 @@ Update the general message with a new one.
 
 + Response 200
 
-<!--
+
 #######################
 # Group Support Requests
 #######################
@@ -2380,7 +2373,7 @@ Allow you to remove a support request's document
 + role: `EMPLOYEE`
 + ouCode: `XL8652`
 + ouName: `organization name bbb`
-+ revision: (object)
++ revision (object)
     + id: 467 (number)
     + description: `Revisione BC TEST` (string)
     + structureType (object)
