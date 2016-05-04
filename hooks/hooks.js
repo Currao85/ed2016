@@ -39,6 +39,23 @@ hooks.before("Profiles > Profiles collections > List Vendor Profiles", function(
   done();
 });
 
+// run this before Gavel validation of the response cause we want to reset 
+// the password to the previous value no matter what was the response
+hooks.beforeValidation("Profiles > Profiles collections > Change Password", function(transaction, done) {
+  // set password to old value
+  request
+  .put('http://192.168.2.225/vts-ed-rest-api/profiles/password')
+  .send({userId: "vtstest", currentPassword: "vtstest2", newPassword: "vtstest"}).end(function(err, res) {
+    if (err) {
+      transaction.fail = err;
+      hooks.log(err);
+      return;
+    }
+    
+    done();
+  });
+});
+
 // re-enable user profile after 
 hooks.after("Profiles > Profile > Dismiss Profile", function(transaction, done) {
   request
@@ -54,6 +71,7 @@ hooks.after("Profiles > Profile > Dismiss Profile", function(transaction, done) 
     done();
   });
 });
+
 
 // set authentication token (cookie) on actions that require authentication
 [
