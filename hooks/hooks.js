@@ -2,6 +2,8 @@ var hooks = require('hooks');
 var request = require('superagent');
 var _ = require('lodash');
 
+var authId = "admin";
+var authPwd = authId;
 var stash = {};
 
 var authenticateTransaction = function (transaction) {
@@ -15,7 +17,7 @@ var randomUserId = function() {
 hooks.beforeAll(function(transaction, done) {
   request
   .get('http://192.168.2.225/vts-ed-rest-api/secured/login')
-  .auth('admin', 'admin')
+  .auth(authId, authPwd)
   .end(function(err, res) {
     if (err) {
       transaction.fail = err;
@@ -25,7 +27,6 @@ hooks.beforeAll(function(transaction, done) {
     done();  
   })
 });
-
 
 hooks.before("Profiles > Profiles collections > Create Profile", function(transaction, done) {
   // we create a random user id instead of the one specified 
@@ -113,12 +114,23 @@ hooks.before("Profiles > Profile > Delete Profile", function(transaction, done) 
   });
 });
 
+hooks.before("Profiles > User personal Profile > Update Profile", function(transaction, done) {
+  // we have to make sure that the updated profile has the same userId, 
+  // or the admin user will 'lose' his profile
+  var body = JSON.parse(transaction.request.body);
+  body.userId = authId;
+  transaction.request.body = JSON.stringify(body);
+  done();
+});
+
 // set authentication token (cookie) on actions that require authentication
 [
   "Profiles > Profiles collections > Create Profile",
   "Profiles > Profile > Update Profile",
   "Profiles > Profile > Dismiss Profile",
-  "Profiles > Profile > Delete Profile"
+  "Profiles > Profile > Delete Profile",
+  "Profiles > User personal Profile > Read Profile",
+  "Profiles > User personal Profile > Update Profile"
 ].map(function(action) {
   hooks.before(action, authenticateTransaction);
 });

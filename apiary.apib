@@ -311,7 +311,7 @@ This action is available to all authenticated users.
   + Attributes (Profile)
 
 + Response 404
-    Returned when the user is not authenticated.
+    Returned when the user does not have a profile.
 
     + Body
 
@@ -325,9 +325,11 @@ This action is available to all authenticated users.
 
 Updates user personal profile.
 
+This action is available to all authenticated users.
+
 + Request (application/json)
 
-    + Attributes (ProfileBase)
+    + Attributes (Profile)
 
 + Response 200
 
