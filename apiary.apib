@@ -779,8 +779,6 @@ Publish the specified revision setting it as active.
 ### List Organization Units [GET]
 Returns the revision organization structure tree with assigned people.
 
-**Released on Mar 17**
-
 + Parameters
   + type: UO (string) - Structure type to filter for
   + id: 1 or active (required) - id of the requested revision
@@ -965,10 +963,10 @@ Return the current OrganizationUnit of the given person for the given structureT
 + Response 200 (application/json)
 
     + Attributes (object)
-      + ouCode: `XL78491`
-      + ouName: `Value Resource Center`
-      + parentId: `XL78486`
-      + people (array[PersonVendorWithRevision])
+      + ouCode: `XL78491` (required, string)
+      + ouName: `Value Resource Center` (required, string)
+      + parentId: `XL78486` (required, string)
+      + people (array[PersonWithRevisionAndVendor])
 
 + Response 500
     Returned when a generic error occours.
@@ -987,7 +985,11 @@ This action is available only to `USER` role.
 
 + Response 200 (application/json)
 
-    + Attributes (Organization2)
+    + Attributes (object)
+      + ouCode: `XJ99004` (required, string)
+      + ouName: `Austria HR` (required, string)
+      + parentId: `XL78485` (required, string)
+      + people (array[PersonWithRevisionAndVendor])
 
 + Response 500
     Returned when a generic error occours.
@@ -1017,7 +1019,21 @@ Return all the people who are managed by the same manager of the person with id=
 
 + Response 200 (application/json)
 
-    + Attributes (Profiles collections)
+    + Attributes
+        + Include PaginationData
+        + results (array)
+            + (Profile1)
+                + ouCode: `XL78494` (required, string)
+                + ouName: `Controller` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
+            + (Profile2)
+                + ouCode: `XL78480` (required, string)
+                + ouName: `Global DPE (Delivery Project Executive)` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
+            + (Profile3)
+                + ouCode: `XL78491` (required, string)
+                + ouName: `Value Resource Center` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
 
 + Response 500
     Returned when a generic error occours.
@@ -1047,7 +1063,21 @@ Return all the people who are managed the manager with id== **id**.
 
 + Response 200 (application/json)
 
-    + Attributes (Profiles collections)
+    + Attributes
+        + Include PaginationData
+        + results (array)
+            + (Profile1)
+                + ouCode: `XL78494` (required, string)
+                + ouName: `Controller` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
+            + (Profile2)
+                + ouCode: `XL78480` (required, string)
+                + ouName: `Global DPE (Delivery Project Executive)` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
+            + (Profile3)
+                + ouCode: `XL78491` (required, string)
+                + ouName: `Value Resource Center` (required, string)
+                + empTypeName: `V-TS Employee` (required, string)
 
 + Response 500
     Returned when a generic error occours.
@@ -1819,56 +1849,56 @@ Allow you to remove a support request's document
 + active:`Y`
 
 ## Organization1 (object)
-+ ouCode:`XL9875`
-+ ouName:`organization name 1`
++ ouCode: `XL9875` (required, string)
++ ouName: `organization name 1` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[Person1,Person2], optional)
-+ parentId: `XL9875`
 
 ## Organization2 (object)
-+ ouCode:`XL8654`
-+ ouName:`organization name 2`
++ ouCode: `XL8654` (required, string)
++ ouName: `organization name 2` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[Person3], optional)
-+ parentId: `XL9875`
 
 ## Organization3 (object)
-+ ouCode:`XL9352`
-+ ouName:`organization name 1`
++ ouCode: `XL9352` (required, string)
++ ouName: `organization name 1` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[Person4,Person5], optional)
-+ parentId: `XL9875`
 
 ## OrganizationVendor1 (object)
-+ ouCode:`XL9875`
-+ ouName:`organization name 1`
++ ouCode: `XL9875` (required, string)
++ ouName: `organization name 1` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[PersonVendor1,PersonVendor2], optional)
-+ parentId: `XL9875`
 
 ## OrganizationVendor2 (object)
-+ ouCode:`XL8654`
-+ ouName:`organization name 2`
++ ouCode: `XL8654` (required, string)
++ ouName: `organization name 2` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[], optional)
-+ parentId: `XL9875`
 
 ## OrganizationVendor3 (object)
-+ ouCode:`XL9352`
-+ ouName:`organization name 1`
++ ouCode: `XL9352` (required, string)
++ ouName: `organization name 1` (required, string)
++ parentId: `XL9875` (required, string)
 + people (array[], optional)
-+ parentId: `XL9875`
 
 ## OrganizationMini1 (object)
-+ ouCode:`XL9875`
-+ ouName:`organization name 1`
++ ouCode: `XL9875` (required, string)
++ ouName: `organization name 1` (required, string)
 
 ## OrganizationMini2 (object)
-+ ouCode:`XL9352`
-+ ouName:`organization name 1`
++ ouCode: `XL9352` (required, string)
++ ouName: `organization name 1` (required, string)
 
 ## OrganizationMini3 (object)
-+ ouCode:`XL8654` (required, string)
-+ ouName:`organization name 1` (required, string)
++ ouCode: `XL8654` (required, string)
++ ouName: `organization name 1` (required, string)
 
 ## OrganizationMini4 (object)
-+ ouCode:`XL8654`
-+ ouName:`organization name 1bis`
++ ouCode: `XL8654` (required, string)
++ ouName: `organization name 1bis` (required, string)
 
 ## Person1 (object)
 + id: 1 (required, number)
@@ -1910,7 +1940,7 @@ Allow you to remove a support request's document
 + isMainManager: false (boolean)
 + employeeType: EXT (string, required)
 
-## PersonVendorWithRevision (object)
+## PersonWithRevisionAndVendor (object)
 + revision (object)
     + id: 334 (required, number)
 + id: 1 (required, number)
@@ -1923,7 +1953,7 @@ Allow you to remove a support request's document
 + employeeType: `MAI` (required, string)
 + vendor (object)
   + id : 1 (required, number)
-  + name: `IBM` (required, string)
+  + name: `IBM Italia S.p.a.` (required, string)
 
 
 ## PersonVendor1 (object)
