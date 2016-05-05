@@ -964,7 +964,11 @@ Return the current OrganizationUnit of the given person for the given structureT
 
 + Response 200 (application/json)
 
-    + Attributes (Oranization2)
+    + Attributes (object)
+      + ouCode: `XL78491`
+      + ouName: `Value Resource Center`
+      + parentId: `XL78486`
+      + people (array[PersonVendorWithRevision])
 
 + Response 500
     Returned when a generic error occours.
@@ -1905,6 +1909,22 @@ Allow you to remove a support request's document
 + isManager: false (boolean)
 + isMainManager: false (boolean)
 + employeeType: EXT (string, required)
+
+## PersonVendorWithRevision (object)
++ revision (object)
+    + id: 334 (required, number)
++ id: 1 (required, number)
++ lastName: `BIANCHI` (required, string)
++ firstName: `MARIO` (required, string)
++ isManager: false (required, boolean)
++ isMainManager: false (required, boolean)
++ startDate: `2016-03-31` (required, string)
++ endDate: `2020-12-31` (string)
++ employeeType: `MAI` (required, string)
++ vendor (object)
+  + id : 1 (required, number)
+  + name: `IBM` (required, string)
+
 
 ## PersonVendor1 (object)
 + id: 1 (required, number)
