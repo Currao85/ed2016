@@ -4,6 +4,7 @@ var _ = require('lodash');
 
 var authId = "admin";
 var authPwd = authId;
+var authProfileId = 2534; // id of the user used to authenticated
 var stash = {};
 
 var authenticateTransaction = function (transaction) {
@@ -119,6 +120,7 @@ hooks.before("Profiles > User personal Profile > Update Profile", function(trans
   // or the admin user will 'lose' his profile
   var body = JSON.parse(transaction.request.body);
   body.userId = authId;
+  body.id = authProfileId;
   transaction.request.body = JSON.stringify(body);
   done();
 });

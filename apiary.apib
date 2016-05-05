@@ -186,6 +186,7 @@ This action does not require authentication.
     + id: 1 (required, number) - id of the user
 
 + Attributes (ProfileDetail)
+    + id: 1 (required, number) - id of the user
 
 ### Read Profile [GET]
 
@@ -212,6 +213,7 @@ This action does not require authentication.
 + Response 200 (application/json)
 
     + Attributes (ProfileVendorDetail)
+        + id: 1 (required, number) - id of the user
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -328,10 +330,10 @@ Updates user personal profile.
 This action is available to all authenticated users.
 
 + Request (application/json)
-
     + Attributes (Profile)
 
-+ Response 200
++ Response 200 (application/json)
+    + Attributes (Profile)
 
 + Response 400
     Returned when input does not pass validation.
