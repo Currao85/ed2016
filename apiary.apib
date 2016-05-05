@@ -18,7 +18,6 @@ Resources related to user's profile in the API.
     + results (array[Profile1, Profile2, Profile3], required) - array of profiles
     + Include PaginationData
 
-
 ### List Profiles [GET /profiles{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search user profiles.
 
@@ -798,9 +797,9 @@ Returns the revision organization structure tree with assigned vendor profiles.
   + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
-  + Attributes (object)
-    + results (array[OrganizationVendor1, OrganizationVendor2, OrganizationVendor3], required) - array of organization units with vendor profiles
-    + Include PaginationDataTree
+    + Attributes (object)
+        + results (array[OrganizationVendor1, OrganizationVendor2, OrganizationVendor3], required) - array of organization units with vendor profiles
+        + Include PaginationDataTree
 
 ### List Organization Units Managers [GET /organizations/{type}/revisions/{id}/ous/managers{?sort}]
 Returns a list with managers for specified revision organization of a structure tree
@@ -814,12 +813,12 @@ Returns a list with managers for specified revision organization of a structure 
           + fname
 
 + Response 200 (application/json)
-  + Attributes (object)
-    + results (array[Person1,Person1,Person1]) - array of organization units with vendor profiles
-    + paginationData (object) - Informations required for pagination
-        + count: 3 (number) - total number of resources
-        + pageNum: 1 (number) - slice of resources returned
-        + pageSize: 3 (number) - size of the slice
+    + Attributes (object)
+        + results (array[Person1,Person1,Person1]) - array of organization units with vendor profiles
+        + paginationData (object) - Informations required for pagination
+            + count: 3 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
 
 ### List Organization Units types [GET /organizations/{type}/revisions/{id}/ous/types]
 Returns the revision organization unit list.
@@ -829,8 +828,8 @@ Returns the revision organization unit list.
   + id: 1 or active (required) - id of the requested revision
 
 + Response 200 (application/json)
-  + Attributes (object)
-    + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
+    + Attributes (object)
+        + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
 
 
 ## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}]
