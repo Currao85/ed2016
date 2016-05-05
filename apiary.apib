@@ -186,7 +186,6 @@ This action does not require authentication.
     + id: 1 (required, number) - id of the user
 
 + Attributes (ProfileDetail)
-    + id: 1 (required, number) - id of the user
 
 ### Read Profile [GET]
 
@@ -213,7 +212,6 @@ This action does not require authentication.
 + Response 200 (application/json)
 
     + Attributes (ProfileVendorDetail)
-        + id: 1 (required, number) - id of the user
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -330,10 +328,10 @@ Updates user personal profile.
 This action is available to all authenticated users.
 
 + Request (application/json)
+
     + Attributes (Profile)
 
-+ Response 200 (application/json)
-    + Attributes (Profile)
++ Response 200
 
 + Response 400
     Returned when input does not pass validation.
@@ -800,9 +798,9 @@ Returns the revision organization structure tree with assigned vendor profiles.
   + pageSize: 25 (optional, number) - Amount of results to return
 
 + Response 200 (application/json)
-+ Attributes (object)
-  + results (array[OrganizationVendor1, OrganizationVendor2, OrganizationVendor3], required) - array of organization units with vendor profiles
-  + Include PaginationDataTree
+  + Attributes (object)
+    + results (array[OrganizationVendor1, OrganizationVendor2, OrganizationVendor3], required) - array of organization units with vendor profiles
+    + Include PaginationDataTree
 
 ### List Organization Units Managers [GET /organizations/{type}/revisions/{id}/ous/managers{?sort}]
 Returns a list with managers for specified revision organization of a structure tree
@@ -816,26 +814,23 @@ Returns a list with managers for specified revision organization of a structure 
           + fname
 
 + Response 200 (application/json)
-+ Attributes (object)
-  + results (array[Person1,Person1,Person1]) - array of organization units with vendor profiles
-  + paginationData (object) - Informations required for pagination
-      + count: 3 (number) - total number of resources
-      + pageNum: 1 (number) - slice of resources returned
-      + pageSize: 3 (number) - size of the slice
-
+  + Attributes (object)
+    + results (array[Person1,Person1,Person1]) - array of organization units with vendor profiles
+    + paginationData (object) - Informations required for pagination
+        + count: 3 (number) - total number of resources
+        + pageNum: 1 (number) - slice of resources returned
+        + pageSize: 3 (number) - size of the slice
 
 ### List Organization Units types [GET /organizations/{type}/revisions/{id}/ous/types]
 Returns the revision organization unit list.
-
-**Released on Mar 22**
 
 + Parameters
   + type: UO (string) - Structure type to filter for
   + id: 1 or active (required) - id of the requested revision
 
 + Response 200 (application/json)
-+ Attributes (object)
-  + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
+  + Attributes (object)
+    + results (array[OrganizationMini1, OrganizationMini2, OrganizationMini3], required) - array of organization units
 
 
 ## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}]
@@ -1868,6 +1863,13 @@ Allow you to remove a support request's document
 + parentId: `XL9875` (required, string)
 + people (array[Person4,Person5], optional)
 
+## RevisionId
++ id: 1 (number, required)
+
+## VendorIdAndName
++ id : 1 (required, number)
++ name: `IBM Italia S.p.a.` (required, string)
+
 ## OrganizationVendor1 (object)
 + ouCode: `XL9875` (required, string)
 + ouName: `organization name 1` (required, string)
@@ -1904,43 +1906,53 @@ Allow you to remove a support request's document
 
 ## Person1 (object)
 + id: 1 (required, number)
-+ lastName: `Linzi` (required, string)
-+ firstName: `Giovanni` (required, string)
-+ isManager: true (boolean)
-+ isMainManager: true (boolean)
++ lastName: `Linzi` (string, required)
++ firstName: `Giovanni` (string, required)
++ isManager: true (boolean, required)
++ isMainManager: true (boolean, required)
 + employeeType: EXT (string, required)
++ startdate: `2016-04-01` (string, required)
++ enddate: `2016-04-01` (string)
 
 ## Person2 (object)
 + id: 2 (required, number)
-+ lastName: `Linzi` (required, string)
-+ firstName: `Giovanni` (required, string)
-+ isManager: false (boolean)
-+ isMainManager: false (boolean)
++ lastName: `Linzi` (string, required)
++ firstName: `Giovanni` (string, required)
++ isManager: false (boolean, required)
++ isMainManager: false (boolean, required)
 + employeeType: EXT (string, required)
++ startdate: `2016-04-01` (string, required)
++ enddate: `2016-04-01` (string)
 
 ## Person3 (object)
 + id: 3 (required, number)
-+ lastName: `Signori` (required, string)
-+ firstName: `Marco` (required, string)
-+ isManager: true (boolean)
-+ isMainManager: false (boolean)
++ lastName: `Signori` (string, required)
++ firstName: `Marco` (string, required)
++ isManager: true (boolean, required)
++ isMainManager: false (boolean, required)
 + employeeType: EXT (string, required)
++ startdate: `2016-04-01` (string, required)
++ enddate: `2016-04-01` (string)
 
 ## Person4 (object)
 + id: 4 (required, number)
-+ lastName: `Moretto` (required, string)
-+ firstName: `Alberto` (required, string)
-+ isManager: true (boolean)
-+ isMainManager: true (boolean)
++ lastName: `Moretto` (string, required)
++ firstName: `Alberto` (string, required)
++ isManager: true (boolean, required)
++ isMainManager: true (boolean, required)
 + employeeType: EXT (string, required)
++ startdate: `2016-04-01` (string, required)
++ enddate: `2016-04-01` (string)
 
 ## Person5 (object)
 + id: 5 (required, number)
-+ lastName: `Tessarolo` (required, string)
-+ firstName: `Giovanni` (required, string)
-+ isManager: false (boolean)
-+ isMainManager: false (boolean)
++ lastName: `Tessarolo` (string, required)
++ firstName: `Giovanni` (string, required)
++ isManager: false (boolean, required)
++ isMainManager: false (boolean, required)
 + employeeType: EXT (string, required)
++ startdate: `2016-04-01` (string, required)
++ enddate: `2016-04-01` (string)
 
 ## PersonWithRevisionAndVendor (object)
 + revision (object)
@@ -1953,26 +1965,21 @@ Allow you to remove a support request's document
 + startDate: `2016-03-31` (required, string)
 + endDate: `2020-12-31` (string)
 + employeeType: `MAI` (required, string)
-+ vendor (object)
-  + id : 1 (required, number)
-  + name: `IBM Italia S.p.a.` (required, string)
-
++ vendor (VendorIdAndName, required)
 
 ## PersonVendor1 (object)
++ revision (RevisionId, required)
 + id: 1 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
-+ vendor (object)
-  + id : 1 (required, number)
-  + name: `IBM` (required, string)
++ vendor (VendorIdAndName, required)
 
 ## PersonVendor2 (object)
++ revision (RevisionId, required)
 + id: 2 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
-+ vendor (object)
-  + id : 1 (required, number)
-  + name: `IBM` (required, string)
++ vendor (VendorIdAndName, required)
 
 ## ProfileVendor1 (object)
 + vendor (Vendor1)
@@ -2396,8 +2403,6 @@ Allow you to remove a support request's document
 + city: Vienna (string)
 + state: AT (string)
 + country: Austria (string)
-
-
 
 ## OtherRolesPerson1 (object)
 + id: 99 (number)
