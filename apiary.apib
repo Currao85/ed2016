@@ -507,6 +507,7 @@ For now a table with all professions doesn't exists.
 ## Structure Type collection [/organizations]
 
 ### Create Structure Type [POST]
+This action is available only to `ADMIN` role.
 
 + Request (application/json)
     + Attributes (StructureType)
@@ -551,6 +552,7 @@ For now a table with all professions doesn't exists.
     + Body
 
 ### Update Structure Type [PUT]
+This action is available only to `ADMIN` role.
 
 + Parameters
     + type: ZZ (required, string)
@@ -574,6 +576,7 @@ For now a table with all professions doesn't exists.
     + Body
 
 ### Delete Structure Type [DELETE]
+This action is available only to `ADMIN` role.
 
 + Parameters
     + type: ZZ (required, string)
@@ -623,7 +626,7 @@ The list of structure types. (Hierarchical View - List Organization, Homepage)
 # Group Revisions
 #######################
 
-## Revisions collection [/organizations/{type}/revisions{?page,sort,pageSize}]
+## Revisions collection [/organizations/{type}/revisions{?searchQuery,page,sort,pageSize}]
 
 + Attributes (object)
   + results (array[Revision1, Revision2, Revision3, Revision4], required) - array of revisions
@@ -634,6 +637,7 @@ Returns the revisions list.
 
 + Parameters
   + type: UO (string) - Structure type to filter for
+  + searchQuery: {} (object, required) - json filter
   + page: 1 (optional, number) - The page of results to return
   + sort: description (optional) - Sorting order
   + pageSize: 25 (optional, number) - Amount of results to return
