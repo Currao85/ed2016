@@ -838,7 +838,7 @@ Returns the revision organization unit list.
 
 Update a person inside the Organization Units (set as manager) or Organization Tree (change ous/person).
 
-**Released on Mar 22**
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
@@ -852,6 +852,12 @@ Update a person inside the Organization Units (set as manager) or Organization T
         + startDate: `2016-03-02` (required, string) - the start date if you want to change person's ou (not required)
 
 + Response 200 (application/json)
+    + Attributes
+      + id: 192 (number, required)
+      + ouCode: `XL78491` (string, required)
+      + startDate: `2016-04-01` (string, required)
+      + isManager: true (boolean, required)
+      + isMainManager: false (boolean, required)
 
 + Response 404
     Returned when the required resource cannot be found.
@@ -867,7 +873,7 @@ Update a person inside the Organization Units (set as manager) or Organization T
 
 Disable an Organization Units.
 
-**Released on Mar 23**
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
@@ -895,8 +901,7 @@ Disable an Organization Units.
 
 Assign Organization Unit to Parent from a specified date.
 
-**Released on Apr 06**
-
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + type: UO (string) - Structure type to filter for
@@ -925,6 +930,8 @@ Assign Organization Unit to Parent from a specified date.
 
 Deletes a node in the tree and, eventually all the children nodes.
 Does NOT delete the related OrganizationUnit.
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + recursively: true (string) - Structure type to filter for
@@ -1080,7 +1087,7 @@ Return all the people who are managed the manager with id== **id**.
 
     + Body
 
-### DRAFT - Person Other roles [GET /organizations/{type}/revisions/{id}/people/{peopleid}/otherRoles{?page,pageSize,sort,sortOrder}]
+### Person Other roles [GET /organizations/{type}/revisions/{id}/people/{peopleid}/otherRoles{?page,pageSize,sort,sortOrder}]
 
 Return all roles of the person with id== **id** other than then one in structure type== **type**.
 
@@ -1230,7 +1237,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 
 #######################
-# Group DRAFT - Vendor
+# Group Vendor
 #######################
 
 ## Vendor collection [/vendors]
@@ -1921,7 +1928,6 @@ Allow you to remove a support request's document
 + isMainManager: false (boolean, required)
 + employeeType: EXT (string, required)
 + startdate: `2016-04-01` (string, required)
-+ enddate: `2016-04-01` (string)
 
 ## Person3 (object)
 + id: 3 (required, number)
@@ -1971,6 +1977,11 @@ Allow you to remove a support request's document
 + id: 1 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
++ isManager: false (required, boolean)
++ isMainManager: false (required, boolean)
++ startDate: `2016-03-31` (required, string)
++ endDate: `2020-12-31` (string)
++ employeeType: `DEL` (required, string)
 + vendor (VendorIdAndName, required)
 
 ## PersonVendor2 (object)
@@ -1978,6 +1989,10 @@ Allow you to remove a support request's document
 + id: 2 (required, number)
 + lastName: `Linzi` (required, string)
 + firstName: `Giovanni` (required, string)
++ isManager: false (required, boolean)
++ isMainManager: false (required, boolean)
++ startDate: `2016-03-31` (required, string)
++ employeeType: `DEL` (required, string)
 + vendor (VendorIdAndName, required)
 
 ## ProfileVendor1 (object)
