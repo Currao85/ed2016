@@ -642,8 +642,9 @@ Returns the revisions list.
 
 
 ### Create Revision [POST]
-
 Creates a new revision.
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
   + type: UO (string) - Reference structure type
@@ -697,6 +698,7 @@ Used to retrieve revision detail.
     + Body
 
 ### Update Revision [PUT /organizations/{type}/revisions/{id}]
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
     + type: UO (string) - Reference structure type
@@ -718,8 +720,9 @@ Used to retrieve revision detail.
     + Body
 
 ### Publish Revision [PUT /organizations/{type}/revisions/{id}/publish]
-
 Publish the specified revision setting it as active.
+
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Parameters
   + type: UO (string) - Reference structure type
@@ -743,7 +746,7 @@ Publish the specified revision setting it as active.
     + Body
 
 ### Delete Revision [DELETE]
-
+This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Response 204
 
@@ -2325,74 +2328,78 @@ Allow you to remove a support request's document
 # AndQuery2 (object)
 + lname: Rossi (string)
 
-
 # AndQuery3 (object)
 + fname: Mario (string)
-
 
 # AndQuery4 (object)
 + email: mrossi@ibm.it (string)
 
-
 # AndQuery5 (object)
 + dcode: XL1231 (string)
-
 
 # AndQuery6 (object)
 + dname: Austria CEO (string)
 
 ## RevisionMini (object)
-  + description: Struttura 1 (string) - description of revision
-
++ description: Struttura 1 (string) - description of revision
 
 ## RevisionDetail (object)
-  + id: 1 (required) - id of the revision
-  + orgtype: UO (string) - Organization type to filter for
-  + description: Struttura 1 (string) - description of revision
-  + startDate: `2015-06-30` (string) - start date for the revision
-  + endDate: `` (string) - end date for the revision
-  + status: `active` (enum[string]) - status of the revision
-   + Members
-        + active
-        + expired
-        + draft
++ id: 1 (required) - id of the revision
++ orgtype: UO (string) - Organization type to filter for
++ description: Struttura 1 (string) - description of revision
++ startDate: `2015-06-30` (string) - start date for the revision
++ endDate (string) - end date for the revision
++ status: `active` (enum[string]) - status of the revision
+    + active
+    + expired
+    + draft
 
 ## NewRevisionDetail (object)
-  + id: 1 (required) - id of the revision
-  + orgtype: UO (string) - Organization type to filter for
-  + description: Struttura 1 (string) - description of revision
-  + startDate (string) - start date for the revision
-  + endDate (string) - end date for the revision
-  + status: `draft` (enum[string]) - status of the revision
++ id: 1 (required) - id of the revision
++ orgtype: UO (string) - Organization type to filter for
++ description: Struttura 1 (string) - description of revision
++ startDate (string) - start date for the revision
++ endDate (string) - end date for the revision
++ status: `draft` (enum[string]) - status of the revision
+    + active
+    + expired
+    + draft
 
+## StructureTypeIdDescr
++ id: `UO`
++ description: `Business`
 
 ## Revision1 (object)
 + id: 1
-+ description:`Struttura 1`
-+ startdate : `2016-03-01`
-+ enddate : ``(string)
-+ status : `active`
++ description: `Struttura 1`
++ startdate: `2016-03-01`
++ enddate: `2016-02-29` (string)
++ status: `active`
++ structureType (StructureTypeIdDescr)
 
 ## Revision2 (object)
 + id: 2
-+ description:`Struttura 2`
-+ startdate : `` (string)
-+ enddate : `` (string)
-+ status : `draft`
++ description: `Struttura 2`
++ startdate: `2015-06-30`
++ enddate: `2016-02-29`
++ status: `draft`
++ structureType (StructureTypeIdDescr)
 
 ## Revision3 (object)
 + id: 3
-+ description:`Struttura 3`
-+ startdate : `2015-06-30`
-+ enddate : `2016-02-29`
-+ status : `expired`
++ description: `Struttura 3`
++ startdate: `2015-06-30`
++ enddate: `2016-02-29`
++ status: `expired`
++ structureType (StructureTypeIdDescr)
 
 ## Revision4 (object)
 + id: 4
-+ description:`Struttura 4`
-+ startdate : `` (string)
-+ enddate : `` (string)
-+ status : `draft`
++ description: `Struttura 4`
++ startdate: `2015-06-30`
++ enddate: `2016-02-29`
++ status: `draft`
++ structureType (StructureTypeIdDescr)
 
 ## Location1 (object)
 + id: 1 (required, number)
