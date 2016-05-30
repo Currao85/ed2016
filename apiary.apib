@@ -815,6 +815,12 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
     + Body
 
++ Response 404
+    Returned when the parent cannot be found.
+
+    + Body
+
+
 + Response 500
     Returned when a generic error occours.
 
@@ -868,6 +874,24 @@ Returns the revision organization unit list.
 
 
 ## Tree Organization Unit  [/organizations/{type}/revisions/{id}/ous/{ouCode}]
+
+
+### List Organization Unit Person  [GET /organizations/{type}/revisions/{id}/ous/{ouCode}/people{?page,sort,pageSize}]
+Returns the people list linked to the requested ou.
+
++ Parameters
+  + type: UO (string) - Structure type to filter for
+  + id: 1 or active (required) - id of the requested revision
+  + ouCode: XL1232 (required, string) - id of the ou
+  + page: 1 (optional, number) - The page of results to return
+  + sort: firstName (optional) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+
++ Response 200 (application/json)
+  + Attributes (object)
+        + results (array[Person1,Person2], required) - array of employee profiles
+        + Include PaginationDataTree
+
 
 ### Organization Unit Person Update [PUT /organizations/{type}/revisions/{id}/ous/{ouCode}/people]
 
