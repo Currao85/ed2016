@@ -803,7 +803,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
 
 + Request (application/json)
     + Attributes (OrganizationCreateAssign)
-    
+
 
 + Response 201 (application/json)
     + Headers
@@ -811,7 +811,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
             Location: /ous/XL8654
 
     + Attributes (OrganizationNoPeople)
-    
+
 + Response 400
     Returned when the required resource cannot be found.
 
@@ -1412,6 +1412,40 @@ This action is available only to `ADMIN` role.
     Returned when a generic error occours.
 
     + Body
+
+
+#######################
+# Group Users
+#######################
+
+## User Info [/users]
+
+### Get full name [GET /users/fullname]
+Returns full name of logged in user formatted as `<last name> <first name>`
+
+This action does not require authentication.
+
+  + Response 200 (text/plain)
+
+            `Rossi Mario`
+
+### Get groups [GET /users/groups]
+Returns the groups of logged in user formatted as JSON array
+
+This action does not require authentication.
+
+  + Response 200 (text/plain)
+
+            `["BACKOFFICE", "HRITADMIN"]`
+
+### Get roles [GET /users/roles]
+Returns the roles of logged in user formatted as JSON array
+
+This action does not require authentication.
+
+  + Response 200 (text/plain)
+
+            `["BACKOFFICE", "HRITADMIN"]`
 
 
 #######################
