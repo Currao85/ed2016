@@ -1322,97 +1322,6 @@ The list of vendors.
 + Response 200 (application/json)
   + Attributes (Vendor collection)
 
-### Create Vendor [POST]
-
-This action is available only to `ADMIN` role.
-
-+ Request (application/json)
-+ Attributes (object)
-  + id
-  + name: vendor name (required, string)
-
-+ Response 201 (application/json)
-    + Headers
-
-            Location: /vendors/1
-
-    + Attributes (Vendor1)
-
-+ Response 400
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-
-## Vendor [/vendors/{id}]
-
-### Read Vendor [GET]
-
-+ Parameters
-    + id: 1 (required, number)
-
-+ Response 200 (application/json)
-
-    + Attributes (Vendor1)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### Update Vendor [PUT]
-
-This action is available only to `ADMIN` role.
-
-+ Parameters
-    + id: 1 (required, number)
-
-+ Request (application/json)
-    + Attributes
-        + id: 1 (required, number)
-        + name: new vendor name (required, string)
-
-+ Response 200 (application/json)
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
-### Delete Vendor [DELETE]
-
-This action is available only to `ADMIN` role.
-
-+ Parameters
-    + id: 1 (required, number)
-
-+ Response 204
-
-+ Response 404
-    Returned when the required resource cannot be found.
-
-    + Body
-
-+ Response 500
-    Returned when a generic error occours.
-
-    + Body
-
 
 #######################
 # Group Users
@@ -2114,14 +2023,17 @@ Allow you to remove a support request's document
 ## Vendor1 (object)
 + id: 1 (required, number)
 + name: `IBM Italia S.p.a.` (required, string)
++ code: VND001
 
 ## Vendor2 (object)
 + id: 2 (required, number)
 + name: `EUDATA S.R.L.` (required, string)
++ code: VND002
 
 ## Vendor3 (object)
 + id: 3 (required, number)
 + name: `MAUDEN SPA` (required, string)
++ code: VND003
 
 ##SupportRequestMessageAssigned (object)
 + id: 1 (required, number)
