@@ -2,11 +2,8 @@ FORMAT: 1A
 HOST: http://emp.vts.it/vts-ed-rest-api
 
 # ED
-
 Service Oriented Architecture specified for the ED project.
 
-
-#######################
 # Group Profiles
 #######################
 
@@ -31,11 +28,11 @@ Takes a `searchQuery` parameter object defined as follows
   + dname (optional,String) - department name
   + emptype (optional,String) - employee type code
   + profession (optional, string) - profession description
-  + manager (optional,boolean) - filters only managers (**my report**)
-  + emptype (optional,array[string]) - array of employee types (**my report**)
-  + location (optional,number) - location id (**my report**)
-  + rootmanager (optional,number) - root manager id (**my report** - to identify start node of pyramid search)
-  + rootdcode (optional,string) - department code (**my report** - to identify start node of pyramid search)
+  + manager (optional,boolean) - filters only managers (my report)
+  + emptype (optional,array[string]) - array of employee types (my report)
+  + location (optional,number) - location id (my report)
+  + rootmanager (optional,number) - root manager id (my report - to identify start node of pyramid search)
+  + rootdcode (optional,string) - department code (my report - to identify start node of pyramid search)
   + includedismissed (optional,boolean) - include dismissed employees (default is false)
   + code (optional,number) - employee profile id
 
@@ -91,8 +88,8 @@ Takes a `searchQuery` parameter object defined as follows
   + dname (optional,String) - department name
   + emptype (optional,String) - employee type code
   + profession (optional,String) - profession description
-  + emptype (optiona,array[string]) - array of employee types (**my report**)
-  + vendorid (optional, number) - vendor id (**my report**)
+  + emptype (optiona,array[string]) - array of employee types (my report)
+  + vendorid (optional, number) - vendor id (my report)
   + vendorname (optional, String) - vendor name
 
 This action does not require authentication.
