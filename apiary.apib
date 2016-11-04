@@ -75,6 +75,65 @@ This action does not require authentication.
 
     + Body
 
+### List Profiles [GET /profiles/userrevalidation{?searchQuery,page,pageSize,sort,sortOrder,report}]
+Search user profiles for UserRevalidation Report.
+
+Takes a `searchQuery` parameter object defined as follows
+  + revision (required,number) - numeric id of the revision
+  + lname (optional,String) - last name
+  + fname (optional,String) - fist name
+  + email (optional,String) - email
+  + dcode (optional,String) - department code
+  + dname (optional,String) - department name
+  + emptype (optional,String) - employee type code
+  + profession (optional, string) - profession description
+  + manager (optional,boolean) - filters only managers (my report)
+  + emptype (optional,array[string]) - array of employee types (my report)
+  + location (optional,number) - location id (my report)
+  + rootmanager (optional,number) - root manager id (my report - to identify start node of pyramid search)
+  + rootdcode (optional,string) - department code (my report - to identify start node of pyramid search)
+  + includedismissed (optional,boolean) - include dismissed employees (default is false)
+  + code (optional,number) - employee profile id
+
+This action does not require authentication.
+
++ Parameters
+    + searchQuery: {"revision":"1", "includedismissed":"true", "lname":"Stewart", "emptype":["EXT","EMP"]} (Object) - json filter object
+    + page: 1 (optional, number) - The page of profiles to return
+    + sort: fname (enum[string], optional) - Sorting field
+        + Members
+            + lname
+            + fname
+            + dname
+            + country
+            + emptype
+            + pcode
+    + sortOrder: asc (enum, optional) - Sorting order
+        + Members
+            + asc
+            + desc
+    + pageSize: 25 (optional, number) - Amount of results to return
+    + report: EL (enum[string], optional) - Type of report (**throws error when invalid value**)
+        + Members
+            + DL
+            + EL
+            + UR
+            + PREVIEW
+
++ Response 200 (application/json)
+
+    + Attributes (Profiles collections)
+
++ Response 400
+    Returned when input does not pass validation.
+
+    + Body
+
++ Response 500
+    Returned when a generic error occours.
+
+    + Body
+
 ### List Vendor Profiles [GET /profiles/vendor{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search vendor profiles.
 
@@ -1649,7 +1708,7 @@ Changes the status of the support request to 'Assigned' and adds a proper messag
 
 + Request (application/json)
     + Attributes (object)
-        + userId: `balessandro` (required, string) - id of the assignee profile
+        + userCode: `balessandro` (required, string) - id of the assignee profile
 
 + Response 200 (application/json)
 
@@ -1763,7 +1822,7 @@ Allow you to remove a support request's document
 + jobResponsability: `job responsability` (string)
 + altInternetAddress: `firstname.lastname@organization2.com` (string) - Must be a valid email, as specified in RFC2822.
 + notesAddress: `indirizzo_notes@aaaaa.it` (string) - Must be a valid email, as specified in RFC2822.
-+ userId: `userid` (required, string) - Username of the profile. This field must match with the field used to authenticate on the application server.
++ userCode: `userCode` (required, string) - Username of the profile. This field must match with the field used to authenticate on the application server.
 + employeeType: `MAI` (required, string) - Code of profile type
 + personalCode: `X123456` (required, string)
 + bluePageCode: `L123456` (required, string)
@@ -2042,7 +2101,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + date: `2015-12-10 12:12:10` (required, string)
 + description: `This support request was assigned to Baggio Alessandro(bAlessandro@email.it)` (required, string)
 
@@ -2053,7 +2112,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + date: `2015-12-10 12:14:10` (required, string)
 + description: `This support request was closed (Motivazione chiusura lorem ipsum)` (required, string)
 
@@ -2064,7 +2123,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + date: `2015-12-10 12:14:10` (required, string)
 + description: `This support request was forcefully closed` (required, string)
 
@@ -2075,7 +2134,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + date: `2015-12-10 12:10:10` (required, string)
 + description: `This support request was created` (required, string)
 
@@ -2101,7 +2160,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate (string)
 + closureReason (string)
 
@@ -2128,7 +2187,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageClosed]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -2156,7 +2215,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned,SupportRequestMessageForced]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -2184,7 +2243,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 + closureReason: `Motivazione chiusura lorem ipsum` (string)
 
@@ -2234,7 +2293,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate (string)
 + closureReason (string)
 + messages (array[SupportRequestMessageOpen,SupportRequestMessageAssigned]) - Automatically created messages when the request status changes, refer to assign/close/forced req.
@@ -2254,7 +2313,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 
 ##SupportRequestForcedMini (object)
@@ -2272,7 +2331,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate: `2015-12-10 12:14:10` (string)
 
 ##SupportRequestOpenMini (object)
@@ -2303,7 +2362,7 @@ Allow you to remove a support request's document
     + firstName: `Alessandro` (string)
     + lastName: `Baggio` (string)
     + email: `bAlessandro@email.it` (string)
-    + userId: `balessandro` (string)
+    + userCode: `balessandro` (string)
 + closureDate (string)
 
 ##Support Request Document Upload (object)
