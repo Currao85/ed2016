@@ -75,7 +75,7 @@ This action does not require authentication.
 
     + Body
 
-### List Profiles [GET /profiles/userrevalidation{?searchQuery,page,pageSize,sort,sortOrder,report}]
+### List Profiles User Revalidation [GET /profiles/userrevalidation{?searchQuery,page,pageSize,sort,sortOrder,report}]
 Search user profiles for UserRevalidation Report.
 
 Takes a `searchQuery` parameter object defined as follows
@@ -1816,13 +1816,13 @@ Allow you to remove a support request's document
 ## ProfileBase (object)
 + firstName: `MARIO` (required, string) - First name of the profile. Must be between 2 and 50 chars long.
 + lastName: `BIANCHI` (required, string) - Last name of the profile. Must be between 2 and 50 chars long.
-+ email: `mbianchi@acme.it` (required, string) - Email of the profile. Must be a valid email, as specified in RFC2822.
++ email: `mbianchi@acme.it` (required, string) - Email of the profile. Must be a valid email, as specified in RFC2822. This field must match with the field used to authenticate on the application server.
 + profession: `Senior Developer` (string)
 + businessUnit: `not used?` (string)
 + jobResponsability: `job responsability` (string)
 + altInternetAddress: `firstname.lastname@organization2.com` (string) - Must be a valid email, as specified in RFC2822.
 + notesAddress: `indirizzo_notes@aaaaa.it` (string) - Must be a valid email, as specified in RFC2822.
-+ userCode: `userCode` (required, string) - Username of the profile. This field must match with the field used to authenticate on the application server.
++ userCode: `userCode` (required, string) - Username of the profile.
 + employeeType: `MAI` (required, string) - Code of profile type
 + personalCode: `X123456` (required, string)
 + bluePageCode: `L123456` (required, string)
