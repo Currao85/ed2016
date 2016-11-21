@@ -12,7 +12,7 @@ Resources related to user's profile in the API.
 ## Profiles collections [/profiles]
 
 + Attributes (object)
-    + results (array[Profile1, Profile2, Profile3], required) - array of profiles
+    + results (array[ProfileListBase, ProfileListBase], required) - array of profiles
     + Include PaginationData
 
 ### List Profiles [GET /profiles{?searchQuery,page,pageSize,sort,sortOrder,report}]
@@ -1840,6 +1840,43 @@ Allow you to remove a support request's document
 + vendor (Vendor1) - Vendor object for vendor employees. Only its `id` is used.
 + functionalManager (object) - Profile of the functional manager. Only its `id` is used.
     + id: 1 (number)
+
+## ProfileListBase (object)
++ firstName: `MARIO` (string) - First name of the profile. Must be between 2 and 50 chars long.
++ lastName: `BIANCHI` (string) - Last name of the profile. Must be between 2 and 50 chars long.
++ email: `mbianchi@acme.it` (string) - Email of the profile. Must be a valid email, as specified in RFC2822. This field must match with the field used to authenticate on the application server.
++ profession: `Senior Developer` (string)
++ businessUnit: `not used?` (string)
++ jobRole: `job role` (string)
++ altInternetAddress: `firstname.lastname@organization2.com` (string) - Must be a valid email, as specified in RFC2822.
++ notesAddress: `indirizzo_notes@aaaaa.it` (string) - Must be a valid email, as specified in RFC2822.
++ userCode: `userCode` (string) - Username of the profile.
++ empTypeName: `V-TS Employee` (string) - Name of profile type
++ personalCode: `X123456` (string)
++ bluePageCode: `L123456` (string)
++ hiringDate: `2016-02-28` (string) - Hiring date of the profile. The profile can be found through queries only starting from the specified date.
++ dismissDate: `2016-09-28` (string) - Dismiss date of the profile.
++ isManager: `true` (boolean)
++ isMainManager: `true` (boolean)
++ ouCode: `XL8654` (string)
++ ouName: `organization name 2` (string)
++ phone (object)
+    + country: `39` (string)
+    + number: `12345678` (string)
++ mobilePhone (object)
+    + country: `39` (string)
+    + number: `1234567` (string)
++ fax (object)
+    + country: `39` (string)
+    + number: `3904912345678` (string)
++ vendor (Vendor1) - Vendor object for vendor employees. Only its `id` is used.
++ ouManager (object) - Manager of the linked OU.
+    + id: 1 (number)
+    + mail: `manager@provider.com`
+    + firstName: `Luca`
+    + lastName: `Rossi`
+    + notesAddress: `luca.rossi/provider/it`
++ Include ProfilesAddresses
 
 ## ProfileDetail (ProfileBase)
 + Include ProfileInformations
