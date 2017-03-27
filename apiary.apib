@@ -1414,7 +1414,91 @@ This action does not require authentication.
   + Response 200 (text/plain)
 
             `["BACKOFFICE", "HRITADMIN"]`
+            
+## Portal users [/users/registry]
 
+### List portal users [GET /users/registry{?filter,page,pageSize,sort,sortOrder}]
+The list of portal users.
+
++ Parameters
+    + filter (Object, optional) - json filter object
+        + userName (String, optional) - username of the portal user
+        + firstName (String, optional) - first name of the portal user
+        + lastName (String, optional) - last name of the portal user
+    + page (int, optional) - The page of results to return
+    + pageSize (int, optional) - Amount of results to return
+    + sort (String, optional) - Sorting field
+    + sortOrder (String, optional) - Sorting order
+
++ Response 200 (application/json)
+
+        {"paginationData":{"count":100,"pageNum":1,"pageSize":10},
+        "results":[
+            {"userName":"user1@email.com","firstName":"Name1","lastName":"Surname1","groups":["group1"]},
+            {"userName":"user2@email.com","firstName":"Name2","lastName":"Surname2","groups":[]},
+            {"userName":"user3@email.com","firstName":"Name3","lastName":"Surname3","groups":["group1","group2"]},
+            {"userName":"user4@email.com","firstName":"Name4","lastName":"Surname4","groups":[]},
+            {"userName":"user51@email.com","firstName":"Name5","lastName":"Surname5","groups":[]},
+            {"userName":"user6@email.com","firstName":"Name6","lastName":"Surname6","groups":[]},
+            {"userName":"user7@email.com","firstName":"Name7","lastName":"Surname7","groups":["group1","group2","group3"]},
+            {"userName":"user8@email.com","firstName":"Name8","lastName":"Surname8","groups":[]},
+            {"userName":"user9@email.com","firstName":"Name9","lastName":"Surname9","groups":["group1"]},
+            {"userName":"user10@email.com","firstName":"Name10","lastName":"Surname10","groups":[]}
+        ]}
+
+### Get portal user [GET /users/registry/{userId}]
+Get a portal user.
+
++ Parameters
+    + userId (String) - ID of the portal user
+
++ Response 200 (application/json)
+
+        {"userName":"user@email.com","firstName":"Name","lastName":"Surname","groups":["group1", "group2"]}
+
+### Create portal user [POST]
+Create a new portal user.
+
++ Request (application/json)
+
+        {"userName":"user@email.com","firstName":"Name","lastName":"Surname","groups":[]}
+
++ Response 200 (application/json)
+
+### Update portal user [PUT /users/registry/{userId}]
+Update a portal user.
+
++ Parameters
+    + userId (String) - ID of the portal user
+    
++ Request (application/json)
+
+        {"userName":"user@email.com","firstName":"Name","lastName":"Surname","groups":["group1"]}
+
++ Response 200 (application/json)
+
+### Reset password portal user [PUT /users/registry/reset/{userId}]
+Resetthe password of a portal user.
+
++ Parameters
+    + userId (String) - ID of the portal user
+
++ Response 200 (application/json)
+
+### Delete portal user [DELETE /users/registry/{userId}]
+Delete a portal user.
+
++ Parameters
+    + userId (String) - ID of the portal user
+
++ Response 200 (application/json)
+
+### Get portal user groups [GET /users/registry/groups]
+Get a portal user groups.
+
++ Response 200 (application/json)
+
+        ["group1","group2","group3"]
 
 #######################
 # Group Locations
