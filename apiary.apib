@@ -839,7 +839,7 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
   + results (array[Organization1, Organization2, Organization3], required) - array of first-level organizations
   + Include PaginationDataTree
 
-### List Organization Units [GET /organizations/{type}/revisions/{id}/ous{?page,sort,pageSize}]
+### List Organization Units [GET /organizations/{type}/revisions/{id}/ous{?page,sort,pageSize,searchQuery}]
 Returns the revision organization structure tree with assigned people.
 
 + Parameters
@@ -848,6 +848,7 @@ Returns the revision organization structure tree with assigned people.
   + page: 1 (optional, number) - The page of results to return
   + sort: firstName (optional) - Sorting order
   + pageSize: 25 (optional, number) - Amount of results to return
+  + searchQuery: {"empType":["EXT","ASG","LOA","UBD","EMP","NIL","DEL","MAI","NDE"]} (optional, Object) - Json filter object
 
 + Response 200 (application/json)
   + Attributes (Tree Organization Units)
