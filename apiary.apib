@@ -596,24 +596,6 @@ For now a table with all professions doesn't exists.
             + pageNum: 1 (number) - slice of resources returned
             + pageSize: 3 (number) - size of the slice
 
-### Report List User Revalidation [GET /profiles/userrevalidation{?searchQuery,page,sort,sortOrder,pageSize,report}]
-
-+ Parameters
-  + searchQuery: {"revision":2558,"includedismissed":true,"dcode":"23123123","country":"Czech Republic","location":"745","emptype":["EXT","UBD","EMP"],"revisionstrict":false} (object, required) - json filter
-  + page: 1 (optional, number) - The page of results to return
-  + sort: description (optional) - Sorting type
-  + sortOrder: `asc` (optional, string) - Sorting order
-  + pageSize: 25 (optional, number) - Amount of results to return
-  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>UR</em> if you want to download the file excel
-
-+ Response 200 (application/json)
-    + Attributes (object)
-        + results (array[UserReport1, UserReport2])
-        + paginationData (object) - Informations required for pagination
-            + count: 2 (number) - total number of resources
-            + pageNum: 1 (number) - slice of resources returned
-            + pageSize: 3 (number) - size of the slice
-
 ### Report Employee List [GET /profiles/userlists{?searchQuery,page,sort,sortOrder,pageSize,report}]
 
 + Parameters
@@ -622,7 +604,12 @@ For now a table with all professions doesn't exists.
   + sort: description (optional) - Sorting type
   + sortOrder: `asc` (optional, string) - Sorting order
   + pageSize: 25 (optional, number) - Amount of results to return
-  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>EL</em> if you want to download the file excel
+  + report: `PREVIEW` (enum[string], optional) - Type of report (**throws error when invalid value**)
+        + Members
+            + DL
+            + EL
+            + UR
+            + PREVIEW
 
 + Response 200 (application/json)
     + Attributes (object)
@@ -2161,7 +2148,7 @@ Allow you to remove a support request's document
 + lastName : `Alexander` (string)
 + mobilePhone : {country: "+39", number: "260-(303)127-6308"}
 + notesAddress : `d'aquino/ibm/itz` (string)
-+ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{ouCode:"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
++ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{"ouCode":"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
 + ouCode : `XJ99004` (string)
 + ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
 + ouName : `Austria HR` (string)
@@ -2173,7 +2160,7 @@ Allow you to remove a support request's document
 
 ## DeptChain1
 + Include UserReport1
-+ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{ouCode:"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
++ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{"ouCode":"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
 + ouCode : `XJ99004` (string)
 + ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
 + ouName : `Austria HR` (string)
@@ -2199,14 +2186,14 @@ Allow you to remove a support request's document
 
 ## HierDept1
 + depthLevel : 3 (number)
-+ hierarchicalChain : array({ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2},{ouCode: "XL78480", ouName: "Global DPE Delivery Project Executive", depthLevel: 3})
++ hierarchicalChain : [{ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2},{ouCode: "XL78480", ouName: "Global DPE Delivery Project Executive", depthLevel: 3}]
 + ouCode : `XL78480` (string)
 + ouName : `Global DPE Delivery Project Executive` (string)
 + people : [{isManager: true, isMainManager: false, firstName: "Alan", lastName: "Johnson", id: 274}]
 
 ## HierDept2
 + depthLevel : 2 (number)
-+ hierarchicalChain : array({ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2})
++ hierarchicalChain : [{ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2}]
 + ouCode : `XJ99004` (string)
 + ouName : `Austria HR` (string)
 + people : [] (object)
