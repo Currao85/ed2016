@@ -1415,7 +1415,7 @@ This action does not require authentication.
 
   + Response 200 (text/plain)
 
-            `["BACKOFFICE", "HRITADMIN"]`
+            `["BACKOFFICE", "HRITADMIN", "USER"]`
             
 ## Portal users [/users/registry]
 
@@ -1926,6 +1926,7 @@ Allow you to remove a support request's document
 + vendor (Vendor1) - Vendor object for vendor employees. Only its `id` is used.
 + functionalManager (object) - Profile of the functional manager. Only its `id` is used.
     + id: 1 (number)
++ dataUsageAuth: `true` (boolean) - Third part data usage authorization
 
 ## ProfileListBase (object)
 + firstName: `MARIO` (string) - First name of the profile. Must be between 2 and 50 chars long.
