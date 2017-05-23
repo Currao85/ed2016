@@ -558,6 +558,79 @@ For now a table with all professions doesn't exists.
 + Response 200 (application/json)
   + Attributes (Profiles professions collections)
 
+## Profile Report [/]
+
+### Report Unified Employee List [GET /profiles/unifiedEmployees{?searchQuery,page,sort,sortOrder,pageSize,report}]
+
++ Parameters
+  + searchQuery: {"revision":2558} (object, required) - json filter
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting type
+  + sortOrder: `asc` (optional, string) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+  + report: `UNIFIED_EMPLOYEE_LIST` (optional, string) - if you want to download the file excel
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + results (array[UnifEmpl1,UnifEmpl2])
+        + paginationData (object) - Informations required for pagination
+            + count: 2 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
+
+### Report Departments chain list [GET /profiles/userlisthierchain{?searchQuery,page,sort,sortOrder,pageSize,report}]
+
++ Parameters
+  + searchQuery: {"revisionstrict":true,"revision":2558} (object, required) - json filter
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting type
+  + sortOrder: `asc` (optional, string) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>EMPLOYEE_LIST_HIER</em> if you want to download the file excel
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + results (array[DeptChain1,DeptChain2])
+        + paginationData (object) - Informations required for pagination
+            + count: 2 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
+
+### Report List User Revalidation [GET /profiles/userrevalidation{?searchQuery,page,sort,sortOrder,pageSize,report}]
+
++ Parameters
+  + searchQuery: {"revision":2558,"includedismissed":true,"dcode":"23123123","country":"Czech Republic","location":"745","emptype":["EXT","UBD","EMP"],"revisionstrict":false} (object, required) - json filter
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting type
+  + sortOrder: `asc` (optional, string) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>UR</em> if you want to download the file excel
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + results (array[UserReport1, UserReport2])
+        + paginationData (object) - Informations required for pagination
+            + count: 2 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
+
+### Report Employee List [GET /profiles/userlists{?searchQuery,page,sort,sortOrder,pageSize,report}]
+
++ Parameters
+  + searchQuery: {"revisionstrict":true,"revision":2558,"dcode":"CRI002","profession":"Account Executive","country":"Czech Republic","manager":true,"location":"745","emptype":["EXT","LOA","UBD","EMP","ASG"]} (object, required) - json filter
+  + page: 1 (optional, number) - The page of results to return
+  + sort: description (optional) - Sorting type
+  + sortOrder: `asc` (optional, string) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>EL</em> if you want to download the file excel
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + results (array[EmpList1, EmpList2])
+        + paginationData (object) - Informations required for pagination
+            + count: 2 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
 
 #######################
 # Group Structure Types
@@ -1066,6 +1139,25 @@ This action is available only to `ADMIN` and `HRITADMIN` roles.
     Returned when a generic error occours.
 
     + Body
+
+### Report Hierarchical Departments [GET /organizations/{type}/revisions/{id}/ous/listhierchain{?searchQuery,page,sort,sortOrder,pageSize,report}]
+
++ Parameters
+    + searchQuery: {"revisionstrict":true,"revision":2558} (object, required) - json filter
+    + page: 1 (optional, number) - The page of results to return
+    + sort: description (optional) - Sorting type
+    + sortOrder: `asc` (optional, string) - Sorting order
+    + pageSize: 25 (optional, number) - Amount of results to return
+    + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>HIER_DEPARMENTS</em> if you want to download the file excel
+
++ Response 200 (application/json)
+    + Attributes (object)
+        + results (array[HierDept1,HierDept2])
+        + paginationData (object) - Informations required for pagination
+            + count: 2 (number) - total number of resources
+            + pageNum: 1 (number) - slice of resources returned
+            + pageSize: 3 (number) - size of the slice
+
 
 #######################
 # Group Revisions / People
@@ -1988,6 +2080,136 @@ Allow you to remove a support request's document
 
 ## Profile3 (ProfileBase)
 + id: 3 (number) - id of the profile
+
+## UnifEmpl1 (object)
++ vendorFocalPointEmail: `abc@abc.it` (string)
++ companyName: `Hivesra` (string)
++ companyMastercode: `0c75dcb374` (string)
++ companyAddress: `Via Mantegna` (string)
++ companyCity: `Vicenza` (string)
++ companyCountry: `Hungary` (string)
++ status: `ACTIVE` (string)
++ ouCode: `L10` (string)
++ ouName: `Livello 10` (string)
++ isManager: false (boolean)
++ isMainManager: false (boolean)
++ ouManager: {"firstName":"Alan","lastName":"Johnson","email":"ajohnson7lo@reverbnation.com","userId":"ajohnson7lo@reverbnation.com","userCode":"ajohnson7l"} (object)
++ firstName: `Giulio` (string)
++ lastName: `Ferragni` (string)
++ email: `def@deg.it` (string)
++ userId: `` (string)
++ userCode: `a3ad3d7-0" (string)
++ empTypeName: `Vendor" (string)
++ hiringDate: `2016-06-22" (string)
++ vendor: {"code":"0c75dcb374","id":2082},"id":3146} (object)
+
+## UnifEmpl2 (object)
++ vendorFocalPointEmail: `def@deg.it` (string)
++ companyName: `Felter` (string)
++ companyMastercode: `0c75dcbff4` (string)
++ companyAddress: `Via R. Sanzio` (string)
++ companyCity: `Bologna` (string)
++ companyCountry: `Italy` (string)
++ status: `ACTIVE` (string)
++ ouCode: `L1` (string)
++ ouName: `Livello 1` (string)
++ isManager: true (boolean)
++ isMainManager: false (boolean)
++ ouManager: {firstName:"Alan",lastName:"Johnson",email:"ajohnson7lo@reverbnation.com",userId:"ajohnson7lo@reverbnation.com",userCode:"ajohnson7l"}
++ firstName: `Federico` (string)
++ lastName: `Rossi` (string)
++ email: `def@deg.it` (string)
++ userId: `` (string)
++ userCode: `a3ad3d7-0" (string)
++ empTypeName: `Vendor" (string)
++ hiringDate: `2016-06-22" (string)
++ vendor: {code:"0c75dcb374",id:2082},id:3146}
+
+## UserReport1
++ addresses : {business: {street: "Hollywood Street", city: "Las Vegas", country: "Italy"}}
++ altInternetAddress : `ssssss@email.com` (string)
++ bluePageCode : `a` (string)
++ email : `jalexander540@salon.com` (string)
++ empTypeName : `Extended Team IBM` (string)
++ fax : {country: "+39", number: "63-(548)304-5318"}
++ firstName : `Jack` (string)
++ id : 185 (number)
++ isMainManager : false (boolean)
++ isManager : false (boolean)
++ jobRole : `test job` (string)
++ lastName : `Alexander` (string)
++ mobilePhone : {country: "+39", number: "260-(303)127-6308"}
++ notesAddress : `d'aquino/ibm/itz` (string)
++ personalCode : `MATR-185` (string)
++ phone : {country: "+39", number: "48-(182)776-2360"}
++ profession : `Administrative Assistant I` (string)
++ userCode : `jalexander54` (string)
++ userId : `jalexander540@salon.com` (string)
+
+## UserReport2
++ addresses : {business: {street: "China Street", city: "Genoa", country: "Italy"}}
++ altInternetAddress : `daquino@email.com` (string)
++ bluePageCode : `a` (string)
++ email : `aaaaa@salon.com` (string)
++ empTypeName : `Extended Team IBM` (string)
++ fax : {country: "+39", number: "63-(548)304-5318"}
++ firstName : `Jack` (string)
++ id : 185 (number)
++ isMainManager : false (boolean)
++ isManager : false (boolean)
++ jobRole : `test job` (string)
++ lastName : `Alexander` (string)
++ mobilePhone : {country: "+39", number: "260-(303)127-6308"}
++ notesAddress : `d'aquino/ibm/itz` (string)
++ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{ouCode:"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
++ ouCode : `XJ99004` (string)
++ ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
++ ouName : `Austria HR` (string)
++ personalCode : `MATR-185` (string)
++ phone : {country: "+39", number: "48-(182)776-2360"}
++ profession : `Administrative Assistant I` (string)
++ userCode : `jalexander54` (string)
++ userId : `jalexander540@salon.com` (string)
+
+## DeptChain1
++ Include UserReport1
++ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, hierarchicalChain:[{ouCode:"XL78486",ouName:"CEO",depthLevel:1},{ouCode:"XL78491",ouName:"Value Resource Center",depthLevel:2}]}
++ ouCode : `XJ99004` (string)
++ ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
++ ouName : `Austria HR` (string)
+
+## DeptChain2
++ Include UserReport2
++ ouAssigned : {ouCode: "XJ99004", ouName: "Austria HR", depthLevel: 2, "hierarchicalChain":[{"ouCode":"XL78486","ouName":"CEO","depthLevel":1},{"ouCode":"XL78491","ouName":"Value Resource Center","depthLevel":2}]}
++ ouCode : `XJ99004` (string)
++ ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
++ ouName : `Austria HR` (string)
+
+## EmpList1
++ Include UserReport1
++ ouCode : `XJ99004` (string)
++ ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
++ ouName : `Austria HR` (string)
+
+## EmpList2
++ Include UserReport2
++ ouCode : `XJ99004` (string)
++ ouManager : {firstName: "Joyce", lastName: "Stewart", email: "steweeeee@edieinc.itt",id:6,notesAddress:"steweeeeenote@ikjnceit",userCode:"amoretto",userId:"steweeeee@edieinc.itt"}
++ ouName : `Austria HR` (string)
+
+## HierDept1
++ depthLevel : 3 (number)
++ hierarchicalChain : array({ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2},{ouCode: "XL78480", ouName: "Global DPE Delivery Project Executive", depthLevel: 3})
++ ouCode : `XL78480` (string)
++ ouName : `Global DPE Delivery Project Executive` (string)
++ people : [{isManager: true, isMainManager: false, firstName: "Alan", lastName: "Johnson", id: 274}]
+
+## HierDept2
++ depthLevel : 2 (number)
++ hierarchicalChain : array({ouCode: "XL78486", ouName: "CEO", depthLevel: 1},{ouCode: "XL78483", ouName: "Global PE Project Executive", depthLevel: 2})
++ ouCode : `XJ99004` (string)
++ ouName : `Austria HR` (string)
++ people : [] (object)
 
 ## VendorProfile1 (ProfileBase)
 + id: 1 (number) - id of the profile
