@@ -1738,6 +1738,68 @@ The list countries. (HR Admin - People insert, HR Admin - People modify)
 
 + Response 200 (application/json)
   + Attributes (Countries collections)
+  
+#######################
+# Group Revalidation Employees
+#######################
+
+## List Revalidation Employees [GET /revalidation{?searchQuery,page,pageSize,sort,sortOrder,report}]
+Get the list of employees with revalidations.
+
+This action is available only to `HRITADMIN`, `SUPPORT`, `BACKOFFICE` and `MANAGER` roles.
+
++ Parameters
+  + searchQuery: {"rvlid":1} (object, required) - revalidation id
+  + page: 1 (optional, number) - The page of results to return
+  + sort: default (optional) - Sorting type
+  + sortOrder: `asc` (optional, string) - Sorting order
+  + pageSize: 25 (optional, number) - Amount of results to return
+  + report: `PREVIEW` (required, string) - <em>PREVIEW</em> if you want a json version, <em>EMPLOYEE_REVALIDATION</em> if you want to download the file excel.
+
++ Response 200 (application/json)
+
+        {"paginationData":{"count":2,"pageNum":1,"pageSize":10},"results":[{"revalidation":{"date":"2017-07-31 09:53:12","manager":{"firstName":"Mario","lastName":"Rossi","userCode":"marioRossi","id":1},"id":2},"userCode":"email@mail.com","firstName":"MyName","lastName":"MyLastname","vendor":{"name":"00000000","code":"aaaaaaa","id":1000},"address":{"street":"address, 0","city":"City","country":"Netherlands"},"manager":{"firstName":"Mario","lastName":"Rossi","userCode":"marioRossi","id":1},"empTypeName":"V-TS Employee","notes":"My note","status":{"id":"1","description":"CONFIRMED"},"id":3},{"revalidation":{"date":"2017-07-31 09:53:12","manager":{"firstName":"Mario","lastName":"Rossi","userCode":"marioRossi","id":1},"id":2},"userCode":"email2@mail.com","firstName":"MyName2","lastName":"MyLastname2","vendor":{"name":"00000000","code":"aaaaaaa","id":1000},"address":{"street":"address, 0","city":"City","country":"Netherlands"},"manager":{"firstName":"Mario","lastName":"Rossi","userCode":"marioRossi","id":1},"empTypeName":"V-TS Employee","notes":"My note 2","status":{"id":"1","description":"CONFIRMED"},"id":4}]}
+
+## Create Revalidation Employees [POST /revalidation]
+Create records of employee's revalidations. The service takes a list of employee revalidation and return the revalidation ID.
+
+This action is available only to `MANAGER` roles.
+
++ Request (application/json)
+
+        [{"userCode":"email@mail.com","lastName":"MyName","firstName":"MyLastname","empTypeName":"V-TS Employee","address":{"street":"Via Roma 18","city":"Verona","country":"Italy","zip":"123546"},"manager":{"firstName":"ManagerName","lastName":"Managerlastname","userCode":"managerusercode","id":9},"status":{"id":"1","description":"CONFIRMED"},"notes":"My note","id":455},{"userCode":"email2@mail.com","lastName":"MyName2","firstName":"MyLastname2","empTypeName":"V-TS Employee","address":{"street":"Via Roma 18","city":"Verona","country":"Italy","zip":"123546"},"manager":{"firstName":"ManagerName","lastName":"Managerlastname","userCode":"managerusercode","id":9},"status":{"id":"1","description":"CONFIRMED"},"notes":"My note 2","id":456}]
+
++ Response 200 (application/json)
+
+## List Revalidation Statuses [GET /statuses]
+Get list of revalidation statuses.
+
+This action is available only to `HRITADMIN`, `SUPPORT`, `BACKOFFICE` and `MANAGER` roles.
+
++ Response 200 (application/json)
+
+        [{"id":"1","description":"CONFIRMED"},{"id":"2","description":"CONFIRMED WITH MODIFICATIONS"},{"id":"3","description":"NOT CONFIRMED, mgr update needed"},{"id":"4","description":"NOT CONFIRMED, resource off-boarding needed"}]
+
+## List Revalidation Managers [GET /managers]
+Get list of managers with saved employee's revalidations.
+
+This action is available only to `HRITADMIN`, `SUPPORT`, `BACKOFFICE` and `MANAGER` roles.
+
++ Response 200 (application/json)
+
+        [{"firstName":"MyName","lastName":"MyLastName","email":"email@mail.com","userId":"myuserid","userCode":"myusercode","id":1},{"firstName":"MyName2","lastName":"MyLastName2","email":"email2@mail.com","userId":"myuserid2","userCode":"myusercode2","id":2}]
+
+## List Revalidation Dates For Manager [GET /{id}/dates]
+Get list dates of manager with saved employee's revalidations.
+
+This action is available only to `HRITADMIN`, `SUPPORT`, `BACKOFFICE` and `MANAGER` roles.
+
++ Parameters
+    + id (required, number) - ID of the manager
+    
++ Response 200 (application/json)
+
+        [{"date":"2017-07-31 09:53:12","manager":{"firstName":"MyName","lastName":"MyLastName","userCode":"myusercode","id":1},"id":11},{"date":"2017-07-30 09:21:36","manager":{"firstName":"MyName","lastName":"MyLastName","userCode":"myusercode","id":1},"id":10}]    
 
 <!--
 #######################
