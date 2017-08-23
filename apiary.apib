@@ -1519,7 +1519,7 @@ This action does not require authentication.
 
 ## Portal users [/users/registry]
 
-### List portal users [GET /users/registry{?filter,page,pageSize,sort,sortOrder}]
+### List portal users [GET /users/registry{?filter,page,pageSize,sort,sortOrder,report}]
 The list of portal users.
 
 This action is available only to `ADMIN` and `UIDADMIN` roles.
@@ -1533,10 +1533,11 @@ This action is available only to `ADMIN` and `UIDADMIN` roles.
     + pageSize (int, optional) - Amount of results to return
     + sort (String, optional) - Sorting field
     + sortOrder (String, optional) - Sorting order
+    + report (String, optional) - Report type, omittedd  or PREVIEW for JSON, PORTAL_USER_LIST for excel
 
 + Response 200 (application/json)
 
-        {"paginationData":{"count":100,"pageNum":1,"pageSize":10},"results":[{"userName":"user1@email.com","firstName":"Name1","lastName":"Surname1","groups":["group1"]},{"userName":"user2@email.com","firstName":"Name2","lastName":"Surname2","groups":[]},{"userName":"user3@email.com","firstName":"Name3","lastName":"Surname3","groups":["group1","group2"]},{"userName":"user4@email.com","firstName":"Name4","lastName":"Surname4","groups":[]},{"userName":"user51@email.com","firstName":"Name5","lastName":"Surname5","groups":[]},{"userName":"user6@email.com","firstName":"Name6","lastName":"Surname6","groups":[]},{"userName":"user7@email.com","firstName":"Name7","lastName":"Surname7","groups":["group1","group2","group3"]},{"userName":"user8@email.com","firstName":"Name8","lastName":"Surname8","groups":[]},{"userName":"user9@email.com","firstName":"Name9","lastName":"Surname9","groups":["group1"]},{"userName":"user10@email.com","firstName":"Name10","lastName":"Surname10","groups":[]}]}
+        {"paginationData":{"count":100,"pageNum":1,"pageSize":10},"results":[{"userName":"user1@email.com","firstName":"Name1","lastName":"Surname1","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":["group1"]},{"userName":"user2@email.com","firstName":"Name2","lastName":"Surname2","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]},{"userName":"user3@email.com","firstName":"Name3","lastName":"Surname3","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":["group1","group2"]},{"userName":"user4@email.com","firstName":"Name4","lastName":"Surname4","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]},{"userName":"user51@email.com","firstName":"Name5","lastName":"Surname5","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]},{"userName":"user6@email.com","firstName":"Name6","lastName":"Surname6","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]},{"userName":"user7@email.com","firstName":"Name7","lastName":"Surname7","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":["group1","group2","group3"]},{"userName":"user8@email.com","firstName":"Name8","lastName":"Surname8","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]},{"userName":"user9@email.com","firstName":"Name9","lastName":"Surname9","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":["group1"]},{"userName":"user10@email.com","firstName":"Name10","lastName":"Surname10","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":[]}]}
 
 ### Create portal user [POST]
 Create a new portal user.
@@ -1559,7 +1560,7 @@ This action is available only to `ADMIN` and `UIDADMIN` roles.
 
 + Response 200 (application/json)
 
-        {"userName":"user@email.com","firstName":"Name","lastName":"Surname","groups":["group1", "group2"]}
+        {"userName":"user@email.com","firstName":"Name","lastName":"Surname","passwordLastUpdate":"2017-08-22","lastLogin":"2017-08-22","groups":["group1", "group2"]}
 
 ### Update portal user [PUT /users/registry/{userId}]
 Update a portal user.
